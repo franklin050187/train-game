@@ -1,6 +1,6 @@
 import 'server-only'
 
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { createHmac, timingSafeEqual } from 'node:crypto'
 import { compare, hash } from 'bcryptjs'
 import { db } from './db'
@@ -48,12 +48,13 @@ export async function login(email: string, password: string): Promise<string | n
 
 export async function setSession(userId: string) {
   const cookieStore = await cookies()
+  const proto = (await headers()).get('x-forwarded-proto')
   cookieStore.set(COOKIE, makeToken(userId), {
     httpOnly: true,
     sameSite: 'lax',
     path: '/',
     maxAge: MAX_AGE,
-    secure: process.env.NODE_ENV === 'production',
+    secure: proto === 'https',
   })
 }
 
