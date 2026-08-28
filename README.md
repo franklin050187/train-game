@@ -18,7 +18,9 @@ client-safe TypeScript, wrapped by a Next.js app that persists one game document
 
 ## Getting started
 
-Requires a Postgres database (Neon free tier works for local + Vercel).
+Requires a Postgres database. Two options:
+
+### Option A — remote Postgres (Neon free tier, works for local + Vercel)
 
 ```bash
 npm install
@@ -28,8 +30,41 @@ npx prisma migrate deploy     # apply prisma/migrations to your database
 npm run dev                   # http://localhost:3000
 ```
 
+### Option B — local Postgres (Docker)
+
+```bash
+npm install
+docker run -d --name train-game-pg -e POSTGRES_USER=train -e POSTGRES_PASSWORD=train \
+  -e POSTGRES_DB=traingame -p 5432:5432 postgres:17
+cp .env.example .env
+# .env:  DATABASE_URL=postgresql://train:train@localhost:5432/traingame
+SESSION_SECRET=$(openssl rand -hex 32); echo "SESSION_SECRET=$SESSION_SECRET" >> .env
+export DATABASE_URL=$(grep '^DATABASE_URL=' .env | cut -d= -f2-)
+npx prisma migrate deploy     # needs DATABASE_URL exported: Prisma 7 does NOT auto-load .env
+npm run dev                   # http://localhost:3000
+```
+
+Note: Prisma 7 reads connection config from `prisma.config.ts` and does **not** auto-load `.env` for CLI
+commands — export `DATABASE_URL` yourself when running `migrate`/`db` commands. The Next.js dev server
+loads `.env` automatically.
+
 Register an account and start your career — or load the demo snapshot to explore a mid-game save.
 The tutorial overlay walks the 9 tabs on your first visit.
+
+### Share over LAN or test the production build
+
+```bash
+# dev server on the LAN (http://<your-ip>:3000)
+npm run dev -- -H 0.0.0.0 -p 3000
+
+# exact same as Vercel runs
+npm run build
+npm run start -- -H 0.0.0.0 -p 3000
+```
+
+Opening it from another machine needs only the DB running on this host — point `DATABASE_URL` at
+`127.0.0.1` or the machine's LAN IP. The session cookie derives its `Secure` flag from the incoming
+`x-forwarded-proto`, so plain-HTTP LAN access works while Vercel keeps it `Secure`.
 
 ## Deploying to Vercel
 
