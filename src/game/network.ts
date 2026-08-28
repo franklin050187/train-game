@@ -10,7 +10,7 @@ export interface PathResult {
   ok: boolean
 }
 
-function neighbors(cityId: string) {
+export function neighbors(cityId: string) {
   const out: { city: string; seg: string }[] = []
   for (const s of WORLD.segments) {
     if (s.a === cityId) out.push({ city: s.b, seg: s.id })

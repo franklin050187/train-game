@@ -16,16 +16,23 @@ export function MapPanel({ state, go }: { state: GameState; go: (t: Tab) => void
   const bounds = mapBounds()
   const build = useSubmit(buildAction)
 
+  const revealedCities = useMemo(() => new Set(state.revealedCities ?? ['new-lyon']), [state.revealedCities])
+  const revealedSegments = useMemo(() => new Set(state.revealedSegments ?? []), [state.revealedSegments])
+
   const cityConnect = useMemo(() => {
     const map: Record<string, boolean> = {}
-    for (const c of WORLD) map[c.id] = findPath(state, 'new-lyon', c.id).ok
+    for (const c of WORLD) {
+      if (!revealedCities.has(c.id)) continue
+      map[c.id] = findPath(state, 'new-lyon', c.id).ok
+    }
     return map
-  }, [state])
+  }, [state, revealedCities])
 
   return (
     <div className="flex flex-col gap-3">
       <svg viewBox={`${bounds.minX} ${bounds.minY} ${bounds.width} ${bounds.height}`} className="w-full rounded-lg border border-zinc-800 bg-zinc-950">
         {SEGMENT_LIST.map((s) => {
+          if (!revealedSegments.has(s.id)) return null
           const a = CITY[s.a]
           const b = CITY[s.b]
           const usable = segmentUsable(state, s.id)
@@ -46,6 +53,7 @@ export function MapPanel({ state, go }: { state: GameState; go: (t: Tab) => void
           );
         })}
         {WORLD.map((c) => {
+          if (!revealedCities.has(c.id)) return null
           const conn = cityConnect[c.id]
           const isSel = sel === c.id
           const rep = state.cities[c.id]?.reputation
@@ -71,11 +79,11 @@ export function MapPanel({ state, go }: { state: GameState; go: (t: Tab) => void
         <button onClick={() => setLegend((v) => !v)} className="text-zinc-400 hover:text-zinc-200">
           {legend ? 'Hide legend' : 'Legend'}
         </button>
-        <span>{Object.values(cityConnect).filter(Boolean).length} connected cities</span>
+        <span>{revealedCities.size} discovered cities</span>
       </div>
       {legend && (
         <ul className="space-y-1 rounded-lg border border-zinc-800 bg-zinc-900/60 p-3 text-xs text-zinc-400">
-          <li><span className="mr-1 inline-block h-2 w-2 rounded-full bg-[#d4d4d8]" /> Connected city</li>
+          <li><span className="mr-1 inline-block h-2 w-2 rounded-full bg-[#d4d4d8]" /> Discovered city</li>
           <li><span className="mr-1 inline-block h-2 w-2 rounded-full bg-[#52525b]" /> No rail route</li>
           <li><span className="mr-1 inline-block h-2 w-2 rounded-full bg-[#dc2626]" /> Hostile city</li>
           <li><span className="mr-1 inline-block h-2 w-2 rounded-full bg-[#fbbf24]" /> Home, New Lyon</li>

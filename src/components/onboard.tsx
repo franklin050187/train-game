@@ -43,6 +43,17 @@ export function Onboard() {
             className="rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-100 outline-none focus:border-amber-500"
           />
         </label>
+        <label className="flex flex-col gap-1 text-sm text-zinc-400">
+          World seed <span className="text-xs text-zinc-600">(leave empty for random)</span>
+          <input
+            name="seed"
+            type="number"
+            min="0"
+            max="4294967295"
+            placeholder="e.g. 123456789"
+            className="rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-100 outline-none focus:border-amber-500"
+          />
+        </label>
         <button
           type="submit"
           name="demo"

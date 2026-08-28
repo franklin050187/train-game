@@ -3,6 +3,7 @@ import { CITIES, CITY_BY_ID, REGIONS, SEGMENTS, SEGMENT_BY_ID } from './world'
 import { LOCOMOTIVES } from './catalogs'
 import { generateContractsForCity } from './contracts'
 import { rngFor } from './rng'
+import { neighbors } from './network'
 import type { GameState, CityState, SegmentState } from './types'
 
 export interface NewGameOptions {
@@ -67,7 +68,7 @@ export function createNewGame(opts: NewGameOptions = {}): GameState {
   }
 
   const state: GameState = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     id: `g-${careerId}-${legacy}`,
     seed,
     createdAt: now,
@@ -139,6 +140,15 @@ export function createNewGame(opts: NewGameOptions = {}): GameState {
     tutorial: { step: 0, done: false },
     eventCounter: 0,
     secretCounter: 0,
+    revealedCities: ['new-lyon'],
+    revealedSegments: [],
+  }
+
+  // Reveal segments connected to starting city
+  const startNeighbors = neighbors('new-lyon')
+  for (const n of startNeighbors) {
+    state.revealedCities.push(n.city)
+    state.revealedSegments.push(n.seg)
   }
 
   void SEGMENT_BY_ID
@@ -146,9 +156,12 @@ export function createNewGame(opts: NewGameOptions = {}): GameState {
   void LOCOMOTIVES
 
   generateContractsForCity(state, 'new-lyon', rng, 4)
-  generateContractsForCity(state, 'marseille-n', rng, 2)
-  generateContractsForCity(state, 'metz-sud', rng, 2)
-  generateContractsForCity(state, 'paris-valo', rng, 2)
+  // Only generate for revealed cities
+  for (const cityId of state.revealedCities) {
+    if (cityId !== 'new-lyon') {
+      generateContractsForCity(state, cityId, rng, 2)
+    }
+  }
 
   milestone(state, 0, 'The rails woke')
   milestone(state, 1440, 'Day 2, Year 1')

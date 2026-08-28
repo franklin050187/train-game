@@ -46,7 +46,9 @@ export async function newGameAction(input: FormData): Promise<ActionResult> {
   if (existing) return { ok: false, error: 'already have a game' }
   const demo = input.get('demo') === '1'
   const name = String(input.get('name') ?? 'Conductor')
-  const state = demo ? createDemoGame() : createNewGame({ playerName: name })
+  const seedStr = String(input.get('seed') ?? '').trim()
+  const seed = seedStr ? Number(seedStr) : undefined
+  const state = demo ? createDemoGame() : createNewGame({ playerName: name, seed })
   await createGame(ownerId, state, demo)
   revalidatePath('/game')
   return { ok: true, state }

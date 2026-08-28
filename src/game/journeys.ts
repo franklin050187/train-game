@@ -1,9 +1,10 @@
+import { generateContractsForCity } from './contracts'
 import { BALANCE } from './balance'
 import { rngChance, rngBetween, rngFor } from './rng'
 import { CITY_BY_ID } from './world'
 import { computeTrainStats, validateTrain, trainById } from './trains'
 import { addNotification, checkAchievementsUnlocked, pullMilestones } from './economy'
-import { findPath } from './network'
+import { findPath, neighbors } from './network'
 import { generateEncounters } from './bandits'
 import type { GameState, Journey, ReputationLevel } from './types'
 
@@ -246,6 +247,23 @@ export function arriveJourney(state: GameState, journeyId: string): void {
     train.journey = undefined
     for (const w of train.wagons) {
       w.condition = Math.max(40, w.condition - Math.round((journey.distanceKm / 3000) * 14 + journey.damageTaken / 8))
+    }
+
+    // Fog of war: reveal destination city and connected segments
+    if (!state.revealedCities.includes(journey.to)) {
+      state.revealedCities.push(journey.to)
+      const conns = neighbors(journey.to)
+      for (const n of conns) {
+        if (!state.revealedCities.includes(n.city)) {
+          state.revealedCities.push(n.city)
+        }
+        if (!state.revealedSegments.includes(n.seg)) {
+          state.revealedSegments.push(n.seg)
+        }
+      }
+      // Generate contracts for newly revealed city
+      const rng = rngFor(state.seed, 'contracts', journey.to)
+      generateContractsForCity(state, journey.to, rng, 2)
     }
   }
 

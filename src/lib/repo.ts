@@ -23,12 +23,18 @@ export function parseState(json: string): GameState {
   if (
     typeof parsed !== 'object' ||
     parsed === null ||
-    (parsed as GameState).schemaVersion !== 1 ||
     typeof (parsed as GameState).minutes !== 'number'
   ) {
     throw new RepoError('game state failed structural validation')
   }
-  return parsed as GameState
+  const state = parsed as GameState
+  const version = state.schemaVersion as number
+  if (version === 1) {
+    state.schemaVersion = 2
+    state.revealedCities = []
+    state.revealedSegments = []
+  }
+  return state
 }
 
 export async function saveGame(ownerId: string, state: GameState): Promise<void> {

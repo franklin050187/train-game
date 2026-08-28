@@ -94,6 +94,22 @@ export function TrainsPanel({ state }: { state: GameState }) {
               <span>Location: {t.location}</span>
             </div>
 
+            {/* Visual train composition */}
+            <div className="mt-3 overflow-x-auto pb-2">
+              <div className="flex items-end gap-1 min-w-max">
+                <TrainCar kind="loco" label={loco?.name ?? t.locoId} weight={loco?.weight ?? 0} />
+                {t.wagons.map((w, i) => (
+                  <TrainCar key={`${t.id}-${i}`} kind="wagon" label={WAGON_DEFS[w.defId]?.name ?? w.defId} weight={WAGON_DEFS[w.defId]?.weight ?? 0} condition={w.condition} />
+                ))}
+                {t.wagons.length === 0 && (
+                  <div className="flex items-center gap-1 text-xs text-zinc-600 px-2 py-1 rounded bg-zinc-800">
+                    <span className="w-8 h-2 bg-zinc-700 rounded" />
+                    <span>No wagons attached</span>
+                  </div>
+                )}
+              </div>
+            </div>
+
             {j && j.status === 'enroute' ? (
               <div className="mt-3 rounded-lg border border-zinc-800 bg-zinc-950/60 p-3">
                 <p className="text-sm">
@@ -227,4 +243,37 @@ function statusPill(s: string) {
 
 function fmttonnes(t: number) {
   return Number.isInteger(t) ? t : t.toFixed(1)
+}
+
+function TrainCar({ kind, label, weight, condition }: { kind: 'loco' | 'wagon'; label: string; weight: number; condition?: number }) {
+  const isLoco = kind === 'loco'
+  return (
+    <div className="flex flex-col items-center gap-0.5" title={`${label} • ${weight}t${condition !== undefined ? ` • ${condition}%` : ''}`}>
+      <div className={`relative ${isLoco ? 'w-14 h-10' : 'w-10 h-8'} rounded-sm`} style={{
+        background: isLoco ? 'linear-gradient(180deg, #3f3f46 0%, #18181b 100%)' : 'linear-gradient(180deg, #52525b 0%, #27272a 100%)',
+        border: '1px solid #3f3f46',
+        boxShadow: 'inset 0 1px 0 #71717a20, inset 0 -1px 0 #00000040'
+      }}>
+        {isLoco && (
+          <>
+            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-amber-500/80" />
+            <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-2 h-1 rounded bg-zinc-700" />
+          </>
+        )}
+        {!isLoco && condition !== undefined && (
+          <div className="absolute top-0 right-0 w-full h-1 rounded-t" style={{
+            background: condition > 70 ? 'linear-gradient(90deg, #22c55e, #4ade80)' : condition > 40 ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #ef4444, #f87171)'
+          }} />
+        )}
+        <div className="absolute inset-0 flex items-center justify-center text-[8px] font-medium text-zinc-300 select-none">
+          {isLoco ? '🚂' : '🚃'}
+        </div>
+      </div>
+      <span className="text-[9px] text-zinc-500 whitespace-nowrap truncate max-w-[70px]" style={{ textAlign: 'center' }}>
+        {label}
+      </span>
+      <span className="text-[8px] text-zinc-600">{weight}t</span>
+      {condition !== undefined && <span className="text-[8px] text-zinc-500">{condition}%</span>}
+    </div>
+  )
 }

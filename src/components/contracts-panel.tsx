@@ -10,7 +10,8 @@ import { dispatchAction } from '@/lib/actions'
 
 export function ContractsPanel({ state }: { state: GameState }) {
   const dispatch = useSubmit(dispatchAction)
-  const live = state.contracts.filter((c) => !c.expired)
+  const revealedCities = new Set(state.revealedCities ?? ['new-lyon'])
+  const live = state.contracts.filter((c) => !c.expired && revealedCities.has(c.from))
   const byCity = new Map<string, typeof live>()
   for (const c of live) {
     const arr = byCity.get(c.from) ?? []

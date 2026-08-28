@@ -462,7 +462,7 @@ export interface WorldConfig {
 }
 
 export interface GameState {
-  schemaVersion: 1
+  schemaVersion: 2
   id: string
   seed: number
   createdAt: number
@@ -492,6 +492,8 @@ export interface GameState {
   tutorial: { step: number; done: boolean }
   eventCounter: number
   secretCounter: number
+  revealedCities: string[]
+  revealedSegments: string[]
 }
 
 export const CARGO: Record<CargoId, CargoDef> = {
