@@ -22,7 +22,7 @@ async function register(p: import('@playwright/test').Page, name: string, email:
   await p.fill('input[name=email]', email)
   await p.fill('input[name=password]', 'secret123')
   await hydrateAndSubmit(p)
-  await expect(p.locator('text=Welcome aboard, Conductor')).toBeVisible({ timeout: 10_000 })
+  await expect(p.getByRole('heading', { name: 'Welcome aboard, Conductor' })).toBeVisible({ timeout: 10_000 })
 }
 
 test('core loop at mobile width: register, play, persist', async ({ page }) => {

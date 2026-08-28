@@ -13,7 +13,7 @@ export default defineConfig({
     hasTouch: true,
   },
   webServer: {
-    command: 'npm run dev',
+    command: process.env.USE_PRODUCTION_SERVER ? 'npm run start' : 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 30_000,

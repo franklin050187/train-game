@@ -1,5 +1,7 @@
 # Railway Reclamation
 
+[![CI](https://github.com/franklin050187/train-game/actions/workflows/ci.yml/badge.svg)](https://github.com/franklin050187/train-game/actions/workflows/ci.yml)
+
 A single-player railroad-rebuilding simulation. The railway network of a frontier nation was shattered
 in the Greening — track lifted, towns cut off, industry idling. You are the first Conductor back:
 rebuild cities, haul freight, research rail tech, and complete the Great Loop to revive the frontier.
