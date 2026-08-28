@@ -9,8 +9,22 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: train
+          POSTGRES_PASSWORD: train
+          POSTGRES_DB: traingame
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U train"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     env:
-      DATABASE_URL: 'file:./dev.db'
+      DATABASE_URL: 'postgresql://train:train@localhost:5432/traingame?sslmode=disable'
       SESSION_SECRET: 'ci-session-secret-do-not-use-in-prod'
     steps:
       - uses: actions/checkout@v4
@@ -26,8 +40,8 @@ jobs:
       - name: Generate Prisma client
         run: npx prisma generate
 
-      - name: Create database schema
-        run: npx prisma db push
+      - name: Apply migrations
+        run: npm run db:deploy
 
       - name: Unit tests
         run: npm test

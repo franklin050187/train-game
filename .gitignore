@@ -41,7 +41,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local sqlite
+# local sqlite (legacy — persistence now uses hosted Postgres)
 /dev.db
 /prisma/dev.db*
 
