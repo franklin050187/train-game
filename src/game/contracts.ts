@@ -66,7 +66,7 @@ function buildContract(state: GameState, cityId: string, rng: Rng): ContractStat
   const path = findPath(state, cityId, to.id)
   const producedKinds = (def.produces as CargoId[]).filter((k) => (toDef.needs as CargoId[]).includes(k))
 
-  const passengerContract = rng() < 0.3 && cityLevelHasPassengers(def.level)
+  const passengerContract = rng() < 0.3 && cityLevelHasPassengers(def.level) && state.stats.contractsCompleted >= 2
   let cargo: CargoLoad[] = []
   let passengers = 0
   if (passengerContract) {

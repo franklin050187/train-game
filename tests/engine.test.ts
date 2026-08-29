@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { createNewGame } from '../src/game/init'
 import { advanceTime } from '../src/game/engine'
-import { addWagon, validateTrain } from '../src/game/trains'
+import { attachWagon, buyWagon, validateTrain } from '../src/game/trains'
 import { dispatchTrain, pendingJourneys, resolveEncounter } from '../src/game/journeys'
 
 function setupRunner() {
@@ -9,7 +9,10 @@ function setupRunner() {
   const tr = g.trains[0]
   tr.locoId = 'diesel-hauler'
   g.credits = 200000
-  for (let i = 0; i < 2; i++) addWagon(g, 'tr-1', 'boxcar')
+  for (let i = 0; i < 2; i++) {
+    buyWagon(g, 'boxcar')
+    attachWagon(g, 'tr-1', 'boxcar')
+  }
   const cargoTons = (c: { cargo: Array<{ tons: number }> }) => c.cargo.reduce((s, l) => s + l.tons, 0)
   const contract = g.contracts
     .filter((c) => !c.expired && c.passengers === 0)

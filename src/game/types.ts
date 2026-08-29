@@ -67,6 +67,7 @@ export interface WagonDef {
   allows?: CargoId[]
   fuelBonus?: number
   techRequired?: string
+  unlockContracts?: number
 }
 
 export type TechId =
@@ -462,7 +463,7 @@ export interface WorldConfig {
 }
 
 export interface GameState {
-  schemaVersion: 2
+  schemaVersion: 3
   id: string
   seed: number
   createdAt: number
@@ -479,6 +480,7 @@ export interface GameState {
   cities: Record<string, CityState>
   segments: Record<string, SegmentState>
   trains: TrainState[]
+  fleet: WagonInstance[]
   contracts: ContractState[]
   routes: RecurringRouteState[]
   research: { completed: TechId[]; progress: ResearchProgressState[]; points: number }

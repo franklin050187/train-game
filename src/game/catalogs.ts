@@ -123,6 +123,7 @@ export const WAGONS: Record<string, WagonDef> = {
     cost: 15000,
     maintenancePerDay: 34,
     allows: ['fuel', 'chemicals'],
+    unlockContracts: 2,
   },
   reefer: {
     id: 'reefer',
@@ -136,6 +137,7 @@ export const WAGONS: Record<string, WagonDef> = {
     cost: 22000,
     maintenancePerDay: 40,
     allows: ['food', 'medicine', 'chemicals'],
+    unlockContracts: 2,
   },
   'livestock-car': {
     id: 'livestock-car',
@@ -149,6 +151,7 @@ export const WAGONS: Record<string, WagonDef> = {
     cost: 12000,
     maintenancePerDay: 30,
     allows: ['food'],
+    unlockContracts: 2,
   },
   'heavy-cargo': {
     id: 'heavy-cargo',
@@ -162,6 +165,7 @@ export const WAGONS: Record<string, WagonDef> = {
     cost: 20000,
     maintenancePerDay: 36,
     allows: ['ore', 'timber', 'steel', 'coal', 'machinery'],
+    unlockContracts: 5,
   },
   'armored-car': {
     id: 'armored-car',
@@ -174,6 +178,7 @@ export const WAGONS: Record<string, WagonDef> = {
     armor: 30,
     cost: 34000,
     maintenancePerDay: 55,
+    unlockContracts: 5,
   },
   'fuel-wagon': {
     id: 'fuel-wagon',
@@ -188,6 +193,7 @@ export const WAGONS: Record<string, WagonDef> = {
     maintenancePerDay: 30,
     fuelBonus: 14000,
     techRequired: 'fw-tank',
+    unlockContracts: 8,
   },
 }
 

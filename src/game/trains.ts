@@ -1,6 +1,6 @@
 import { BALANCE } from './balance'
 import { LOCOMOTIVES, WAGONS } from './catalogs'
-import type { CargoId, CargoLoad, GameState, TrainState, WagonId } from './types'
+import type { CargoId, CargoLoad, GameState, TrainState, WagonDef, WagonId } from './types'
 import type { TechPerks } from './types'
 
 export interface TrainStats {
@@ -113,29 +113,69 @@ export function renameTrain(state: GameState, trainId: string, name: string): Ga
   return state
 }
 
-export function addWagon(state: GameState, trainId: string, wagonId: string): GameState {
-  const train = state.trains.find((t) => t.id === trainId)
-  if (!train || train.status !== 'yard') return state
+export function wagonUnlocked(state: GameState, def: WagonDef): boolean {
+  const done = state.stats.contractsCompleted
+  if (def.unlockContracts !== undefined && done < def.unlockContracts) return false
+  if (def.techRequired && !(state.research.completed as string[]).includes(def.techRequired)) return false
+  return true
+}
+
+export function buyWagon(state: GameState, wagonId: string): GameState {
   const def = WAGONS[wagonId]
   if (!def) return state
-  if (train.wagons.length >= BALANCE.maxTrainWagons) return state
+  if (!wagonUnlocked(state, def)) return state
   if (state.credits < def.cost) return state
-  if (def.techRequired && !(state.research.completed as string[]).includes(def.techRequired)) return state
   state.credits -= def.cost
-  train.wagons.push({ defId: wagonId as WagonId, condition: 100 })
+  state.fleet.push({ defId: wagonId as WagonId, condition: 100 })
   return state
 }
 
-export function removeWagon(state: GameState, trainId: string, index: number): GameState {
+export function attachWagon(state: GameState, trainId: string, wagonId: string): GameState {
+  const train = state.trains.find((t) => t.id === trainId)
+  if (!train || train.status !== 'yard') return state
+  if (train.wagons.length >= BALANCE.maxTrainWagons) return state
+  const idx = state.fleet.findIndex((w) => w.defId === wagonId)
+  if (idx < 0) return state
+  train.wagons.push(...state.fleet.splice(idx, 1))
+  return state
+}
+
+export function detachWagon(state: GameState, trainId: string, index: number): GameState {
   const train = state.trains.find((t) => t.id === trainId)
   if (!train || train.status !== 'yard') return state
   if (index < 0 || index >= train.wagons.length) return state
-  const def = WAGONS[train.wagons[index].defId]
-  train.wagons.splice(index, 1)
-  if (def) state.credits += Math.round(def.cost * 0.55)
+  state.fleet.push(...train.wagons.splice(index, 1))
+  return state
+}
+
+export function sellWagon(state: GameState, wagonId: string): GameState {
+  const def = WAGONS[wagonId]
+  if (!def) return state
+  const idx = state.fleet.findIndex((w) => w.defId === wagonId)
+  if (idx < 0) return state
+  state.fleet.splice(idx, 1)
+  state.credits += Math.round(def.cost * 0.55)
   return state
 }
 
 export function trainById(state: GameState, id: string): TrainState | undefined {
   return state.trains.find((t) => t.id === id)
 }
+
+export function fleetCountByType(state: GameState): Partial<Record<WagonId, number>> {
+  const out: Partial<Record<WagonId, number>> = {}
+  for (const w of state.fleet) out[w.defId] = (out[w.defId] ?? 0) + 1
+  return out
+}
+
+export const WAGON_UNLOCK_ORDER: WagonId[] = [
+  'boxcar',
+  'flatbed',
+  'passenger-car',
+  'tanker',
+  'livestock-car',
+  'reefer',
+  'heavy-cargo',
+  'armored-car',
+  'fuel-wagon',
+]

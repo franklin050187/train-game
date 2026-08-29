@@ -8,13 +8,16 @@ import { fmtMoney } from '@/game/economy'
 import { durationFmt } from '@/game/time'
 import { pendingJourneys } from '@/game/journeys'
 import { useSubmit } from './use-submit'
-import { dispatchAction, resolveAction, addWagonAction, removeWagonAction, renameTrainAction } from '@/lib/actions'
+import { dispatchAction, resolveAction, buyWagonAction, attachWagonAction, detachWagonAction, sellWagonAction, renameTrainAction } from '@/lib/actions'
+import { wagonUnlocked, fleetCountByType, WAGON_UNLOCK_ORDER } from '@/game/trains'
 
 export function TrainsPanel({ state }: { state: GameState }) {
   const dispatch = useSubmit(dispatchAction)
   const resolve = useSubmit(resolveAction)
-  const addW = useSubmit(addWagonAction)
-  const removeW = useSubmit(removeWagonAction)
+  const buy = useSubmit(buyWagonAction)
+  const attach = useSubmit(attachWagonAction)
+  const detach = useSubmit(detachWagonAction)
+  const sell = useSubmit(sellWagonAction)
   const rename = useSubmit(renameTrainAction)
   const waiting = pendingJourneys(state)
 
@@ -59,6 +62,8 @@ export function TrainsPanel({ state }: { state: GameState }) {
           </div>
         </section>
       )}
+
+      <Hangar state={state} owned={fleetCountByType(state)} buy={buy} sell={sell} />
 
       {state.trains.map((t) => {
         const stats = computeTrainStats(state, t)
@@ -139,36 +144,43 @@ export function TrainsPanel({ state }: { state: GameState }) {
 
             {t.status === 'yard' ? (
               <div className="mt-3 flex flex-col gap-2">
-                <div className="flex flex-wrap gap-1.5">
-                  {Object.entries(WAGON_DEFS).map(([id, w]) => (
-                    <form key={id} onSubmit={addW.submit} className="contents">
-                      <input type="hidden" name="trainId" value={t.id} />
-                      <input type="hidden" name="wagonId" value={id} />
-                      <button
-                        type="submit"
-                        disabled={addW.busy || t.wagons.length >= 6}
-                        title={`${w.name} • ${fmtMoney(w.cost)}`}
-                        className="rounded border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-300 hover:border-amber-500 disabled:opacity-30"
-                      >
-                        +{w.name} ({fmttonnes(w.weight)}t)
-                      </button>
-                    </form>
-                  ))}
-                </div>
+                {(() => {
+                  const avail = [...new Set(state.fleet.map((w) => w.defId))]
+                  return avail.length > 0 ? (
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-xs text-zinc-500">Attach:</span>
+                      {avail.map((id) => (
+                        <form key={id} onSubmit={attach.submit} className="contents">
+                          <input type="hidden" name="trainId" value={t.id} />
+                          <input type="hidden" name="wagonId" value={id} />
+                          <button
+                            type="submit"
+                            disabled={attach.busy || t.wagons.length >= 6}
+                            title={`Attach ${WAGON_DEFS[id]?.name ?? id} from warehouse`}
+                            className="rounded border border-emerald-800/50 bg-emerald-950/20 px-2 py-0.5 text-xs text-emerald-300 hover:border-emerald-500 disabled:opacity-30"
+                          >
+                            +{WAGON_DEFS[id]?.name ?? id}
+                          </button>
+                        </form>
+                      ))}
+                    </div>
+                  ) : null
+                })()}
                 <div className="flex flex-wrap items-center gap-1.5 text-xs">
                   {t.wagons.map((w, i) => (
-                    <form key={`${t.id}-${i}`} onSubmit={removeW.submit} className="contents">
+                    <form key={`${t.id}-${i}`} onSubmit={detach.submit} className="contents">
                       <input type="hidden" name="trainId" value={t.id} />
                       <input type="hidden" name="index" value={i} />
                       <button
                         type="submit"
-                        title="Remove wagon"
-                        className="rounded-full border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-zinc-400 hover:border-red-500 hover:text-red-400"
+                        title={`Detach ${WAGON_DEFS[w.defId]?.name ?? w.defId} to warehouse`}
+                        className="rounded-full border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-zinc-400 hover:border-amber-500 hover:text-amber-400"
                       >
-                        {WAGON_DEFS[w.defId]?.name ?? w.defId} ✕
+                        {WAGON_DEFS[w.defId]?.name ?? w.defId} ⇣
                       </button>
                     </form>
                   ))}
+                  {t.wagons.length === 0 && <span className="text-zinc-600">No wagons attached</span>}
                 </div>
                 <form onSubmit={rename.submit} className="flex items-center gap-2 text-xs">
                   <input type="hidden" name="trainId" value={t.id} />
@@ -241,8 +253,76 @@ function statusPill(s: string) {
   return map[s] ?? 'bg-zinc-800 text-zinc-300'
 }
 
-function fmttonnes(t: number) {
-  return Number.isInteger(t) ? t : t.toFixed(1)
+function Hangar({
+  state,
+  owned,
+  buy,
+  sell,
+}: {
+  state: GameState
+  owned: Partial<Record<string, number>>
+  buy: ReturnType<typeof useSubmit>
+  sell: ReturnType<typeof useSubmit>
+}) {
+  return (
+    <section className="rounded-lg border border-zinc-800 bg-zinc-900/60 p-4">
+      <div className="mb-2 flex items-baseline justify-between gap-2">
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-300">Wagon warehouse</h2>
+        <span className="text-xs text-zinc-500">Free to attach / detach. No refund on detach.</span>
+      </div>
+
+      <div className="mb-3 rounded-md border border-zinc-800 bg-zinc-950/60 p-2">
+        <p className="text-xs font-medium text-zinc-500">Owned</p>
+        <div className="mt-1 flex flex-wrap gap-1.5">
+          {WAGON_UNLOCK_ORDER.filter((id) => owned[id]).map((id) => {
+            const w = WAGON_DEFS[id]
+            return (
+              <form key={id} onSubmit={sell.submit} className="contents">
+                <input type="hidden" name="wagonId" value={id} />
+                <button
+                  type="submit"
+                  title={`Sell ${w?.name ?? id} for ${fmtMoney(Math.round((w?.cost ?? 0) * 0.55))}`}
+                  className="rounded-full border border-zinc-700 bg-zinc-900 px-2 py-0.5 text-xs text-zinc-300 hover:border-red-500"
+                >
+                  {w?.name ?? id} ×{owned[id]}
+                </button>
+              </form>
+            );
+          })}
+          {Object.keys(owned).length === 0 && <span className="text-xs text-zinc-600">Nothing in the warehouse yet.</span>}
+        </div>
+      </div>
+
+      <p className="mb-1 text-xs font-medium text-zinc-500">Buy for warehouse</p>
+      <div className="flex flex-wrap gap-1.5">
+        {WAGON_UNLOCK_ORDER.map((id) => {
+          const w = WAGON_DEFS[id]
+          if (!w) return null
+          const unlocked = wagonUnlocked(state, w)
+          const hint = unlocked
+            ? 'Owned: ' + (owned[id] ?? 0)
+            : w.unlockContracts !== undefined &&
+              state.stats.contractsCompleted < w.unlockContracts
+              ? `Unlocks after ${w.unlockContracts} contracts (${state.stats.contractsCompleted}/${w.unlockContracts})`
+              : 'Needs research'
+          const affordable = state.credits >= w.cost
+          return (
+            <form key={id} onSubmit={buy.submit} className="contents">
+              <input type="hidden" name="wagonId" value={id} />
+              <button
+                type="submit"
+                disabled={!unlocked || !affordable || buy.busy}
+                title={`${w.name} • ${fmtMoney(w.cost)} • ${hint}`}
+                className="rounded border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-300 hover:border-amber-500 disabled:opacity-30"
+              >
+                +{w.name} {fmtMoney(w.cost)}
+              </button>
+            </form>
+          );
+        })}
+      </div>
+    </section>
+  )
 }
 
 function TrainCar({ kind, label, weight, condition }: { kind: 'loco' | 'wagon'; label: string; weight: number; condition?: number }) {

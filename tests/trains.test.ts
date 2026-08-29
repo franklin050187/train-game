@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { createNewGame } from '../src/game/init'
-import { addWagon, computeTrainStats, removeWagon, renameTrain, validateTrain } from '../src/game/trains'
+import { attachWagon, buyWagon, computeTrainStats, detachWagon, renameTrain, sellWagon, validateTrain, wagonUnlocked } from '../src/game/trains'
 import { dispatchTrain } from '../src/game/journeys'
 import { findPath } from '../src/game/network'
+import { WAGONS } from '../src/game/catalogs'
 
 describe('trains', () => {
   it('computes baseline stats for the starter engine', () => {
@@ -30,30 +31,55 @@ describe('trains', () => {
     expect(check.errors.join()).toMatch(/passenger/)
   })
 
-  it('addWagon refuses when train is in transit or broke', () => {
+  it('wagonUnlocked gates by completed contracts and research', () => {
     const g = createNewGame({ seed: 42 })
-    g.credits = 10
-    const before = g.trains[0].wagons.length
-    const r1 = addWagon(g, 'tr-1', 'boxcar')
-    expect(r1).toBe(g)
-    expect(g.trains[0].wagons.length).toBe(before)
-
-    g.credits = 100000
-    g.trains[0].status = 'transit'
-    addWagon(g, 'tr-1', 'boxcar')
-    expect(g.trains[0].wagons.length).toBe(before)
+    expect(wagonUnlocked(g, WAGONS.boxcar)).toBe(true)
+    g.stats.contractsCompleted = 1
+    expect(wagonUnlocked(g, WAGONS.tanker)).toBe(false)
+    g.stats.contractsCompleted = 2
+    expect(wagonUnlocked(g, WAGONS.tanker)).toBe(true)
+    expect(wagonUnlocked(g, WAGONS['fuel-wagon'])).toBe(false)
+    g.stats.contractsCompleted = 8
+    g.research.completed.push('fw-tank')
+    expect(wagonUnlocked(g, WAGONS['fuel-wagon'])).toBe(true)
   })
 
-  it('addWagon spends credits and refunds on removal', () => {
+  it('buyWagon adds to fleet; attach/detach never destroys a wagon', () => {
     const g = createNewGame({ seed: 42 })
     g.credits = 100000
     const c0 = g.credits
-    addWagon(g, 'tr-1', 'boxcar')
-    expect(g.credits).toBeLessThan(c0)
-    expect(g.trains[0].wagons.length).toBe(3)
-    removeWagon(g, 'tr-1', 2)
+    buyWagon(g, 'boxcar')
+    expect(g.credits).toBe(c0 - 9800)
+    expect(g.fleet).toHaveLength(1)
     expect(g.trains[0].wagons.length).toBe(2)
+
+    attachWagon(g, 'tr-1', 'boxcar')
+    expect(g.fleet).toHaveLength(0)
+    expect(g.trains[0].wagons.length).toBe(3)
+
+    detachWagon(g, 'tr-1', 2)
+    expect(g.trains[0].wagons.length).toBe(2)
+    expect(g.fleet).toHaveLength(1)
+    expect(g.credits).toBe(c0 - 9800)
+
+    sellWagon(g, 'boxcar')
+    expect(g.fleet).toHaveLength(0)
     expect(g.credits).toBe(c0 - 9800 + Math.round(9800 * 0.55))
+  })
+
+  it('attach refuses while train is in transit or train is full', () => {
+    const g = createNewGame({ seed: 42 })
+    g.credits = 100000
+    buyWagon(g, 'boxcar')
+    g.trains[0].status = 'transit'
+    attachWagon(g, 'tr-1', 'boxcar')
+    expect(g.fleet).toHaveLength(1)
+    g.trains[0].status = 'yard'
+    for (let i = 0; i < 6; i++) buyWagon(g, 'boxcar')
+    expect(g.fleet).toHaveLength(7)
+    for (let i = 0; i < 10; i++) attachWagon(g, 'tr-1', 'boxcar')
+    expect(g.trains[0].wagons.length).toBe(8)
+    expect(g.fleet).toHaveLength(1)
   })
 
   it('renameTrain trims to 28 chars', () => {

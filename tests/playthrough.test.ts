@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { createNewGame } from '../src/game/init'
 import { advanceTime } from '../src/game/engine'
-import { addWagon } from '../src/game/trains'
+import { attachWagon, buyWagon } from '../src/game/trains'
 import { dispatchTrain, pendingJourneys, resolveEncounter } from '../src/game/journeys'
 import { createRecurringRoute } from '../src/game/routes'
 import { startResearch } from '../src/game/research'
@@ -12,7 +12,10 @@ function play(seed: number) {
   g.credits = 500000
   const tr = g.trains[0]
   tr.locoId = 'heavy-electric'
-  for (let i = 0; i < 3; i++) addWagon(g, 'tr-1', 'boxcar')
+  for (let i = 0; i < 3; i++) {
+    buyWagon(g, 'boxcar')
+    attachWagon(g, 'tr-1', 'boxcar')
+  }
   createRecurringRoute(g, 'new-lyon', 'marseille-n', 40, 3)
 
   startResearch(g, 'fw-lightweight')

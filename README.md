@@ -83,7 +83,7 @@ The database is shared between local dev and production if you point at the same
 | Command              | What it does                                  |
 | -------------------- | --------------------------------------------- |
 | `npm run dev`        | Start the dev server                          |
-| `npm test`           | Run the Vitest engine suite (49 tests)        |
+| `npm test`           | Run the Vitest engine suite (50 tests)        |
 | `npm run typecheck`  | Type-check the whole repo                     |
 | `npm run lint`       | ESLint                                        |
 | `npx playwright test`| Mobile (390×844) E2E: register → play → persist (needs running server + DB) |
@@ -104,4 +104,8 @@ decisions.tsv  decision log kept while building
 Towns post contracts each morning. Each contract needs a train in the right yard with enough cargo
 capacity. Dispatch trains, advance time, and respond to mid-journey decisions (bandits, breakdowns,
 blockades). Spend earnings on city buildings (safety, more contracts), wagons, and rail research.
-At reputation 80 the Great Loop unlocks: fund every spur around the map to win freeplay and prestige.
+Wagons you buy go to the **warehouse**, not onto a train — attach and detach them between trains for
+free, and sell spare stock back at 55%. Wagon types unlock as you complete contracts (passenger
+carriages and liquid/refrigerated cars appear after the first few jobs), and player-passenger
+contracts only post once you have delivered a few loads. At reputation 80 the Great Loop unlocks:
+fund every spur around the map to win freeplay and prestige.

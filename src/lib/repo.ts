@@ -30,10 +30,13 @@ export function parseState(json: string): GameState {
   const state = parsed as GameState
   const version = state.schemaVersion as number
   if (version === 1) {
-    state.schemaVersion = 2
+    state.fleet = []
     state.revealedCities = []
     state.revealedSegments = []
+  } else if (version === 2) {
+    state.fleet = []
   }
+  state.schemaVersion = 3
   return state
 }
 

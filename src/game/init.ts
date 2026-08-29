@@ -68,7 +68,7 @@ export function createNewGame(opts: NewGameOptions = {}): GameState {
   }
 
   const state: GameState = {
-    schemaVersion: 2,
+    schemaVersion: 3,
     id: `g-${careerId}-${legacy}`,
     seed,
     createdAt: now,
@@ -97,6 +97,7 @@ export function createNewGame(opts: NewGameOptions = {}): GameState {
         maintenanceDays: 0,
       },
     ],
+    fleet: [],
     contracts: [],
     routes: [],
     research: { completed: [], progress: [], points: 0 },
@@ -176,6 +177,7 @@ export function createDemoGame(seed = 0x5eed): GameState {
   state.research.completed.push('loco-power')
   state.perks.speedBonus = 0.08
   state.perks.powerBonus = 0.12
+  state.stats.contractsCompleted = 6
 
   const rng = rngFor(seed, 'demo', 'fleet')
   state.trains.push({
@@ -191,6 +193,8 @@ export function createDemoGame(seed = 0x5eed): GameState {
     location: 'new-lyon',
     maintenanceDays: 0,
   })
+  state.fleet.push({ defId: 'boxcar', condition: 100 })
+  state.fleet.push({ defId: 'flatbed', condition: 88 })
 
   state.cities['paris-valo'].builds.push({ kind: 'cargo-terminal', level: 1 })
   state.cities['new-lyon'].builds.push({ kind: 'station-platform', level: 1 })

@@ -10,7 +10,7 @@ import {
 } from '@/game/engine'
 import { dispatchTrain } from '@/game/journeys'
 import { resolveEncounter } from '@/game/journeys'
-import { addWagon, removeWagon, renameTrain } from '@/game/trains'
+import { attachWagon, buyWagon, detachWagon, renameTrain, sellWagon } from '@/game/trains'
 import { startConstruction } from '@/game/cities'
 import { startResearch } from '@/game/research'
 import { createRecurringRoute, resolveRouteDisruption } from '@/game/routes'
@@ -87,22 +87,40 @@ export async function resolveAction(formData: FormData): Promise<ActionResult> {
   })
 }
 
-export async function addWagonAction(formData: FormData): Promise<ActionResult> {
+export async function buyWagonAction(formData: FormData): Promise<ActionResult> {
   const ownerId = await requireUserId()
-  const trainId = String(formData.get('trainId'))
   const wagonId = String(formData.get('wagonId'))
   return run(ownerId, (s) => {
-    addWagon(s, trainId, wagonId)
+    buyWagon(s, wagonId)
     return true
   })
 }
 
-export async function removeWagonAction(formData: FormData): Promise<ActionResult> {
+export async function attachWagonAction(formData: FormData): Promise<ActionResult> {
+  const ownerId = await requireUserId()
+  const trainId = String(formData.get('trainId'))
+  const wagonId = String(formData.get('wagonId'))
+  return run(ownerId, (s) => {
+    attachWagon(s, trainId, wagonId)
+    return true
+  })
+}
+
+export async function detachWagonAction(formData: FormData): Promise<ActionResult> {
   const ownerId = await requireUserId()
   const trainId = String(formData.get('trainId'))
   const index = Number(formData.get('index'))
   return run(ownerId, (s) => {
-    removeWagon(s, trainId, index)
+    detachWagon(s, trainId, index)
+    return true
+  })
+}
+
+export async function sellWagonAction(formData: FormData): Promise<ActionResult> {
+  const ownerId = await requireUserId()
+  const wagonId = String(formData.get('wagonId'))
+  return run(ownerId, (s) => {
+    sellWagon(s, wagonId)
     return true
   })
 }
