@@ -1,111 +1,66 @@
-# Railway Reclamation
+# Rail Run — Game Loop POC
 
-[![CI](https://github.com/franklin050187/train-game/actions/workflows/ci.yml/badge.svg)](https://github.com/franklin050187/train-game/actions/workflows/ci.yml)
+A single-file browser game: rebuild a shattered frontier rail network as the first Conductor back.
+Haul cargo between cities, take contracts, pick risk, buy wagons and engines, survive mid-journey
+events, and grow towns from spur to industrial hub.
 
-A single-player railroad-rebuilding simulation. The railway network of a frontier nation was shattered
-in the Greening — track lifted, towns cut off, industry idling. You are the first Conductor back:
-rebuild cities, haul freight, research rail tech, and complete the Great Loop to revive the frontier.
+Everything lives in `public/poc.html` — no build step, no runtime, no database.
 
-Built as an engine-first vertical MVP: the entire simulation lives in `src/game/` as pure, deterministic,
-client-safe TypeScript, wrapped by a Next.js app that persists one game document per user.
+## Play Online
 
-## Stack
+**https://franklin050187.github.io/train-game/** — GitHub Pages deploy (auto-updated on push to `master`).
 
-- **Engine** — 18 pure-TS modules, seeded RNG, no Node imports (Vitest suite in `tests/`)
-- **Persistence** — Prisma 7 + Postgres via `@prisma/adapter-pg` (Neon-compatible); one JSON game document per user
-- **Auth** — HMAC-signed stateless session cookie (`tg_session`), bcrypt password hashing
-- **App** — Next.js (App Router) server actions, `proxy.ts` route gating, mobile-first 9-tab game shell
+## Run Locally
 
-## Getting started
-
-Requires a Postgres database. Two options:
-
-### Option A — remote Postgres (Neon free tier, works for local + Vercel)
+Serve the `public/` directory:
 
 ```bash
-npm install
-cp .env.example .env          # set DATABASE_URL to your Postgres; generate SESSION_SECRET
-openssl rand -hex 32          # use the output as SESSION_SECRET
-npx prisma migrate deploy     # apply prisma/migrations to your database
-npm run dev                   # http://localhost:3000
+node serve-poc.cjs            # http://127.0.0.1:3010/poc.html
+PORT=8080 node serve-poc.cjs  # optional custom port
 ```
 
-### Option B — local Postgres (Docker)
+The same file works by opening it directly, but serving keeps `localStorage` on the `poc.html` origin
+(it is shared with nothing else).
+
+### TLS Proxy (LAN Access)
+
+For https access from other devices on your network:
 
 ```bash
-npm install
-docker run -d --name train-game-pg -e POSTGRES_USER=train -e POSTGRES_PASSWORD=train \
-  -e POSTGRES_DB=traingame -p 5432:5432 postgres:17
-cp .env.example .env
-# .env:  DATABASE_URL=postgresql://train:train@localhost:5432/traingame
-SESSION_SECRET=$(openssl rand -hex 32); echo "SESSION_SECRET=$SESSION_SECRET" >> .env
-export DATABASE_URL=$(grep '^DATABASE_URL=' .env | cut -d= -f2-)
-npx prisma migrate deploy     # needs DATABASE_URL exported: Prisma 7 does NOT auto-load .env
-npm run dev                   # http://localhost:3000
+cd /tmp/tg-tls && node proxy.cjs   # https://<your-ip>:3000 -> http://127.0.0.1:3010
 ```
 
-Note: Prisma 7 reads connection config from `prisma.config.ts` and does **not** auto-load `.env` for CLI
-commands — export `DATABASE_URL` yourself when running `migrate`/`db` commands. The Next.js dev server
-loads `.env` automatically.
+Stop it via `kill $(cat /tmp/tg-tls/proxy.pid)`.
 
-Register an account and start your career — or load the demo snapshot to explore a mid-game save.
-The tutorial overlay walks the 9 tabs on your first visit.
+## Gameplay Loop
 
-### Share over LAN or test the production build
-
-```bash
-# dev server on the LAN (http://<your-ip>:3000)
-npm run dev -- -H 0.0.0.0 -p 3000
-
-# exact same as Vercel runs
-npm run build
-npm run start -- -H 0.0.0.0 -p 3000
-```
-
-Opening it from another machine needs only the DB running on this host — point `DATABASE_URL` at
-`127.0.0.1` or the machine's LAN IP. The session cookie derives its `Secure` flag from the incoming
-`x-forwarded-proto`, so plain-HTTP LAN access works while Vercel keeps it `Secure`.
-
-## Deploying to Vercel
-
-1. Push the repo, import into Vercel.
-2. In **Project → Settings → Environment Variables** add:
-   - `DATABASE_URL` — your Neon Postgres connection string (start with `postgresql://`, append `?sslmode=require`)
-   - `SESSION_SECRET` — any long random hex string
-3. Defaults are fine: framework detects Next.js, build runs `npm run build` (which generates the Prisma client first).
-4. After first deploy, run the migration on the production database once:
-   `DATABASE_URL=<prod-url> npx prisma migrate deploy` (or add it as a one-off in Vercel build step).
-
-The database is shared between local dev and production if you point at the same Neon URL — use a separate branch/database for prod if you want isolation.
-
-## Commands
-
-| Command              | What it does                                  |
-| -------------------- | --------------------------------------------- |
-| `npm run dev`        | Start the dev server                          |
-| `npm test`           | Run the Vitest engine suite (50 tests)        |
-| `npm run typecheck`  | Type-check the whole repo                     |
-| `npm run lint`       | ESLint                                        |
-| `npx playwright test`| Mobile (390×844) E2E: register → play → persist (needs running server + DB) |
+Villages and cities post contracts. Each needs enough cargo capacity; some lock behind a specific wagon.
+Pick a contract, choose a risk level (calm / rush / danger — leans into payoff vs. events and penalties),
+then resolve mid-journey decisions. Events can cost money, cargo, or reward you — timed contracts add a
+late-fee if you arrive past the deadline, failed runs take a rarity-scaled penalty. Earnings buy engines,
+wagons (owned duplicates, equip into your consist up to the slot cap), and city growth, which unlocks
+bigger cargo, better rewards, and legendary contracts.
 
 ## Layout
 
 ```
-src/game/    pure simulation engine (world, trains, jobs, economy, endgame, …)
-src/lib/     persistence (db/repo), auth, server actions
-src/app/     routes: /, /login, /register, /game, /leaderboard
-src/components/  GameShell, panel components, forms, tutorial overlay
-e2e/         Playwright end-to-end suite
-decisions.tsv  decision log kept while building
+public/poc.html        the entire game (HTML + CSS + JS, i18n EN/FR)
+serve-poc.cjs          tiny zero-dependency static server
+.github/workflows/     GitHub Pages deploy (copies poc.html -> index.html)
+decisions.tsv          decision log kept while building
 ```
 
-## Gameplay loop
+`public/poc.html` is self-contained: no external assets, no fonts, no imports. Verify a change with:
 
-Towns post contracts each morning. Each contract needs a train in the right yard with enough cargo
-capacity. Dispatch trains, advance time, and respond to mid-journey decisions (bandits, breakdowns,
-blockades). Spend earnings on city buildings (safety, more contracts), wagons, and rail research.
-Wagons you buy go to the **warehouse**, not onto a train — attach and detach them between trains for
-free, and sell spare stock back at 55%. Wagon types unlock as you complete contracts (passenger
-carriages and liquid/refrigerated cars appear after the first few jobs), and player-passenger
-contracts only post once you have delivered a few loads. At reputation 80 the Great Loop unlocks:
-fund every spur around the map to win freeplay and prestige.
+```bash
+node -e 'const s=require("fs").readFileSync("public/poc.html","utf8");
+new Function(s.match(/<script>([\s\S]*)<\/script>/)[1]); console.log("syntax OK");'
+```
+
+## Smoke Test
+
+```bash
+timeout 90 node /tmp/poc-smoke/smoke.js
+```
+
+Runs 60 simulated journeys in Node with a mocked DOM; must complete with no assertions failed.

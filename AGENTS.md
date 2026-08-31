@@ -1,9 +1,12 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# Rail Run POC
 
-# This is NOT the Next.js you know
+Single-file browser game in `public/poc.html`. No framework, no build step, no database.
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
+- Edit `public/poc.html` directly. Verify with the syntax one-liner in `README.md`.
+- Smoke-harness (used by the agent): `/tmp/poc-smoke/smoke.js` — drives the game logic in Node with a
+  mocked DOM, runs the 60-run stress loop, asserts on state. Restore it from the README/session history
+  if it goes missing.
+- Serve: `node serve-poc.cjs` (port 3010). TLS proxy for LAN: `/tmp/tg-tls/proxy.cjs` (:3000 -> :3010).
+- Live: **https://franklin050187.github.io/train-game/** (GitHub Pages, auto-deployed from `master` via
+  `.github/workflows/pages.yml`).
+- The file is i18n'd (EN/FR with a `t()` / `fmt()` helper); keep both dictionaries in sync when adding text.
