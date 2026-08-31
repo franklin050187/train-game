@@ -1,6 +1,6 @@
 # Rail Run — Game Loop POC
 
-A single-file browser game: rebuild a shattered frontier rail network as the first Conductor back.
+A single-file browser game: rebuild a shattered frontier rail network as the first Conductor back. 
 Haul cargo between cities, take contracts, pick risk, buy wagons and engines, survive mid-journey
 events, and grow towns from spur to industrial hub.
 
