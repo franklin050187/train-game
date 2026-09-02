@@ -21,8 +21,18 @@ h2{color:#2b2722}
 h3,h4{color:#3d362a}
 p{margin-top:0}
 .money{font-size:24px;font-weight:800;color:#a4761a;background:#fff8e3;border:1px solid #e3cf96;padding:3px 16px;border-radius:24px}
+.hud{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:14px;color:#6b624f;margin-top:6px}
+.hud-seg{display:inline-flex;align-items:center;gap:8px;background:#fff8e3;border:1px solid #e3cf96;padding:4px 10px;border-radius:20px;font-weight:700}
+.hud-lv{color:#1f5240}
+.hud-xp{color:#a4761a;font-weight:800}
+.hud-sep{color:#c8b57f;font-weight:800}
+.hud-note{font-weight:800;color:#a4761a;white-space:nowrap}
+.hud-note.ok{color:#2f7d43}
+.hud-done{color:#2f7d43;font-weight:800}
+.hud-bar{display:inline-block;width:70px;height:8px;background:#eee6d0;border-radius:5px;overflow:hidden;vertical-align:middle}
+.hud-bar span{display:block;height:100%;background:linear-gradient(90deg,#3f7ed6,#7cb2f8)}
 .tabs{display:flex;gap:8px;margin:20px 0 14px}
-.tab{flex:1;padding:12px;border:1px solid #dfd3b4;background:#f7f1e0;color:#6b624f;border-radius:12px;cursor:pointer;font-weight:700;transition:background .15s,color .15s}
+.tab{flex:1;padding:12px;border:1px solid #dfd3b4;background:#f7f1e0;color:#6b624f;border-radius:12px;cursor:pointer;font-weight:700;font-size:15px;transition:background .15s,color .15s}
 .tab:hover{background:#fff7e2}
 .tab.active{background:#2f6e5a;color:#fdf9ee;border-color:#1f5240;box-shadow:inset 0 3px 0 #d9a441,0 2px 6px rgba(47,110,90,.25)}
 .panel{background:#fffdf6;border:1px solid #e0d5ba;border-radius:16px;padding:22px;min-height:520px;
@@ -34,7 +44,7 @@ p{margin-top:0}
 .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .card{background:#fffdf5;border:1px solid #e7dcc0;border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(94,74,32,.06)}
 .card.sel{border-color:#d9a441;box-shadow:0 0 0 2px #d9a441 inset,0 1px 3px rgba(94,74,32,.06)}
-button.action{width:100%;padding:12px;border:0;border-radius:10px;background:#2f6e5a;color:#fdf9ee;font-weight:800;cursor:pointer;margin-top:12px;box-shadow:0 3px 0 #1f5240;font-size:15px}
+button.action{width:100%;padding:14px;border:0;border-radius:10px;background:#2f6e5a;color:#fdf9ee;font-weight:800;cursor:pointer;margin-top:12px;box-shadow:0 3px 0 #1f5240;font-size:16px}
 button.action:hover{background:#387e68}
 button.action:active{transform:translateY(2px);box-shadow:0 1px 0 #1f5240}
 button.action.gold{background:#d9a441;color:#241a06;box-shadow:0 3px 0 #a4761a}
@@ -42,15 +52,15 @@ button.action.gold:hover{background:#e2b254}
 button.action:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
 button.small{padding:8px 14px;font-size:13px;margin-top:4px;width:auto;border-radius:8px;background:#efe8d4;border:1px solid #e0d5ba;color:#3d362a}
 button.small:hover{background:#e7dec6}
-.flowbtn{width:100%;padding:13px;border-radius:11px;border:1px solid #e0d5ba;background:#efe8d4;color:#3d362a;font-weight:800;cursor:pointer;font-size:15px}
+.flowbtn{width:100%;padding:15px;border-radius:11px;border:1px solid #e0d5ba;background:#efe8d4;color:#3d362a;font-weight:800;cursor:pointer;font-size:16px}
 .flowbtn:hover{background:#e7dec6}
 .flowbtn.gold{background:#d9a441;color:#241a06;border-color:#c08c28;box-shadow:0 3px 0 #a4761a}
 .flowbtn.gold:hover{background:#e2b254}
 .flowbtn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
 .muted{color:#8a7f6b}
 .stats{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 16px}
-.stat{background:#fffdf5;border:1px solid #e7dcc0;border-radius:9px;padding:9px 13px;font-size:14px;color:#3d362a}
-.stat b{font-size:17px;color:#2b2722}
+.stat{background:#fffdf5;border:1px solid #e7dcc0;border-radius:9px;padding:10px 14px;font-size:15px;color:#3d362a}
+.stat b{font-size:18px;color:#2b2722}
 .rep-bar,.xpbar,.cbar{height:9px;background:#eee6d0;border-radius:5px;overflow:hidden;margin:6px 0;box-shadow:inset 0 1px 2px rgba(94,74,32,.15)}
 .rep-bar .fill{height:100%;background:linear-gradient(90deg,#c08c28,#e0b24a);transition:width .3s}
 .xpbar .fill{height:100%;background:linear-gradient(90deg,#3f7ed6,#7cb2f8)}
@@ -59,7 +69,7 @@ button.small:hover{background:#e7dec6}
 .result-xp .xp-gain{font-weight:800;color:#2f7d43}
 .result-xp .lvlup{display:inline-block;color:#fff;background:#2f7d43;border-radius:20px;padding:1px 10px;font-size:12px;font-weight:800;margin-left:6px;animation:lvlpop 1s ease}
 @keyframes lvlpop{0%{transform:scale(.6);opacity:0}40%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
-.xp-fill-anim{transition:width 1.1s cubic-bezier(.2,1.4,.4,1)}
+.xp-fill-anim{transition:width 2.8s cubic-bezier(.2,1.4,.4,1)}
 .xp-max{color:#a4761a;font-weight:800}
 .cbar .fill{height:100%;background:linear-gradient(90deg,#2f7d43,#67d17e)}
 .rarity{display:inline-block;padding:2px 9px;border-radius:5px;font-size:11px;font-weight:700;text-transform:uppercase;margin-right:6px}
@@ -98,7 +108,7 @@ button.small:hover{background:#e7dec6}
 .out-banner.calm{background:#f1ead7;border:1px solid #e0d5ba}
 .risk{flex:1;padding:10px;border:1px solid #dfd3b4;background:#fffdf5;border-radius:10px;cursor:pointer;text-align:center;color:#3d362a}
 .risk.sel{border-color:#d9a441;background:#fbf4df;box-shadow:0 0 0 1px #d9a441 inset}
-.risk b{display:block;font-size:15px}
+.risk b{display:block;font-size:16px}
 .goal{background:#fffdf5;border:1px solid #e7dcc0;border-radius:10px;padding:10px 12px;text-align:center}
 .goal .lab{font-size:11px;color:#8a7f6b;text-transform:uppercase}
 .goal .val{font-size:15px;font-weight:800}
@@ -119,7 +129,7 @@ button.small:hover{background:#e7dec6}
 .jcity{position:absolute;top:6px;font-size:11px;font-weight:800;color:#e9e2cc;z-index:3;background:rgba(20,26,36,.55);padding:1px 6px;border-radius:6px}
 .jstart{left:6px}
 .jend{right:6px}
-.jbubble{position:absolute;top:0;transform:translateX(-50%);font-size:24px;z-index:5;animation:bounce .9s ease-in-out infinite;text-align:center;line-height:1}
+.jbubble{position:absolute;top:auto;bottom:10px;transform:translateX(-50%);font-size:24px;z-index:5;animation:bounce .9s ease-in-out infinite;text-align:center;line-height:1}
 .jbubble.done{animation:none;opacity:.9}
 .jbubble .mark{display:block;font-size:10px;color:#f5d742}
 @keyframes bounce{50%{transform:translateX(-50%) translateY(-7px)}}
@@ -135,18 +145,18 @@ button.small:hover{background:#e7dec6}
   h3{font-size:16px}
   .money{font-size:18px;padding:2px 10px}
   .tabs{gap:4px;margin:12px 0 10px}
-  .tab{padding:8px 6px;font-size:11px}
+  .tab{padding:8px 6px;font-size:12px}
   .panel{padding:14px;min-height:400px}
-  .stat{padding:7px 10px;font-size:12px}
-  .stat b{font-size:14px}
+  .stat{padding:8px 11px;font-size:13px}
+  .stat b{font-size:15px}
   .stats{gap:6px}
   .card{padding:10px}
   .wagon-slot{padding:6px 8px;font-size:12px}
   .wagon-slot .remove{padding:3px 6px;font-size:11px}
-  button.action{padding:10px;font-size:14px}
+  button.action{padding:11px;font-size:15px}
   button.small{padding:6px 10px;font-size:12px}
-  .flowbtn{padding:10px;font-size:13px}
-  .risk{padding:8px;font-size:13px}
+  .flowbtn{padding:11px;font-size:14px}
+  .risk{padding:8px;font-size:14px}
   .route{margin:20px 4px 30px}
   .city-name{font-size:11px}
   .dot{width:30px;height:30px}
@@ -165,8 +175,25 @@ button.small:hover{background:#e7dec6}
   .jbubble{font-size:20px}
   .departing{font-size:14px}
 }
+/* tutorial overlay */
+.tut-overlay{position:fixed;inset:0;z-index:900;pointer-events:none}
+.tut-dim{position:absolute;inset:0;background:rgba(10,14,20,.55);pointer-events:none}
+.tut-spot{position:absolute;border:3px solid #f5d742;border-radius:14px;box-shadow:0 0 0 4px rgba(245,215,66,.25),0 0 24px rgba(245,215,66,.35);pointer-events:none;animation:tutpulse 1.8s ease-in-out infinite;z-index:902;transition:all .35s ease}
+@keyframes tutpulse{0%,100%{box-shadow:0 0 0 4px rgba(245,215,66,.25),0 0 24px rgba(245,215,66,.35)}50%{box-shadow:0 0 0 8px rgba(245,215,66,.15),0 0 36px rgba(245,215,66,.45)}}
+.tut-tip{position:absolute;max-width:340px;background:#1f2937;color:#fdf9ee;border:2px solid #d9a441;border-radius:14px;padding:16px 18px;font-size:16px;line-height:1.5;box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:903;pointer-events:auto;animation:tipin .3s ease}
+@keyframes tipin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tut-tip h3{margin:0 0 6px;font-size:19px;color:#f5d742}
+.tut-tip p{margin:0 0 10px;color:#d1d5db}
+.tut-arrow{position:absolute;z-index:904;pointer-events:none;animation:arrowbob 1.2s ease-in-out infinite}
+@keyframes arrowbob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.tut-btn{display:inline-block;padding:10px 20px;background:#d9a441;color:#241a06;border:none;border-radius:8px;font-weight:700;font-size:16px;cursor:pointer}
+.tut-btn:hover{background:#e2b254}
+.tut-btn.lang{font-size:17px;padding:12px 22px;background:#2f7d43}
+.tut-btn.lang:hover{background:#3c9451}
+.tut-skip{position:absolute;top:12px;right:14px;z-index:905;background:rgba(31,41,55,.8);color:#d1d5db;border:1px solid #6b7280;border-radius:8px;padding:6px 14px;font-size:12px;cursor:pointer;pointer-events:auto}
+.tut-skip:hover{background:#374151;color:#fdf9ee}
 @media(max-width:480px){
-  .tab{padding:6px 4px;font-size:10px}
+  .tab{padding:6px 4px;font-size:11px}
   .tabs{margin:8px 0 8px}
   .stat{padding:6px 8px;font-size:11px}
   .stat b{font-size:13px}
@@ -188,12 +215,13 @@ button.small:hover{background:#e7dec6}
 .collapsible[open] summary:after{transform:rotate(180deg)}
 .collapsible > div{padding:0 12px 12px}
 @media(max-width:600px){.collapsible summary{padding:8px 10px;font-size:13px}.collapsible > div{padding:0 10px 10px}}
+
 </style>
 </head>
 <body>
 <div class="app">
   <div class="top">
-    <div><h1>🚂 Rail Run</h1><div class="muted" id="subtitle"></div></div>
+    <div><h1>🚂 Rail Run</h1><div class="hud" id="hud"></div></div>
     <div style="display:flex;gap:16px;align-items:center">
       <button id="langbtn" class="tab" style="flex:0;padding:8px 14px" onclick="toggleLang()"></button>
       <div class="money">€<span id="money">600</span></div>
@@ -207,32 +235,40 @@ button.small:hover{background:#e7dec6}
   </div>
   <div class="panel" id="panel"></div>
 </div>
-<script>
-const $=id=>document.getElementById(id);
-const panel=$("panel"), moneyEl=$("money"), tabs=[...document.querySelectorAll(".tab[data-tab]")];
 
-/* ---------- localization (EN/FR) ---------- */
+
+
+
+
+<script>/* Rail Run — i18n dictionaries and helpers */
+/* Keep all dictionaries in sync when adding text. */
+/* Languages: en, fr, es, ja */
+const LANG_FLAGS={en:"🇬🇧",fr:"🇫🇷",es:"🇪🇸",ja:"🇯🇵"};
+const LANG_ORDER=["en","fr","es","ja"];
+const NATIVE_LANG={en:"English",fr:"Français",es:"Español",ja:"日本語"};
 const LSTR={
 en:{
- subtitle:"Loop prototype · v3",
- tab_train:"1 · My Train", tab_contracts:"2 · Contracts", tab_map:"3 · Map & Go", tab_progress:"4 · Progress",
+ subtitle:"Deliver cargo, earn money, grow your railway!",
+  hud_lv:"Lv {l}", hud_next:"Unlock next: {n}", hud_done:"All unlocked ✓",
+  h_next_unlock:"Next unlock", show_carts:"Show carts to attach or buy", hide_carts:"Hide carts", 
+ tab_train:"🚂 My Train", tab_contracts:"📦 Deliver", tab_map:"🚀 Go", tab_progress:"🏆 Awards",
   train_hint:"How your train works", train_hint_body:"Your engine sets run cost and how much it can pull. Equip wagons for the contract in front of you — the engine in use affects speed, cost and capacity.",
  stat_speed:"Speed", stat_cap:"Capacity", stat_pull:"Pull", stat_runcost:"Run cost", stat_slots:"Slots", stat_rep:"Rep",
  runcost_stat:"€{c}/run",
  ovw_slow:"overweight, slowed", runcost_meta:"engine €{r} + wagons",
  h_engine:"Engine", in_use:"In use", use:"Use →", buy_btn:"Buy €{p}", lv_needed:"Lv {l} needed",
- h_consist:"Consist", remove:"Remove", h_depot:"In the depot", depot_sub:"bought, not hitched", hitch:"Hitch ↤",
+ h_consist:"Your train", remove:"Remove", h_depot:"In the depot", depot_sub:"bought, not hitched", hitch:"Hitch ↤",
  h_avail:"Available wagons", h_upgrades:"🎯 Next upgrades", lock_lv:"🔒 Lv {l}", buy_equip:"Buy & equip €{p}",
  train_level:"Train Lv {l} · {x} XP{next}", next_lv:" → Lv {l} at {x} XP — slots and engines unlock with level.",
  e_line:"{e} · {n} wagon(s)",
  lv_g:"Lv {l}: {n} {kind}", elv_g:"Lv {l}: {n} engine", wlv_g:"Lv {l}: {n} wagon",
  eig_g:"Engine · {n}", wig_g:"Wagon · {i} {n}", slot_g:"Wagon slot {s}",
   rep_g:"Rep · {n}", xp_to_go:"{x} XP to go", rep_to_go:"{x} rep to go", eur_to_go:"€{x} to go", lv_goal:"Lv {a}/{b}", goal_ready:"✓ ready",
- contracts_h:"Contracts · ", town_lv:"lvl {n}{e}",
+ contracts_h:"Deliver · ", town_lv:"lvl {n}{e}",
  lvl_name:["Small station","Improved station","Major hub"],
  town_hint:"Deliveries grow this town: Lv {a} → {b} at {x} town XP. Better pay, more contracts.",
- no_contracts:"No contracts.", review_route:"Review route →",
- requires:"requires {i} {n}", over_cap_note:"⚠ Needs {a}t — you have {b}t", need_note:"⚠ Hitch a {n} to take this",
+ no_contracts:"No contracts.", review_route:"See route →",
+ requires:"needs {i} {n}", over_cap_note:"⚠ Needs {a}t — you have {b}t", need_note:"⚠ Hitch a {n} to take this",
  risk_high:"High", risk_med:"Med", risk_late:"⚠ May run late", deadline_by:"by {h}h ({t}h)", no_rush:"no rush",
  ontrack:"✓ on time with your train", will_late:"⚠ will arrive late",
   risk_loss:"Risk if failed: {cargo} € cargo loss · {late} late fee · {r} rarity penalty",
@@ -248,16 +284,16 @@ en:{
  go_pull:"Consist is {a}t but the {e} can only pull {b}t. Use a bigger engine or remove wagons.",
  go_cash:"You can't cover the run cost (€{c}).", cannot_carry:"Can't carry {a}t", cannot_carry_msg:"This contract needs {a}t but your train holds {b}t.",
  too_heavy:"Too heavy to pull", too_heavy_msg:"Your consist weighs {a}t but the {e} only pulls {b}t. Fit a stronger engine or remove wagons.",
- risk_heading:"Route risk", go_btn:"🚂 GO — cost €{c}", clear_route:"✖ Clear route", route_dropped:"Route cleared — contracts kept.",
+ risk_heading:"Route risk", go_btn:"🚂 GO · €{c}", clear_route:"✖ Clear route", route_dropped:"Route cleared — contracts kept.",
  deadline_meta:"⏰ {t}h of {d}h allowed {ok}", no_deadline:"no deadline",
  ok_mark:"✓", late_mark:"⚠",
- risk0:["Normal run","×1.0 reward · standard events"], risk1:["Rush","×1.25 reward · harder events"], risk2:["Dangerous shortcut","×1.75 reward · serious risk"],
+ risk0:["Easy","safe · normal reward"], risk1:["Hurry","more money · more risk"], risk2:["Risky","big money · big risk"],
  risk_gains:"⭐ +{r} rep · 🏙️ +{x} city XP", rep_unit:"rep", xp_unit:"XP",
   exp_deliver:"✅ Deliver: +€{a}", exp_fail:"❌ Worst case: {v}",
   sp_badge:"🔑 Special delivery", sp_view:"View", sp_cargo:"special cargo", sp_no_risk:"special run",
   sp_open:"Opens {n}", sp_newline:"Opens the line: {n}", sp_need_w:"needs {i} {n}", sp_need_e:"needs {n}", sp_lv:"Lv {l} needed", sp_deliv:"{d} deliveries needed", sp_deliv_b:"{d} deliveries",
   sp_sel:"Selected", sp_all:"Clear your route first", cancel_sp:"Cancel special", city_new:"unlocks a new line",
-  buy_wag:"Buy €{p}", buy_wag_unlock:"Unlock €{p}",
+  buy_wag:"Buy €{p}", buy_wag_unlock:"Unlock €{p}", take_job:"Take this delivery",
  on_the_line:"On the line · {c}", leg_meta:"Leg {a}/{n} · {d} {hops} · reward ×{m}", hop:"hop", hops:"hops",
   departing:"Leaving for {c}…",
  out_badhand:"Bad hand", out_score:"Score!", out_calm:"No harm done",
@@ -295,17 +331,17 @@ en:{
  ev_blizz_n:"❄️ Whiteout on the moor", ev_blizz_d_hard:"Snow buries the line in minutes.",
  ev_blizz_d_mild:"Snow squalls dust the rails.",
  ev_blizz_a:"Shelter and wait", ev_blizz_b:"Force the drifts",
-arrived:"Arrived · ", d_cargo:"Cargo", d_dist:"Distance", d_base:"Base", d_mult:"Mult",
+ arrived:"Arrived · ", d_cargo:"Cargo", d_dist:"Distance", d_base:"Base", d_mult:"Mult",
   d_wbonus:"Wagon bonus", d_events:"Event flow", d_rep:"Rep", d_net:"Net",
   result_continue:"Continue →",
   xp_label:"Lv {l}", xp_levelup:"Level up!", xp_max:"MAX", xp_max_done:"Max level reached — no more unlocks.",
   xp_to_next:"+{a} / {b} XP to next level",
   enc:"{n} enc", good_title:"Contract delivered!", late_title:"Delivered, late", bad_title:"Contract damaged",
   late_note:"Arrived after deadline — 15% late penalty.",
-  all_unlocked:"Everything unlocked! ⚑ Collect chapters instead.",
+  all_unlocked:"Everything unlocked! ⑑ Collect chapters instead.",
   run_done:"Run complete!", run_done_sub:"Net +€{n} · {r} rep",
   to_train_btn:"Edit train →", to_contracts_btn:"Next contract →",
-  tab1_cta:"🧭 Go choose a contract →", need_select:"Select a contract to continue…",
+  tab1_cta:"📦 Pick a delivery →", need_select:"Pick a delivery first",
  progress_h:"Progress", train_card:"🚂 Train Lv {l}", rep_card:"⭐ Reputation {r}",
  next_tier:"Next tier {a}", at_rep:"at {x} rep", max_t:"max — Legendary",
  wagons_line:"{a} wagons owned · engine {e}",
@@ -332,33 +368,67 @@ arrived:"Arrived · ", d_cargo:"Cargo", d_dist:"Distance", d_base:"Base", d_mult
  achd_courier:"Deliver 10 mail or passenger contracts.", achd_freight:"Haul 1,000 cargo units.",
  achd_express:"5 on-time deliveries in a row.", achd_longhaul:"Deliver a distance-3 contract.", achd_explorer:"Discover every city.",
  ch_0:"Connect 5 towns", ch_1:"Reach the northern capital", ch_2:"A cross-region trade route", ch_3:"Deliver the legendary contract", ch_4:"Railway Empire",
- run_log:"Run log" },
+ run_log:"Run log",
+  lang_title:"Choose your language",
+  lang_sub:"Tap your language.",
+  tut_skip:"Skip tutorial",
+ tut_welcome_title:"Welcome!",
+ tut_welcome:"Deliver cargo to make money.",
+ tut_welcome_next:"Let's go!",
+ tut_engine_title:"Get a free engine", tut_engine:"It's free. It pulls your train.",
+ tut_buy_title:"Buy a cargo wagon",
+ tut_buy:"It's free. It carries cargo.",
+ tut_buy_next:"Buy Boxcar",
+ tut_contract_title:"Pick a delivery",
+ tut_contract:"Take the first delivery.",
+ tut_contract_next:"Pick it",
+ tut_risk_title:"How fast do you go?",
+ tut_risk:"Normal is safest.",
+ tut_risk_next:"Use Normal",
+ tut_go_title:"Ready to go!",
+ tut_go:"Press GO to leave.",
+ tut_go_next:"GO!",
+ tut_event_title:"A surprise on the tracks!",
+ tut_event:"Pick the safe option.",
+ tut_event_next:"Take the safe option",
+ tut_arrive_title:"Delivery delivered!",
+ tut_arrive:"You earned money! Keep delivering.",
+ tut_arrive_next:"Keep playing!",
+tut_engine_act:"Buy",
+  tut_buy_act:"Buy",
+  tut_contract_act:"Take it",
+ tut_risk_act:"Use Normal",
+ tut_go_act:"GO!",
+ tut_event_act:"Safe option"
+ },
 fr:{
- subtitle:"Prototype du jeu · v3",
- tab_train:"1 · Mon Train", tab_contracts:"2 · Contrats", tab_map:"3 · Carte & Go", tab_progress:"4 · Progression",
- train_hint:"Comment fonctionne votre train", train_hint_body:"Votre locomotive fixe le coût du trajet et ce qu'elle peut tracter. Montez des wagons adaptés au contrat en cours — la locomotive utilisée influence vitesse, coût et capacité.",
- stat_speed:"Vitesse", stat_cap:"Capacité", stat_pull:"Traction", stat_runcost:"Coût du trajet", stat_slots:"Emplacements", stat_rep:"Répu",
+ subtitle:"Livrez du fret, gagnez de l'argent, agrandissez votre chemin de fer !",
+  hud_lv:"Niv. {l}", hud_next:"Prochain déblocage : {n}", hud_done:"Tout est débloqué ✓",
+  h_next_unlock:"Prochain déblocage", show_carts:"Voir les wagons à atteler ou acheter", hide_carts:"Masquer les wagons", 
+ tab_train:"🚂 Mon Train", tab_contracts:"📦 Livrer", tab_map:"🚀 Go", tab_progress:"🏆 Récompenses",
+  train_hint:"Comment fonctionne votre train", train_hint_body:"Votre locomotive fixe le coût du trajet et ce qu'elle peut tracter. Montez des wagons adaptés au contrat en cours — la locomotive utilisée influence vitesse, coût et capacité.",
+ stat_speed:"Vitesse", stat_cap:"Capacité", stat_pull:"Traction", stat_runcost:"Coût du trajet", stat_slots:"Emplacements", stat_rep:"Réput.",
  runcost_stat:"€{c}/trajet",
  ovw_slow:"en surcharge, ralenti", runcost_meta:"locomotive €{r} + wagons",
  h_engine:"Locomotive", in_use:"En service", use:"Utiliser →", buy_btn:"Acheter €{p}", lv_needed:"Niv. {l} requis",
- h_consist:"Convoi", remove:"Retirer", h_depot:"Au dépôt", depot_sub:"achetés, non attelés", hitch:"Atteler ↤",
+ h_consist:"Votre train", remove:"Retirer", h_depot:"Au dépôt", depot_sub:"achetés, non attelés", hitch:"Atteler ↤",
  h_avail:"Wagons disponibles", h_upgrades:"🎯 Prochaines améliorations", lock_lv:"🔒 Niv. {l}", buy_equip:"Acheter & atteler €{p}",
  train_level:"Train Niv. {l} · {x} XP{next}", next_lv:" → Niv. {l} à {x} XP — emplacements et locomotives se débloquent avec le niveau.",
  e_line:"{e} · {n} wagon(s)",
  lv_g:"Niv. {l} : {n} {kind}", elv_g:"Niv. {l} : locomotive {n}", wlv_g:"Niv. {l} : wagon {n}",
  eig_g:"Locomotive · {n}", wig_g:"Wagon · {i} {n}", slot_g:"Emplacement wagon {s}",
   rep_g:"Réputation · {n}", xp_to_go:"{x} XP restants", rep_to_go:"{x} réput. restants", eur_to_go:"€{x} restants", lv_goal:"Niv. {a}/{b}", goal_ready:"✓ prêt",
- contracts_h:"Contrats · ", town_lv:"niv. {n}{e}",
+ contracts_h:"Livrer · ", town_lv:"niv. {n}{e}",
  lvl_name:["Petite gare","Gare améliorée","Grand hub"],
  town_hint:"Les livraisons font grandir cette ville : Niv. {a} → {b} à {x} XP de ville. Meilleurs salaires, plus de contrats.",
  no_contracts:"Aucun contrat.", review_route:"Voir la route →",
  requires:"nécessite {i} {n}", over_cap_note:"⚠ Il faut {a}t — vous avez {b}t", need_note:"⚠ Atteler un {n} pour la prendre",
  risk_high:"Élevé", risk_med:"Moyen", risk_late:"⚠ Risque de retard", deadline_by:"avant {h}h ({t}h)", no_rush:"pas urgent",
  ontrack:"✓ dans les temps avec votre train", will_late:"⚠ arrivera en retard",
-  risk_loss:"Risque si échec: {cargo} € perte cargaison · {late} frais retard · {r} pénalité rareté",
- reroll:"🔄 Ré-roll €{c}", reroll_free:"🔄 Ré-roll gratuit !", reroll_impossible:"Le ré-roll verrouille la route — annulez-la d'abord.",
- reroll_broke:"Il faut €{c} pour ré-rouler les contrats.",
- newroute:"Nouveaux contrats tirés après ré-roll (€{c}).",
+  risk_loss:"Risque si échec : {cargo} € perte cargaison · {late} frais retard · {r} pénalité rareté",
+ reroll:"🔄 Tirer au sort €{c}", reroll_free:"🔄 Tirage gratuit !", reroll_impossible:"Le tirage verrouille la route — annulez-la d'abord.",
+ reroll_broke:"Il faut €{c} pour tirer au sort les contrats.",
+ newroute:"Nouveaux contrats tirés au sort (€{c}).",
   newroute_free:"Contrats rafraîchis gratuitement !",
  pick_first:"Choisissez d'abord un contrat.", to_contracts:"Voir les contrats", route_blocked:"Route bloquée",
  needs_wag:"Il faut un wagon {n}", needs_wag_msg:"Ce contrat ne peut pas être réalisé sans {i} {n} attelé à votre train.",
@@ -368,17 +438,17 @@ fr:{
  go_pull:"Le convoi pèse {a}t mais la {e} ne tracte que {b}t. Utilisez une locomotive plus puissante ou retirez des wagons.",
  go_cash:"Impossible de couvrir le coût du trajet (€{c}).", cannot_carry:"Impossible de transporter {a}t", cannot_carry_msg:"Ce contrat exige {a}t mais votre train ne contient que {b}t.",
  too_heavy:"Trop lourd à tracter", too_heavy_msg:"Votre convoi pèse {a}t mais la {e} ne tracte que {b}t. Montez une locomotive plus puissante ou retirez des wagons.",
- risk_heading:"Risque de la route", go_btn:"🚂 GO — coût €{c}", clear_route:"✖ Annuler la route", route_dropped:"Route annulée — contrats conservés.",
+ risk_heading:"Risque de la route", go_btn:"🚂 GO · €{c}", clear_route:"✖ Annuler la route", route_dropped:"Route annulée — contrats conservés.",
  deadline_meta:"⏰ {t}h sur {d}h accordées {ok}", no_deadline:"sans délai",
  ok_mark:"✓", late_mark:"⚠",
- risk0:["Trajet normal","×1,0 salaire · événements standards"], risk1:["Rapide","×1,25 salaire · événements plus durs"], risk2:["Raccourci dangereux","×1,75 salaire · risque sérieux"],
+ risk0:["Facile","sûr · récompense normale"], risk1:["Rapide","plus d'argent · plus de risque"], risk2:["Risqué","beaucoup d'argent · gros risque"],
  risk_gains:"⭐ +{r} réput. · 🏙️ +{x} XP ville", rep_unit:"réput.", xp_unit:"XP",
   exp_deliver:"✅ Livrer : +€{a}", exp_fail:"❌ Pire cas : {v}",
-  sp_badge:"🔑 Livraison spéciale", sp_view:"Voir", sp_cargo:"cargaison spéciale", sp_no_risk:"course spéciale",
+  sp_badge:"🔑 Livraison spéciale", sp_view:"Voir", sp_cargo:"cargaison spéciale", sp_no_risk:"trajet spécial",
   sp_open:"Ouvre {n}", sp_newline:"Ouvre la ligne : {n}", sp_need_w:"nécessite {i} {n}", sp_need_e:"nécessite {n}", sp_lv:"Niv. {l} requis", sp_deliv:"{d} livraisons requises", sp_deliv_b:"{d} livraisons",
   sp_sel:"Sélectionné", sp_all:"Dégagez d'abord votre route", cancel_sp:"Annuler la spéciale", city_new:"débloque une nouvelle ligne",
-  buy_wag:"Acheter €{p}", buy_wag_unlock:"Débloquer €{p}",
- on_the_line:"En route · {c}", leg_meta:"Étape {a}/{n} · {d} {hops} · salaire ×{m}", hop:"étape", hops:"étapes",
+  buy_wag:"Acheter €{p}", buy_wag_unlock:"Débloquer €{p}", take_job:"Prendre cette livraison",
+ on_the_line:"En route · {c}", leg_meta:"Étape {a}/{n} · {d} {hops} · récompense ×{m}", hop:"étape", hops:"étapes",
   departing:"Départ pour {c}…",
  out_badhand:"Mauvais tirage", out_score:"Jackpot !", out_calm:"Aucun dommage",
  arrive_btn:"Arriver →", continue_btn:"Continuer →",
@@ -415,17 +485,17 @@ fr:{
  ev_blizz_n:"❄️ Tempête blanche sur la lande", ev_blizz_d_hard:"La neige enterre la voie en quelques minutes.",
  ev_blizz_d_mild:"Des rafales de neige poudrent les rails.",
  ev_blizz_a:"S'abriter et attendre", ev_blizz_b:"Forcer les congères",
-arrived:"Arrivé · ", d_cargo:"Cargaison", d_dist:"Distance", d_base:"Base", d_mult:"Mult",
-  d_wbonus:"Bonus wagons", d_events:"Événements", d_rep:"Répu", d_net:"Net",
+ arrived:"Arrivé · ", d_cargo:"Cargaison", d_dist:"Distance", d_base:"Base", d_mult:"Mult",
+  d_wbonus:"Bonus wagons", d_events:"Événements", d_rep:"Réput.", d_net:"Net",
   result_continue:"Continuer →",
   xp_label:"Niv. {l}", xp_levelup:"Niveau supérieur !", xp_max:"MAX", xp_max_done:"Niveau maximum atteint — plus de déblocages.",
   xp_to_next:"+{a} / {b} XP avant le prochain niveau",
   enc:"{n} évts", good_title:"Contrat livré !", late_title:"Livré, en retard", bad_title:"Contrat endommagé",
   late_note:"Arrivé après le délai — pénalité de 15 %.",
-  all_unlocked:"Tout est débloqué ! ⚑ Remplissez plutôt les chapitres.",
+  all_unlocked:"Tout est débloqué ! ⑑ Remplissez plutôt les chapitres.",
   run_done:"Course terminée !", run_done_sub:"Net +€{n} · {r} réput.",
   to_train_btn:"Modifier le train →", to_contracts_btn:"Contrat suivant →",
-  tab1_cta:"🧭 Choisir un contrat →", need_select:"Sélectionnez un contrat pour continuer…",
+  tab1_cta:"📦 Choisir une livraison →", need_select:"Choisissez d'abord une livraison",
  progress_h:"Progression", train_card:"🚂 Train Niv. {l}", rep_card:"⭐ Réputation {r}",
  next_tier:"Prochain palier {a}", at_rep:"à {x} réput.", max_t:"max — Légendaire",
  wagons_line:"{a} wagons possédés · locomotive {e}",
@@ -452,16 +522,376 @@ arrived:"Arrivé · ", d_cargo:"Cargaison", d_dist:"Distance", d_base:"Base", d_
  achd_courier:"Livrer 10 contrats de courrier ou de passagers.", achd_freight:"Transporter 1 000 unités de fret.",
  achd_express:"5 livraisons ponctuelles d'affilée.", achd_longhaul:"Livrer un contrat de distance 3.", achd_explorer:"Découvrir chaque ville.",
  ch_0:"Relier 5 villes", ch_1:"Atteindre la capitale du nord", ch_2:"Une route commerciale inter-régionale", ch_3:"Livrer le contrat légendaire", ch_4:"Empire ferroviaire",
- run_log:"Journal" }
+ run_log:"Journal",
+  lang_title:"Choisissez votre langue",
+  lang_sub:"Touchez votre langue.",
+  tut_skip:"Passer le tutoriel",
+ tut_welcome_title:"Bienvenue !",
+ tut_welcome:"Livrez du fret pour gagner de l'argent !",
+ tut_welcome_next:"C'est parti !",
+ tut_engine_title:"Une locomotive gratuite", tut_engine:"Elle est gratuite. Elle tire votre train.",
+ tut_buy_title:"Achetez un wagon de fret",
+ tut_buy:"Il est gratuit. Il transporte le fret.",
+ tut_buy_next:"Acheter le wagon",
+ tut_contract_title:"Choisissez une livraison",
+ tut_contract:"Prenez la première livraison.",
+ tut_contract_next:"La choisir",
+ tut_risk_title:"À quelle vitesse ?",
+ tut_risk:"« Normal » est le plus sûr.",
+ tut_risk_next:"Risque normal",
+ tut_go_title:"Prêt à partir !",
+ tut_go:"Appuyez sur GO pour démarrer.",
+ tut_go_next:"GO !",
+ tut_event_title:"Une surprise sur la voie !",
+ tut_event:"Choisissez l'option sûre.",
+ tut_event_next:"Option sûre",
+ tut_arrive_title:"Livraison réussie !",
+ tut_arrive:"Vous avez gagné de l'argent ! Continuez !",
+ tut_arrive_next:"Continuer !",
+tut_engine_act:"Acheter",
+  tut_buy_act:"Acheter",
+  tut_contract_act:"Prendre",
+ tut_risk_act:"Risque normal",
+ tut_go_act:"GO !",
+ tut_event_act:"Option sûre"
+ },
+es:{
+ subtitle:"¡Entrega carga, gana dinero y haz crecer tu ferrocarril!",
+  hud_lv:"Niv. {l}", hud_next:"Próximo desbloqueo: {n}", hud_done:"Todo desbloqueado ✓",
+  h_next_unlock:"Próximo desbloqueo", show_carts:"Ver vagones para enganchar o comprar", hide_carts:"Ocultar vagones", 
+ tab_train:"🚂 Mi Tren", tab_contracts:"📦 Entregar", tab_map:"🚀 Ir", tab_progress:"🏆 Premios",
+  train_hint:"Cómo funciona tu tren", train_hint_body:"Tu locomotora determina el costo por viaje y cuánto puede arrastrar. Monta vagones para el contrato — la locomotora influye en velocidad, costo y capacidad.",
+ stat_speed:"Velocidad", stat_cap:"Capacidad", stat_pull:"Tracción", stat_runcost:"Costo de viaje", stat_slots:"Ranuras", stat_rep:"Reput.",
+ runcost_stat:"€{c}/viaje",
+ ovw_slow:"sobrecargado, ralentizado", runcost_meta:"locomotora €{r} + vagones",
+ h_engine:"Locomotora", in_use:"En uso", use:"Usar →", buy_btn:"Comprar €{p}", lv_needed:"Niv. {l} requerido",
+ h_consist:"Tu tren", remove:"Quitar", h_depot:"En el depósito", depot_sub:"comprados, sin enganchar", hitch:"Enganchar ↤",
+ h_avail:"Vagones disponibles", h_upgrades:"🎯 Próximas mejoras", lock_lv:"🔒 Niv. {l}", buy_equip:"Comprar y equipar €{p}",
+ train_level:"Tren Niv. {l} · {x} XP{next}", next_lv:" → Niv. {l} a {x} XP — ranuras y locomotoras se desbloquean con nivel.",
+ e_line:"{e} · {n} vagón(es)",
+ lv_g:"Niv. {l}: {n} {kind}", elv_g:"Niv. {l}: {n} locomotora", wlv_g:"Niv. {l}: {n} vagón",
+ eig_g:"Locomotora · {n}", wig_g:"Vagón · {i} {n}", slot_g:"Ranura de vagón {s}",
+  rep_g:"Reput. · {n}", xp_to_go:"{x} XP restantes", rep_to_go:"{x} reput. restantes", eur_to_go:"€{x} restantes", lv_goal:"Niv. {a}/{b}", goal_ready:"✓ listo",
+ contracts_h:"Entregar · ", town_lv:"niv. {n}{e}",
+ lvl_name:["Estación pequeña","Estación mejorada","Gran centro"],
+ town_hint:"Las entregas hacen crecer esta ciudad: Niv. {a} → {b} a {x} XP de ciudad. Mejor pago, más contratos.",
+ no_contracts:"Sin contratos.", review_route:"Ver ruta →",
+ requires:"requiere {i} {n}", over_cap_note:"⚠ Necesita {a}t — tienes {b}t", need_note:"⚠ Engancha un {n} para tomar esto",
+ risk_high:"Alto", risk_med:"Medio", risk_late:"⚠ Puede llegar tarde", deadline_by:"antes de {h}h ({t}h)", no_rush:"sin prisa",
+ ontrack:"✓ a tiempo con tu tren", will_late:"⚠ llegará tarde",
+  risk_loss:"Riesgo si falla: {cargo} € pérdida de carga · {late} recargo por retraso · {r} penalización de rareza",
+ reroll:"🔄 Reintentar €{c}", reroll_free:"🔄 ¡Reintento gratis!", reroll_impossible:"Reintento bloquea tu ruta — límpiala primero.",
+ reroll_broke:"Necesitas €{c} para reintentar contratos.",
+ newroute:"Nuevos contratos tras reintentar (€{c}).",
+  newroute_free:"¡Contratos actualizados gratis!",
+ pick_first:"Elige un contrato primero.", to_contracts:"A contratos", route_blocked:"Ruta bloqueada",
+ needs_wag:"Necesita un {n}", needs_wag_msg:"Este contrato no se puede transportar sin un {i} {n} enganchado a tu tren.",
+ gov_train:"Ir a Mi Tren", sel_need:"Este contrato necesita un {i} {n} (no enganchado). Abre Mi Tren.",
+ sel_cap:"Carga {a}t > capacidad {b}t. Equipa vagones más grandes primero.",
+ go_need:"Este contrato necesita un {i} {n} (no enganchado).", go_cap:"La carga excede la capacidad.",
+ go_pull:"El tren pesa {a}t pero la {e} solo arrastra {b}t. Usa una locomotora más grande o quita vagones.",
+ go_cash:"No puedes cubrir el costo del viaje (€{c}).", cannot_carry:"No puedes cargar {a}t", cannot_carry_msg:"Este contrato necesita {a}t pero tu tren solo lleva {b}t.",
+ too_heavy:"Demasiado pesado para arrastrar", too_heavy_msg:"Tu tren pesa {a}t pero la {e} solo arrastra {b}t. Pon una locomotora más fuerte o quita vagones.",
+ risk_heading:"Riesgo de la ruta", go_btn:"🚂 ¡SALIR · €{c}", clear_route:"✖ Limpiar ruta", route_dropped:"Ruta eliminada — contratos conservados.",
+ deadline_meta:"⏰ {t}h de {d}h permitidas {ok}", no_deadline:"sin plazo",
+ ok_mark:"✓", late_mark:"⚠",
+ risk0:["Fácil","seguro · recompensa normal"], risk1:["Rápido","más dinero · más riesgo"], risk2:["Riesgoso","mucho dinero · gran riesgo"],
+ risk_gains:"⭐ +{r} reput. · 🏙️ +{x} XP ciudad", rep_unit:"reput.", xp_unit:"XP",
+  exp_deliver:"✅ Entregar: +€{a}", exp_fail:"❌ Peor caso: {v}",
+  sp_badge:"🔑 Entrega especial", sp_view:"Ver", sp_cargo:"carga especial", sp_no_risk:"viaje especial",
+  sp_open:"Abre {n}", sp_newline:"Abre la línea: {n}", sp_need_w:"necesita {i} {n}", sp_need_e:"necesita {n}", sp_lv:"Niv. {l} requerido", sp_deliv:"{d} entregas necesarias", sp_deliv_b:"{d} entregas",
+  sp_sel:"Seleccionado", sp_all:"Limpia tu ruta primero", cancel_sp:"Cancelar especial", city_new:"desbloquea una nueva línea",
+  buy_wag:"Comprar €{p}", buy_wag_unlock:"Desbloquear €{p}", take_job:"Tomar esta entrega",
+ on_the_line:"En la vía · {c}", leg_meta:"Tramo {a}/{n} · {d} {hops} · recompensa ×{m}", hop:"tramo", hops:"tramos",
+  departing:"Partiendo hacia {c}…",
+ out_badhand:"Mala suerte", out_score:"¡Puntazo!", out_calm:"Sin daño",
+ arrive_btn:"Llegar →", continue_btn:"Continuar →",
+ ev_storm_fast_n:"🌧 Frente de tormenta de hielo", ev_storm_fast_d:"Tu express es frágil en la tormenta.",
+ ev_storm_fast_a:"Reducir motor, aguantar", ev_storm_fast_b:"Forzar la tormenta",
+ ev_storm_n:"🌧 Frente de tormenta", ev_storm_d:"La lluvia inunda las vías adelante.",
+ ev_storm_a:"Reducir al mínimo", ev_storm_b:"Arriesgar el riel embarrado",
+ ev_mtn_hvy_n:"⛰ Paso empinado", ev_mtn_hvy_d:"Tu tren pesado sufre en la subida.",
+ ev_mtn_hvy_a:"Perder vapor, ir despacio", ev_mtn_hvy_b:"Calentar la caldera",
+ ev_mtn_n:"⛰ Paso empinado", ev_mtn_d:"Un cruce de montaña impresionante.",
+ ev_mtn_a:"Disfrutar la vista, mantener rumbo", ev_mtn_b:"Tomar el viejo atajo del túnel",
+ ev_band_arm_d:"Observan tu vagón blindado y se desvanecen entre los pinos.",
+ ev_band_d:"Bandidos señalan el tren para revisar el manifiesto.",
+ ev_band_n:"🦹 Bandidos del camino", ev_band_a:"Dejarlos atrás", ev_band_b:"Pagar el peaje",
+ ev_mech_n:"🔧 Locomotora averiada", ev_mech_d:"Un rodamiento chirría y el humo sale de la chimenea.",
+ ev_mech_a:"Parar en el taller", ev_mech_b:"Seguir caliente y rezar",
+ ev_fav_n:"⚡ Favor del despachador", ev_fav_d:"Un conductor te ofrece una vía despejada hasta el final.",
+ ev_fav_a:"Tomar los rieles vacíos", ev_fav_b:"Mantener horario",
+ ev_clear_n:"⚡ Vía despejada", ev_clear_d:"Un despachador local te deja pasar una sección lenta.",
+ ev_clear_a:"Toda velocidad", ev_clear_b:"Mantener horario",
+ ev_over_n:"📦 Consigna extra", ev_over_d:"Un jefe de estación suplica: una caja más para tu destino.",
+ ev_over_a:"Sujetarla a bordo", ev_over_b:"Rechazar — sin espacio",
+ ev_pax_prem_d:"Un hombre de negocios astuto negocia un asiento rápido.",
+ ev_pax_d:"Un agricultor necesita un aventón por la línea.",
+ ev_pax_n:"🧳 Pasajero de pago", ev_pax_a:"Bienvenido a bordo", ev_pax_b:"No hoy",
+ ev_valve_n:"⚙️ Válvulas goteando", ev_valve_d:"Los sellos de tu cisterna aguantan — la carga está segura.",
+ ev_valve_a:"Seguir (gratis)", ev_valve_b:"Purgar y limpiar",
+ ev_stench_n:"⚠️ Olor a carga", ev_stench_d:"Algo gotea en la bodega, agrio.",
+ ev_stench_a:"Contener ahora", ev_stench_b:"Esperar que aguante",
+ ev_cold_n:"🧊 Cadena de frío intacta", ev_cold_d:"Tu vagón frigorífico zumba a −5°.",
+ ev_cold_a:"Deslizar (gratis)", ev_cold_b:"Vender el espacio frío vacío",
+ ev_melt_n:"🧊 El hielo se derrite", ev_melt_d:"La carga perecedera se echa a perder con el calor del mediodía.",
+ ev_melt_a:"Comprar hielo en la parada", ev_melt_b:"Apurar la mercancía",
+ ev_blizz_n:"❄️ Tormenta blanca en el páramo", ev_blizz_d_hard:"La nieve sepulta la vía en minutos.",
+ ev_blizz_d_mild:"Ráfagas de nieve cubren los rieles.",
+ ev_blizz_a:"Refugiarse y esperar", ev_blizz_b:"Forzar los banked",
+ arrived:"Llegada · ", d_cargo:"Carga", d_dist:"Distancia", d_base:"Base", d_mult:"Mult",
+  d_wbonus:"Bono de vagón", d_events:"Flujo de eventos", d_rep:"Reput.", d_net:"Neto",
+  result_continue:"Continuar →",
+  xp_label:"Niv. {l}", xp_levelup:"¡Subiste de nivel!", xp_max:"MÁX", xp_max_done:"Nivel máximo alcanzado — sin más desbloqueos.",
+  xp_to_next:"+{a} / {b} XP para el siguiente nivel",
+  enc:"{n} evt", good_title:"¡Contrato entregado!", late_title:"Entregado, tarde", bad_title:"Contrato dañado",
+  late_note:"Llegó después del plazo — penalización del 15%.",
+  all_unlocked:"¡Todo desbloqueado! ⑑ Completa los capítulos en su lugar.",
+  run_done:"¡Viaje completo!", run_done_sub:"Neto +€{n} · {r} reput.",
+  to_train_btn:"Editar tren →", to_contracts_btn:"Siguiente contrato →",
+  tab1_cta:"📦 Elige una entrega →", need_select:"Elige una entrega primero",
+ progress_h:"Progreso", train_card:"🚂 Tren Niv. {l}", rep_card:"⭐ Reputación {r}",
+ next_tier:"Siguiente nivel {a}", at_rep:"a {x} reput.", max_t:"máx — Legendario",
+ wagons_line:"{a} vagones poseídos · locomotora {e}",
+ stats_line:"Viajes: {d} · carga transportada: {c}t · mejor racha puntual: {s} · viajes premium: {p}",
+ chapters:"📖 Capítulos", next:"siguiente", ach_h:"🏆 Logros", cities:"🗺️ Ciudades",
+ town_xp:"{x} XP de ciudad", reset_save:"↺ Reiniciar partida",
+ wc_box:"Furgón", wc_heavy:"Carguero pesado", wc_express:"Furgón express", wc_reefer:"Refrigerado", wc_mailcar:"Correo", wc_tanker:"Cisterna", wc_armored:"Blindado",
+ wd_box:"El caballo de batalla. Sin sorpresas.", wd_heavy:"Bodegas enormes para carbón, hierro, grano, madera.",
+ wd_express:"Reduce horas en viajes ajustados.", wd_reefer:"Mantiene perecederos en mejor estado.",
+ wd_mailcar:"Correo, lujo y pasajeros dan bonificación.", wd_tanker:"A prueba de derrames — los químicos lo adoran.",
+ wd_armored:"Los bandidos pierden el nervio; daño reducido a la mitad.",
+ pull_badge:"tracción {p}t", buy_no_money:"Dinero insuficiente (necesitas €{p})", buy_lv:"Este vagón se desbloquea en Niv. {l}",
+ max_slots:"Sin ranura libre — máx {n} vagones.",
+ setEngine_pull:"La {e} puede arrastrar {p}t pero tu tren pesa {w}t. Quita vagones primero.",
+ sp_box:"Equilibrado", sp_heavy:"Pesado +25%", sp_express:"Plazos +20%", sp_reefer:"Alimentos +30%", sp_mailcar:"Premium +30%", sp_tanker:"Químicos +25%", sp_armored:"Blindado",
+ eg_std:"Locomotora Estándar", eg_expr:"Locomotora Express", eg_turb:"Locomotora de Turbina", eg_magl:"Locomotora Maglev",
+ cg_coal:"Carbón", cg_iron:"Hierro", cg_machinery:"Maquinaria", cg_grain:"Grano", cg_livestock:"Ganado", cg_food:"Comida", cg_tools:"Herramientas", cg_wood:"Madera", cg_electronics:"Electrónica", cg_chemicals:"Químicos", cg_luxury:"Lujo", cg_mail:"Correo", cg_passengers:"Pasajeros", cg_gold:"Oro",
+ ra_common:"Común", ra_uncommon:"Poco común", ra_rare:"Raro", ra_epic:"Épico", ra_legendary:"Legendario",
+ rp_0:"Forastero", rp_1:"Conocido", rp_2:"Respetado", rp_3:"Confiable", rp_4:"Legendario",
+  g0:"🏆 {n} (+€{r})", g_newcity:"🗺️ Nueva ciudad descubierta: {n}", g_newline:"🗺️ Nueva línea abierta: {n}", g_grow:"🏙️ {n} creció a Niv. {l}", g_chap:"📖 Capítulo completado: {t}",
+ log_bought:"Comprado {n}", log_hitched:"Enganchado {n}", log_stored:"Almacenado {n}", log_mounted:"Montado {n}",
+ log_good:"Entregado ✅ {c} ×{a} {to} · neto €{n} · reput. {r}", log_part:"Parcial ❌ {c} ×{a} {to} · neto €{n} · reput. {r}",
+ ach_courier:"Mensajero I", ach_freight:"Rey del Flete", ach_express:"Conductor Express", ach_longhaul:"Larga Distancia", ach_explorer:"Explorador",
+ achd_courier:"Entregar 10 contratos de correo o pasajeros.", achd_freight:"Transportar 1.000 unidades de carga.",
+ achd_express:"5 entregas puntuales seguidas.", achd_longhaul:"Entregar un contrato de distancia 3.", achd_explorer:"Descubrir cada ciudad.",
+ ch_0:"Conectar 5 ciudades", ch_1:"Alcanzar la capital del norte", ch_2:"Una ruta comercial interregional", ch_3:"Entregar el contrato legendario", ch_4:"Imperio Ferroviario",
+ run_log:"Registro",
+  lang_title:"Elige tu idioma",
+  lang_sub:"Toque su idioma.",
+  tut_skip:"Saltar tutorial",
+ tut_welcome_title:"¡Bienvenido!",
+ tut_welcome:"¡Entrega carga para ganar dinero!",
+ tut_welcome_next:"¡Vamos!",
+ tut_engine_title:"Una locomotora gratis", tut_engine:"Es gratis. Tira de tu tren.",
+ tut_buy_title:"Compra un vagón de carga",
+ tut_buy:"Es gratis. Lleva carga.",
+ tut_buy_next:"Comprar Furgón",
+ tut_contract_title:"Elige una entrega",
+ tut_contract:"Toma la primera entrega.",
+ tut_contract_next:"Elegirla",
+ tut_risk_title:"¿A qué velocidad?",
+ tut_risk:"« Normal » es lo más seguro.",
+ tut_risk_next:"Riesgo normal",
+ tut_go_title:"¡Listo para salir!",
+ tut_go:"Pulsa ¡SALIR para comenzar.",
+ tut_go_next:"¡SALIR!",
+ tut_event_title:"¡Una sorpresa en la vía!",
+ tut_event:"Elige la opción segura.",
+ tut_event_next:"Opción segura",
+ tut_arrive_title:"¡Entrega completada!",
+ tut_arrive:"¡Ganaste dinero! ¡Sigue entregando!",
+ tut_arrive_next:"¡Seguir!",
+tut_engine_act:"Comprar",
+  tut_buy_act:"Comprar",
+  tut_contract_act:"Tomar",
+ tut_risk_act:"Riesgo normal",
+ tut_go_act:"¡SALIR!",
+ tut_event_act:"Opción segura"
+ },
+ja:{
+ subtitle:"貨物を届けて、お金を稼いで、鉄道を成長させよう！",
+  hud_lv:"Lv {l}", hud_next:"次のアンロック: {n}", hud_done:"すべて解除済み ✓",
+  h_next_unlock:"次のアンロック", show_carts:"連結／購入できる貨車を見る", hide_carts:"貨車を隠す", 
+ tab_train:"🚂 私の列車", tab_contracts:"📦 配送", tab_map:"🚀 出発", tab_progress:"🏆 実績",
+  train_hint:"列車の仕組み", train_hint_body:"機関車が走行コストと牽引量を決めます。契約に合わせた貨車を装備しましょう — 機関車は速度、コスト、容量に影響します。",
+ stat_speed:"速度", stat_cap:"容量", stat_pull:"牽引", stat_runcost:"走行コスト", stat_slots:"スロット", stat_rep:"評判",
+ runcost_stat:"€{c}/走行",
+ ovw_slow:"過積載、遅延", runcost_meta:"機関車 €{r} + 貨車",
+ h_engine:"機関車", in_use:"使用中", use:"使用 →", buy_btn:"購入 €{p}", lv_needed:"Lv {l} 必要",
+ h_consist:"あなたの列車", remove:"外す", h_depot:"車庫", depot_sub:"購入済み、未連結", hitch:"連結 ↤",
+ h_avail:"利用可能な貨車", h_upgrades:"🎯 次のアップグレード", lock_lv:"🔒 Lv {l}", buy_equip:"購入＆装備 €{p}",
+ train_level:"列車 Lv {l} · {x} XP{next}", next_lv:" → Lv {l} ({x} XP) — スロットと機関車はレベルで解除",
+ e_line:"{e} · {n} 番貨車",
+ lv_g:"Lv {l}: {n} {kind}", elv_g:"Lv {l}: 機関車 {n}", wlv_g:"Lv {l}: 貨車 {n}",
+ eig_g:"機関車 · {n}", wig_g:"貨車 · {i} {n}", slot_g:"貨車スロット {s}",
+  rep_g:"評判 · {n}", xp_to_go:"残り {x} XP", rep_to_go:"残り {x} 評判", eur_to_go:"残り €{x}", lv_goal:"Lv {a}/{b}", goal_ready:"✓ 準備完了",
+ contracts_h:"配送 · ", town_lv:"Lv {n}{e}",
+ lvl_name:["小駅","改良駅","主要ハブ"],
+ town_hint:"配送で街が成長: Lv {a} → {b} ({x} 街XP)。報酬アップ、契約増加。",
+ no_contracts:"契約なし。", review_route:"ルートを見る →",
+ requires:"必要: {i} {n}", over_cap_note:"⚠ {a}t 必要 — {b}t しかありません", need_note:"⚠ {n} を連結してください",
+ risk_high:"高", risk_med:"中", risk_late:"⚠ 遅れる可能性", deadline_by:"{h}h 内 ({t}h)", no_rush:"余裕あり",
+ ontrack:"✓ 列車で定時運行", will_late:"⚠ 遅延到着",
+  risk_loss:"失敗時のリスク: 貨物損失 {cargo} € · 遅延料 {late} · レアリティペナルティ {r}",
+ reroll:"🔄 再抽選 €{c}", reroll_free:"🔄 無料再抽選！", reroll_impossible:"再抽選はルートをロック — まず解除してください。",
+ reroll_broke:"再抽選に €{c} 必要です。",
+ newroute:"再抽選で新契約を引きました (€{c})。",
+  newroute_free:"契約を無料で更新しました！",
+ pick_first:"まず契約を選んでください。", to_contracts:"契約へ", route_blocked:"ルートブロック",
+ needs_wag:"{n} が必要", needs_wag_msg:"この契約は {i} {n} を連結しないと安全に運べません。",
+ gov_train:"私の列車へ", sel_need:"この契約には {i} {n} が必要（未連結）。私の列車を開いてください。",
+ sel_cap:"貨物 {a}t > 容量 {b}t。先に大きい貨車を装備してください。",
+ go_need:"この契約には {i} {n} が必要（未連結）。", go_cap:"貨物が容量を超過しています。",
+ go_pull:"編成は {a}t ですが {e} は {b}t しか牽引できません。大きい機関車にするか貨車を外してください。",
+ go_cash:"走行コストを賄えません (€{c})。", cannot_carry:"{a}t 載せられません", cannot_carry_msg:"この契約は {a}t 必要ですが列車は {b}t しか持てません。",
+ too_heavy:"牽引重量オーバー", too_heavy_msg:"編成は {a}t ですが {e} は {b}t しか牽引できません。強い機関車にするか貨車を外してください。",
+ risk_heading:"ルートリスク", go_btn:"🚂 出発 · €{c}", clear_route:"✖ ルート解除", route_dropped:"ルート解除済み — 契約は保持。",
+ deadline_meta:"⏰ {d}h 中 {t}h 使用 {ok}", no_deadline:"期限なし",
+ ok_mark:"✓", late_mark:"⚠",
+ risk0:["普通","安全 · 通常報酬"], risk1:["急ぎ","高報酬 · 高リスク"], risk2:["危険","最高報酬 · 最高リスク"],
+ risk_gains:"⭐ +{r} 評判 · 🏙️ +{x} 街XP", rep_unit:"評判", xp_unit:"XP",
+  exp_deliver:"✅ 配送: +€{a}", exp_fail:"❌ 最悪の場合: {v}",
+  sp_badge:"🔑 特別配送", sp_view:"確認", sp_cargo:"特別貨物", sp_no_risk:"特別運行",
+  sp_open:"{n} を開放", sp_newline:"路線開放: {n}", sp_need_w:"必要: {i} {n}", sp_need_e:"必要: {n}", sp_lv:"Lv {l} 必要", sp_deliv:"{d} 回配送必要", sp_deliv_b:"{d} 回配送",
+  sp_sel:"選択中", sp_all:"まずルートを解除", cancel_sp:"特別をキャンセル", city_new:"新路線を開放",
+  buy_wag:"購入 €{p}", buy_wag_unlock:"解除 €{p}", take_job:"この配送を選ぶ",
+ on_the_line:"運行中 · {c}", leg_meta:"区間 {a}/{n} · {d} {hops} · 報酬 ×{m}", hop:"区間", hops:"区間",
+  departing:"{c} へ出発…",
+ out_badhand:"不運", out_score:"大当たり！", out_calm:"被害なし",
+ arrive_btn:"到着 →", continue_btn:"続行 →",
+ ev_storm_fast_n:"🌧 氷風暴前線", ev_storm_fast_d:"あなたの急行は暴風に弱い。",
+ ev_storm_fast_a:"速度を落とし、耐える", ev_storm_fast_b:"吹き抜け through する",
+ ev_storm_n:"🌧 暴風前線", ev_storm_d:"雨で前方の線路が水没している。",
+ ev_storm_a:"ゆっくり走る", ev_storm_b:"泥泞の線路に挑む",
+ ev_mtn_hvy_n:"⛰ 急勾配", ev_mtn_hvy_d:"重い編成が坂を苦労して登る。",
+ ev_mtn_hvy_a:"蒸気を落とし、ゆっくり", ev_mtn_hvy_b:"ボイラーを焚き上げる",
+ ev_mtn_n:"⛰ 急勾配", ev_mtn_d:"息をのむ山越え。",
+ ev_mtn_a:"景色を楽しみ、安定運転", ev_mtn_b:"古いトンネルの捷径を使う",
+ ev_band_arm_d:"彼らは armored car を見て、松林に消えていく。",
+ ev_band_d:"野党が列車を止め、貨物目録を要求する。",
+ ev_band_n:"🦹 路上強盗", ev_band_a:"振り切る", ev_band_b:"通行料を払う",
+ ev_mech_n:"🔧 故障機関車", ev_mech_d:"ベアリングが鳴り、煙突から煙が噴き出す。",
+ ev_mech_a:"整備場に寄る", ev_mech_b:"高温で走り続ける",
+ ev_fav_n:"⚡ 運転士の好意", ev_fav_d:"信号係が先まで一本の線路を開放してくれる。",
+ ev_fav_a:"空き線路を使う", ev_fav_b:"時刻表を守る",
+ ev_clear_n:"⚡ 通行区間", ev_clear_d:"地元の信号係が慢速区間を通過させる。",
+ ev_clear_a:"最高速度", ev_clear_b:"時刻表を守る",
+ ev_over_n:"📦 追加貨物", ev_over_d:"駅長がお願いする: 箱一つ追加で目的地まで。",
+ ev_over_a:"積み込む", ev_over_b:"断る — 空間なし",
+ ev_pax_prem_d:"鋭い商人が快速席を交渉している。",
+ ev_pax_d:"農夫が先まで乗せてもらいたい。",
+ ev_pax_n:"🧳 有料乗客", ev_pax_a:"ようこそ乗車を", ev_pax_b:"今日はやめておきます",
+ ev_valve_n:"⛽ バルブ漏れ", ev_valve_d:"タンカーのシールが保ち、貨物は安全。",
+ ev_valve_a:"続行（無料）", ev_valve_b:"排水して洗浄",
+ ev_stench_n:"⚠️ 貨物の臭い", ev_stench_d:"貨物室から何かが漏れ、刺激臭。",
+ ev_stench_a:"今すぐ封じる", ev_stench_b:"持ちこなせるか祈る",
+ ev_cold_n:"🧊 冷凍鏈 intact", ev_cold_d:"冷凍車が −5° で唸る。",
+ ev_cold_a:"滑走（無料）", ev_cold_b:"空き冷凍スペースを売る",
+ ev_melt_n:"🧊 氷が溶ける", ev_melt_d:"日中の熱で生鮮品が傷む。",
+ ev_melt_a:"停車場で氷を買う", ev_melt_b:"急いで運ぶ",
+ ev_blizz_n:"❄️ 荒野のホワイトアウト", ev_blizz_d_hard:"雪が数分で線路を埋める。",
+ ev_blizz_d_mild:"吹雪がレールを覆う。",
+ ev_blizz_a:"避難して待つ", ev_blizz_b:"吹雪を突破",
+ arrived:"到着 · ", d_cargo:"貨物", d_dist:"距離", d_base:"基本", d_mult:"倍率",
+  d_wbonus:"貨車ボーナス", d_events:"イベント", d_rep:"評判", d_net:"純利益",
+  result_continue:"続行 →",
+  xp_label:"Lv {l}", xp_levelup:"レベルアップ！", xp_max:"MAX", xp_max_done:"最大レベル到達 — アンロック終了。",
+  xp_to_next:"+{a} / {b} XP で次のレベル",
+  enc:"{n} 回", good_title:"契約達成！", late_title:"遅延到着", bad_title:"契約損傷",
+  late_note:"期限超過 — 15% 遅延ペナルティ。",
+  all_unlocked:"すべて解除済み！ ⑑ 章を collections しましょう。",
+  run_done:"運行完了！", run_done_sub:"純利益 +€{n} · {r} 評判",
+  to_train_btn:"列車を編集 →", to_contracts_btn:"次の契約 →",
+  tab1_cta:"📦 配送を選ぶ →", need_select:"まず配送を選んでください",
+ progress_h:"進行", train_card:"🚂 列車 Lv {l}", rep_card:"⭐ 評判 {r}",
+ next_tier:"次階級 {a}", at_rep:"{x} 評判", max_t:"最大 — レジェンダリー",
+ wagons_line:"所持貨車 {a}両 · 機関車 {e}",
+ stats_line:"運行: {d} · 貨物運搬: {c}t · 最長定時記録: {s} · プレミアム運行: {p}",
+ chapters:"📖 章", next:"次", ach_h:"🏆 実績", cities:"🗺️ 都市",
+ town_xp:"{x} 街XP", reset_save:"↺ セーブリセット",
+ wc_box:"箱貨車", wc_heavy:"重量貨車", wc_express:"急行貨車", wc_reefer:"冷凍車", wc_mailcar:"郵便車", wc_tanker:"タンカー", wc_armored:"装甲車",
+ wd_box:"万能型。何の変哲もない。", wd_heavy:"石炭、鉄鉱、穀物、木材の巨大な積載。",
+ wd_express:"tight なスケジュールを短縮。", wd_reefer:"生鮮品を遠くまで運ぶ。",
+ wd_mailcar:"郵便、高級品、乗客はボーナス。", wd_tanker:"漏れない — 化学品との相性抜群。",
+ wd_armored:"強盗が胆を抜く；ダメージ半減。",
+ pull_badge:"牽引 {p}t", buy_no_money:"資金不足 (€{p} 必要)", buy_lv:"この貨車は Lv {l} で解除",
+ max_slots:"空きスロットなし — 最大 {n} 両。",
+ setEngine_pull:"{e} は {p}t 牽引できますが編成は {w}t です。先に貨車を外してください。",
+ sp_box:"バランス", sp_heavy:"重貨 +25%", sp_express:"期限 +20%", sp_reefer:"食品 +30%", sp_mailcar:"プレミアム +30%", sp_tanker:"化学品 +25%", sp_armored:"装甲",
+ eg_std:"標準機関車", eg_expr:"急行機関車", eg_turb:"タービン機関車", eg_magl:"マグレフ機関車",
+ cg_coal:"石炭", cg_iron:"鉄鉱", cg_machinery:"機械", cg_grain:"穀物", cg_livestock:"家畜", cg_food:"食品", cg_tools:"工具", cg_wood:"木材", cg_electronics:"電子機器", cg_chemicals:"化学品", cg_luxury:"高級品", cg_mail:"郵便", cg_passengers:"乗客", cg_gold:"金",
+ ra_common:"コモン", ra_uncommon:"アンコモン", ra_rare:"レア", ra_epic:"エピック", ra_legendary:"レジェンダリー",
+ rp_0:"外者", rp_1:"知り合い", rp_2:"敬意あり", rp_3:"信頼", rp_4:"レジェンダリー",
+  g0:"🏆 {n} (+€{r})", g_newcity:"🗺️ 新都市発見: {n}", g_newline:"🗺️ 新路線開放: {n}", g_grow:"🏙️ {n} が Lv {l} に成長", g_chap:"📖 章完了: {t}",
+ log_bought:"購入: {n}", log_hitched:"連結: {n}", log_stored:"格納: {n}", log_mounted:"装備: {n}",
+ log_good:"配送完了 ✅ {c} ×{a} {to} · 純利益 €{n} · 評判 {r}", log_part:"部分 ❌ {c} ×{a} {to} · 純利益 €{n} · 評判 {r}",
+ ach_courier:"配達員 I", ach_freight:"貨物王", ach_express:"急行運転士", ach_longhaul:"長距離", ach_explorer:"探検家",
+ achd_courier:"郵便または乗客契約を 10 回配送。", achd_freight:"1,000 単位の貨物を運搬。",
+ achd_express:"連続 5 回定時配送。", achd_longhaul:"距離 3 の契約を配送。", achd_explorer:"すべての都市を発見。",
+ ch_0:"5 都市を接続", ch_1:"北部の首都に到達", ch_2:"地域間貿易路", ch_3:"レジェンダリー契約を達成", ch_4:"鉄道帝国",
+ run_log:"運行記録",
+  lang_title:"言語を選択",
+  lang_sub:"言語を選んでください。",
+  tut_skip:"チュートリアルをスキップ",
+ tut_welcome_title:"ようこそ！",
+ tut_welcome:"貨物を届けてお金を稼ごう！",
+ tut_welcome_next:"はじめよう！",
+ tut_engine_title:"無料の機関車", tut_engine:"無料だよ。列車を引っ張るよ。",
+ tut_buy_title:"貨物車を買おう",
+ tut_buy:"無料だよ。貨物を運べるよ。",
+ tut_buy_next:"箱貨車を買う",
+ tut_contract_title:"配送を選ぼう",
+ tut_contract:"最初の配送を選ぼう。",
+ tut_contract_next:"選ぶ",
+ tut_risk_title:"どの速さで行く？",
+ tut_risk:"「普通」がいちばん安全。",
+ tut_risk_next:"普通",
+ tut_go_title:"出発準備OK！",
+ tut_go:"「出発」を押して列車を走らせよう！",
+ tut_go_next:"GO！",
+ tut_event_title:"線路上のサプライズ！",
+ tut_event:"安全な選択肢を選ぼう。",
+ tut_event_next:"安全な選択肢",
+ tut_arrive_title:"配送完了！",
+ tut_arrive:"お金を稼げたよ！どんどん届けよう！",
+ tut_arrive_next:"続けよう！",
+tut_engine_act:"購入",
+  tut_buy_act:"購入",
+  tut_contract_act:"選ぶ",
+ tut_risk_act:"普通",
+ tut_go_act:"GO！",
+ tut_event_act:"安全な選択肢"
+ }
 };
 let LANG="en"; try{ LANG=localStorage.getItem("railrun_lang")||"en"; }catch(e){}
+if(!LSTR[LANG]) LANG="en";
 function t(k){ const s=(LSTR[LANG]||LSTR.en)[k]; if(typeof s==="string")return s; const e=LSTR.en[k]; if(typeof e==="string")return e; return k; }
 function ta(k){ return (LSTR[LANG]||LSTR.en)[k]||LSTR.en[k]||[]; }
 function fmt(k,a){ let s=t(k); if(a)for(const x in a)s=s.split("{"+x+"}").join(a[x]); return s; }
-function langBtn(){ const b=document.getElementById("langbtn"); if(b)b.textContent=LANG==="en"?"FR":"EN"; const s=document.getElementById("subtitle"); if(s)s.textContent=t("subtitle"); ["tb0","tb1","tb2","tb3"].forEach((n,i)=>{const el=document.getElementById(n); if(el)el.textContent=t(["tab_train","tab_contracts","tab_map","tab_progress"][i]);}); }
-function toggleLang(){ LANG=LANG==="en"?"fr":"en"; try{localStorage.setItem("railrun_lang",LANG);}catch(e){} document.documentElement.lang=LANG; langBtn(); showTab(cur); }
+function langBtn(){
+ const b=document.getElementById("langbtn");
+ const idx=LANG_ORDER.indexOf(LANG);
+ const next=LANG_ORDER[(idx+1)%LANG_ORDER.length];
+  if(b) b.textContent=LANG_FLAGS[next]+" "+next.toUpperCase();
+  const h=document.getElementById("hud");
+  if(h&&typeof hud==="function") h.innerHTML=hud();
+ ["tb0","tb1","tb2","tb3"].forEach((n,i)=>{const el=document.getElementById(n); if(el)el.textContent=t(["tab_train","tab_contracts","tab_map","tab_progress"][i]);});
+}
 let cur=0;
-
+function toggleLang(){
+ const idx=LANG_ORDER.indexOf(LANG);
+ setLang(LANG_ORDER[(idx+1)%LANG_ORDER.length]);
+ showTab(cur);
+}
+function setLang(code){
+ if(!LSTR[code])return;
+ LANG=code;
+ try{localStorage.setItem("railrun_lang",LANG);}catch(e){}
+ document.documentElement.lang=LANG;
+ langBtn();
+}
+/* Rail Run — game data constants and helpers */
 const CITIES=[
   {n:"Ironhold",  i:"⛏️", f:"Mining town",   prod:["coal","iron","machinery"], mult:1.0},
   {n:"Oakridge",  i:"🌾", f:"Farming valley",prod:["grain","livestock","food"], mult:1.1},
@@ -501,9 +931,6 @@ const ENGINES=[
  {id:"turb",n:"Turbine Engine",sp:12,price:9000,lv:4,run:62,pull:70},
  {id:"magl",n:"Maglev Engine",sp:16,price:20000,lv:6,run:115,pull:120}
 ];
-/* ---------- city lines ---------- */
-/* Towns are grouped into lines. A line opens only after the previous line is
-   fully discovered via its special delivery (the "big win"). */
 const LINE=[[0,1,2],[3,4,5],[6,7,8],[9,10,11]];
 const LINEUNLOCK={
  1:{k:"w",id:"express",lv:3},
@@ -516,7 +943,8 @@ function nextLockedLine(){ for(let k=1;k<LINE.length;k++){ if(lineOpen(k-1)&&!li
 function nextLockedCity(){ for(let i=0;i<CITIES.length;i++) if(!state.discovered[i]) return i; return -1; }
 function routeOpen(i,d){ const a=Math.min(i,d),b=Math.max(i,d); for(let k=a;k<=b;k++) if(!state.discovered[k]) return false; return true; }
 function unlockCost(w){ return (w.price>0&&ownedCount(w.id)===0)?w.up:w.price; }
-/* ---------- pixel-art train ---------- */
+
+/* Rail Run — pixel-art train sprites and rendering */
 const CX={g:"#9fd8ff",w:"#0e1116",m:"#aab2bd",o:"#1d222b",l:"#ffe28a"};
 const PA={
  box:{b:"#a23b36",r:"#5e1f1b",c:"#ead37f"},
@@ -704,6 +1132,8 @@ x.fillStyle="#e3d7b6";x.fillRect(0,H*scale,W*scale,scale);
 }
 function pixHTML(id){return `<canvas id="${id}" class="pixwin"></canvas>`+ 
  `<div class="muted" style="font-size:12px;text-align:center">${fmt("e_line",{e:t("eg_"+ENGINES[state.engineIdx].id),n:state.equip.length})}</div>`;}
+
+/* Rail Run — core game logic: state, math, contracts, events, journey */
 const XP=[0,700,1500,2600,3900,5400,7000];
 const RT=[100,300,600,1000];
 const ACH=[
@@ -722,17 +1152,26 @@ const CH=[
 ];
 
 function fresh(){
-  return {money:600, city:0, engineIdx:0, ownedEngines:[0], owned:{box:1}, equip:["box"],
+  return {v:2, money:600, city:0, engineIdx:0, ownedEngines:[], owned:{}, equip:[],
    rep:0, tx:0, ach:[], perkCourier:false, perkFreight:false, perkExpress:false, perkLonghaul:false,
    chapter:0, result:null, active:null, trip:null, pickRisk:"normal",
     contracts:[], contract:null, log:[], rerolls:0, rerollTimer:30,
     discovered:[true,true,true,false,false,false,false,false,false,false,false,false], cx:[0,0,0,0,0,0,0,0,0,0,0,0],
     special:null, specialSel:false,
-    stats:{deliv:0,cargo:0,premDel:0,streak:0,best:0,long:0,cross:0,legend:0}};
+    stats:{deliv:0,cargo:0,premDel:0,streak:0,best:0,long:0,cross:0,legend:0},
+    tutorial:0};
 }
 let state=fresh();
-try{const s=JSON.parse(localStorage.getItem("railrun_v3")||"null"); if(s) state=Object.assign(fresh(),s);}catch(e){}
-// migrate owned from array to object
+let _sv=null;
+try{const _s=JSON.parse(localStorage.getItem("railrun_v3")||"null"); if(_s){_sv=_s; state=Object.assign(fresh(),_s);} }catch(e){}
+
+/* ---------- tutorial ---------- */
+const TUT_STEPS=["pick_lang","welcome","buy_engine","buy_wagon","pick_contract","pick_risk","go","event","done"];
+function inTutorial(){ return state.tutorial<TUT_STEPS.length; }
+function tutDone(){ return state.tutorial>=TUT_STEPS.length-1; }
+function tutStep(){ return TUT_STEPS[state.tutorial]||"done"; }
+function nextTutorialStep(){ state.tutorial++; }
+
 if(Array.isArray(state.owned)){
   const migrated={};
   state.owned.forEach(id=>migrated[id]=(migrated[id]||0)+1);
@@ -740,8 +1179,13 @@ if(Array.isArray(state.owned)){
 }
 state.owned=state.owned||{box:1};
 state.equip=state.equip||["box"];
-if(!state.ownedEngines||!state.ownedEngines.length) state.ownedEngines=[0];
-if(state.engineIdx>=0&&state.ownedEngines.indexOf(state.engineIdx)<0) state.ownedEngines.push(state.engineIdx);
+if(typeof state.tutorial!=="number") state.tutorial=0;
+const tutPrep=["pick_lang","welcome","buy_engine","buy_wagon"].includes(tutStep());
+if(!tutPrep){
+ if(!state.ownedEngines||!state.ownedEngines.length) state.ownedEngines=[0];
+ if(state.engineIdx>=0&&state.ownedEngines.indexOf(state.engineIdx)<0) state.ownedEngines.push(state.engineIdx);
+}
+if(!state.ownedEngines||!state.ownedEngines.length) state.ownedEngines=[];
 state.ownedEngines.sort((a,b)=>a-b);
 if(typeof state.rerolls!=="number"||state.rerolls<0) state.rerolls=0;
 if(!Array.isArray(state.discovered)||state.discovered.length<12){
@@ -756,6 +1200,13 @@ if(!state.special) state.special=null;
 if(!Array.isArray(state.cx)||state.cx.length<12){
   state.cx=[...state.cx,...Array(12-state.cx.length).fill(0)];
 }
+if(typeof state.tutorial!=="number") state.tutorial=0;
+if(_sv&&_sv.v!==2&&typeof _sv.tutorial==="number"){
+  state.tutorial=_sv.tutorial<8?_sv.tutorial+1:9;
+}
+
+/* ---------- globals for backward compat (smoke test, inline handlers) ---------- */
+const panel=document.getElementById("panel");
 
 /* ---------- train math ---------- */
 const eq=()=>state.equip.map(id=>WAGONS.find(w=>w.id===id));
@@ -770,7 +1221,7 @@ function pullNow(){ return eng().pull; }
 function overPull(){ return weight()>pullNow(); }
 function opCost(){ let c=eng().run; eq().forEach(w=>(c+=w.cost)); return c; }
 function ownsE(i){ return state.ownedEngines.indexOf(i)>=0; }
-function bestEngineIdx(){ let b=state.ownedEngines[0]; state.ownedEngines.forEach(i=>{if(i>b)b=i;}); return b; }
+function bestEngineIdx(){ let b=state.ownedEngines[0]; if(b===undefined) return -1; state.ownedEngines.forEach(i=>{if(i>b)b=i;}); return b; }
 function lvNow(){ let l=0; while(l<XP.length-1&&state.tx>=XP[l+1]) l++; return l; }
 function LV(){ return lvNow()+1; }
 function slots(){ return Math.min(7,2+lvNow()); }
@@ -787,13 +1238,25 @@ function travelH(dist){ return Math.round(dist*6/Math.max(0.1,effSpeed())*10)/10
 /* ---------- persistence / ui ---------- */
 function save(){ localStorage.setItem("railrun_v3",JSON.stringify(state)); }
 function money(){ return state.money; }
-function update(){ moneyEl.textContent=money(); }
+function update(){
+ const m=document.getElementById("money"); if(m) m.textContent=money();
+ const h=document.getElementById("hud"); if(h&&typeof hud==="function") h.innerHTML=hud();
+}
 function log(m){ state.log.push(m); if(state.log.length>40)state.log.shift(); }
 function showTab(i){ clearResultTimer();
+ if(!tutDone()&&inTutorial()){
+  const allowed={pick_lang:0,welcome:0,buy_engine:0,buy_wagon:0,pick_contract:1,pick_risk:2,go:2,event:2,done:null};
+  const a=allowed[tutStep()];
+  if(a!==null&&a!==undefined&&i!==a)return;
+ }
  if(state.result&&cur===2&&i!==2){ const r=state.result; afterRun={net:r.net,rep:r.repChange}; state.result=null; save(); }
- cur=i; tabs.forEach((x,n)=>x.classList.toggle("active",n===i));
+ cur=i;
+ const tabs=[...document.querySelectorAll(".tab[data-tab]")];
+ tabs.forEach((x,n)=>x.classList.toggle("active",n===i));
+ const panel=document.getElementById("panel");
  i===0?trainTab():i===1?contractTab():i===2?mapTab():progressTab();
- if(panel.classList&&typeof panel.classList.remove==="function"){ panel.classList.remove("enter"); void panel.offsetWidth; panel.classList.add("enter"); } }
+ if(panel.classList&&typeof panel.classList.remove==="function"){ panel.classList.remove("enter"); void panel.offsetWidth; panel.classList.add("enter"); }
+ if(typeof renderTutorial==="function")renderTutorial(); }
 let resTimer=null, afterRun=null;
 function clearResultTimer(){ if(resTimer!=null){ clearTimeout(resTimer); resTimer=null; } }
 function continueFromResult(){ clearResultTimer(); if(!state.result||cur!==2)return;
@@ -824,92 +1287,6 @@ function goalHTML(g){
   return `<div class="goal"><div class="lab">${g.t}</div><div class="val" style="color:${state.money>=g.need&&g.kind==="€"?"#2f7d43":""}">${val}</div></div>`;
 }
 
-/* ---------- train tab ---------- */
-function trainTab(){
-  const s=speed(),es=effSpeed(),c=capNow(),w=weight(),oc=opCost(),max=slots(),lv=LV();
-  const drag=overPull();
-const slotHTML=state.equip.map((id,idx)=>{const wg=WAGONS.find(x=>x.id===id);
-    return `<div class="wagon-slot"><span>${wg.ic} ${t("wc_"+id)}</span><span class="muted">⚡${wg.sp>=0?"+":""}${wg.sp} · ${wg.cap}t ·€${wg.cost}</span>
-     ${state.equip.length>1?`<button class="remove" onclick="unequip(${idx})">${t("remove")}</button>`:""}</div>`;}).join("");
-  const ownedIds=Object.keys(state.owned);
-  const parkHTML=ownedIds.filter(id=>ownedCount(id)>state.equip.filter(e=>e===id).length).map(id=>{const wg=WAGONS.find(x=>x.id===id);
-    const available=ownedCount(id)-state.equip.filter(e=>e===id).length;
-    return `<div class="wagon-slot"><span>${wg.ic} ${t("wc_"+id)} ×${available}</span><span class="muted">⚡${wg.sp>=0?"+":""}${wg.sp} · ${wg.cap}t ·€${wg.cost}/run</span>
-     <button class="remove" style="background:#2f7d43" onclick="equipOwned('${id}')">${t("hitch")}</button></div>`;}).join("");
-  const nextE=ENGINES.findIndex((e,i)=>!ownsE(i));
-  const engHTML=ENGINES.map((e,i)=>{
-   const owned=ownsE(i), cur=i===state.engineIdx;
-   let act=cur?`<span class="badge" style="background:#d9a441;color:#241a06">${t("in_use")}</span>`
-    :owned?`<button class="small" onclick="setEngine(${i})">${t("use")}</button>`
-    :i===nextE?(lv>=e.lv&&state.money>=e.price?`<button class="small" onclick="buyEngine(${i})">${fmt("buy_btn",{p:e.price})}</button>`
-    :`<div class="muted" style="font-size:12px">${lv<e.lv?fmt("lv_needed",{l:e.lv}):`€${e.price}`}</div>`):'';
-   return `<div class="eng ${cur?"sel":owned?"own":""}">
-    <b>${t("eg_"+e.id)}</b> <span class="badge">⚡ ${e.sp}</span><span class="badge">€${e.run}/run</span><span class="badge">${fmt("pull_badge",{p:e.pull})}</span>
-    ${act}</div>`;}).join("");
-  let avHTML=WAGONS.filter(w=>w.price>0).map(w=>{
-    const cost=unlockCost(w), firstCopy=ownedCount(w.id)===0;
-    const afford=state.money>=cost&&lv>=w.lv;
-    return `<div class="card"><span class="rarity r-${rClass(w.spec)}">${t("sp_"+w.id)}</span><b>${w.ic} ${t("wc_"+w.id)}</b>
-     <p class="muted" style="font-size:13px;margin:4px 0">⚡${w.sp>=0?"+":""}${w.sp} · ${w.cap}t · ${w.w}t · €${w.cost}/run</p>
-     <p style="font-size:12px;color:#6b624f;margin:4px 0">${t("wd_"+w.id)}</p>
-     ${afford?`<button class="action" onclick="buy('${w.id}')">${firstCopy?fmt("buy_wag_unlock",{p:cost}):fmt("buy_wag",{p:cost})}</button>`
-     :`<div class="muted" style="font-size:12px;margin-top:10px">${lv<w.lv?fmt("lock_lv",{l:w.lv}):firstCopy?fmt("buy_wag_unlock",{p:cost}):fmt("buy_wag",{p:cost})}</div>`}</div>`;}).join("");
-  panel.innerHTML=`<h2>${t("tab_train")} <span class="muted" style="font-size:13px">Lv ${lv}</span></h2>
-  <details class="collapsible" style="margin-bottom:10px"><summary>ℹ️ ${t("train_hint")}</summary><div class="muted" style="font-size:13px">${t("train_hint_body")}</div></details>
-  <div style="display:flex;gap:10px;margin-bottom:12px">
-   <button class="flowbtn gold" onclick="showTab(1)">${t("tab1_cta")}</button>
-  </div>
-  <div class="stats">
-   <div class="stat">⚡ ${t("stat_speed")} <b>${s}</b>${drag?` <span style="color:#c2453a">→ ${es}</span>`:""}</div>
-   <div class="stat">📦 ${t("stat_cap")} <b>${c}t</b></div>
-   <div class="stat">🔗 ${t("stat_pull")} <b>${w}/${pullNow()}t</b>${drag?"<br><span style='font-size:11px;color:#c2453a'>"+t("ovw_slow")+"</span>":""}</div>
-   <div class="stat">💰 ${t("stat_runcost")} <b>€${oc}</b><br><span class="muted" style="font-size:11px">${fmt("runcost_meta",{r:eng().run})}</span></div>
-   <div class="stat">🛤️ ${t("stat_slots")} <b>${state.equip.length}/${max}</b></div>
-   <div class="stat">⭐ ${t("stat_rep")} <b>${state.rep}</b> <span class="muted">(${t("rp_"+repTier())})</span></div>
-  </div>
-  ${pixHTML("pix")}
-  <details class="collapsible" open style="margin:12px 0"><summary>${t("h_upgrades")}</summary><div class="grid">${goals().map(goalHTML).join("")}</div></details>
-  <h3 style="margin:14px 0 6px">${t("h_engine")}</h3>
-  <div class="grid2">${engHTML}</div>
-  <h3 style="margin:16px 0 6px">${t("h_consist")} (${state.equip.length}/${max})</h3>
-  <div style="width:100%">${slotHTML}</div>
-  ${parkHTML?`<details class="collapsible"><summary>${t("h_depot")} <span class="muted" style="font-size:12px">${t("depot_sub")}</span></summary><div style="width:100%">${parkHTML}</div></details>`:""}
-  <details class="collapsible"><summary>${t("h_avail")}</summary><div class="grid">${avHTML}</div></details>
-  <div class="xpbar" style="margin-top:14px"><div class="fill" style="width:${lvNow()>=XP.length-1?100:Math.round((state.tx-XP[lvNow()])/(XP[lvNow()+1]-XP[lvNow()])*100)}%"></div></div>
-  <p class="muted" style="font-size:12px">${fmt("train_level",{l:lv,x:state.tx,next:lvNow()<XP.length-1?fmt("next_lv",{l:lv+1,x:XP[lvNow()+1]}):""})}</p>`;
-  pixCanvas("pix",4);
-}
-function buy(i){
-  const w=WAGONS.find(x=>x.id===i);
-  if(!w) return;
-  const cost=unlockCost(w);
-  if(state.money<cost){alert(fmt("buy_no_money",{p:cost}));return;}
-  if(LV()<w.lv){alert(fmt("buy_lv",{l:w.lv}));return;}
-  state.money-=cost; state.owned[w.id]=(state.owned[w.id]||0)+1;
-  if(state.equip.length<slots()) state.equip.push(w.id);
-  log(fmt("log_bought",{n:t("wc_"+w.id)})); save(); update(); trainTab();
-}
-function equipOwned(id){
-  if(ownedCount(id)<=0){alert(fmt("need_note",{n:t("wc_"+id)})); return;}
-  if(state.equip.length>=slots()){alert(fmt("max_slots",{n:slots()})); trainTab(); return;}
-  state.owned[id]=(state.owned[id]||1)-1;
-  state.equip.push(id); log(fmt("log_hitched",{n:t("wc_"+id)})); save(); update(); trainTab();
-}
-function unequip(idx){ if(state.equip.length<=1)return; const wg=WAGONS.find(x=>x.id===state.equip[idx]); state.equip.splice(idx,1); state.owned[wg.id]=(state.owned[wg.id]||0)+1; log(fmt("log_stored",{n:t("wc_"+wg.id)})); save(); update(); trainTab(); }
-function buyEngine(i){
-  const e=ENGINES[i]; if(ownsE(i)||i!==ENGINES.findIndex((x,k)=>!ownsE(k))) return;
-  if(LV()<e.lv){alert(fmt("buy_lv",{l:e.lv}));return;}
-  if(state.money<e.price){alert(fmt("buy_no_money",{p:e.price}));return;}
-  state.money-=e.price; state.ownedEngines.push(i); state.ownedEngines.sort((a,b)=>a-b);
-  state.engineIdx=i; log(fmt("log_mounted",{n:t("eg_"+e.id)})); save(); update(); trainTab();
-}
-function setEngine(i){
-  if(!ownsE(i))return;
-  if(state.engineIdx===i)return;
-  if(weight()>ENGINES[i].pull){alert(fmt("setEngine_pull",{e:t("eg_"+ENGINES[i].id),p:ENGINES[i].pull,w:weight()})); return;}
-  state.engineIdx=i; log(fmt("log_mounted",{n:t("eg_"+ENGINES[i].id).toLowerCase()})); save(); update(); trainTab();
-}
-
 /* ---------- contracts ---------- */
 function destOf(i,dx){ const d=i+dx; return d>=0&&d<CITIES.length?d:null; }
 function rClass(x){ return (x||"common").toLowerCase().replace(/[^a-z]/g,""); }
@@ -918,6 +1295,7 @@ function cxGainFor(c){ return Math.round(c.dist*2+6); }
 function rerollCost(){ return Math.round(120*Math.pow(2,state.rerolls)); }
 function pickRiskLabel(){ return ta("risk"+(state.pickRisk==="rush"?1:state.pickRisk==="danger"?2:0))[0]; }
 function reroll(){
+  if(!tutDone()&&inTutorial())return;
   if(state.contract!==null||state.specialSel){alert(t("reroll_impossible"));return;}
   const cost=rerollCost();
   if(state.money<cost){alert(fmt("reroll_broke",{c:cost}));return;}
@@ -925,7 +1303,7 @@ function reroll(){
   state.rerolls++; state.contracts=makeContracts();
   log(fmt("newroute",{c:cost})); save(); update(); contractTab();
 }
-function clearRoute(){ state.contract=null; state.specialSel=false; state.special=null; save(); log(t("route_dropped")); showTab(2); }
+function clearRoute(){ if(!tutDone()&&inTutorial())return; state.contract=null; state.specialSel=false; state.special=null; save(); log(t("route_dropped")); showTab(2); }
 function rarityFor(cg){
  if(cg.prem) return cg.v>=280?"epic":"rare";
  if(cg.risky) return "rare";
@@ -999,6 +1377,7 @@ function makeContracts(){
   return pool.slice(0,7);
 }
 function overCap(c){ return c.amount>capNow(); }
+
 /* ---------- special delivery (line-unlock, the "big win") ---------- */
 function specialReady(){
   const k=nextLockedLine(); if(k<0) return null;
@@ -1025,96 +1404,6 @@ function specialNeedName(sp){
   if(u.k==="e"){ const E=ENGINES[u.idx]; return {i:"🚂",n:t("eg_"+(E?E.id:"std"))}; }
   const w=WAGONS.find(x=>x.id===u.id);
   return {i:w?w.ic:"?",n:w?t("wc_"+u.id):String(u.id)};
-}
-
-function contractTab(){
- if(!state.contracts.length) state.contracts=makeContracts();
- refreshSpecial();
- const i=state.city, cl=cityLevel(i);
- const cap=capNow();
- let spHTML="";
-  const sp=state.special;
-  if(sp){ const lockedLv=LV()<sp.lv;
-     const lockedDeliv=state.stats.deliv<sp.deliv;
-     const haveNeed=sp.need.k==="w"?hasW(sp.need.id):ownsE(sp.need.idx);
-     const haveAll=haveNeed&&!lockedLv&&!lockedDeliv;
-     const nm=specialNeedName(sp);
-     let act=`<span class="badge" style="background:#8a7a4a;color:#fdf9ee">${t("sp_view")}</span>`;
-     if(state.specialSel){ act=`<span class="badge" style="background:#3f7d2e;color:#fdf9ee">${t("sp_sel")}</span>`; }
-     else if(lockedLv){ act=`<span class="badge" style="background:#7a4a8a;color:#fdf9ee">${fmt("sp_lv",{l:sp.lv})}</span>`; }
-     else if(lockedDeliv){ act=`<span class="badge" style="background:#7a4a8a;color:#fdf9ee">${fmt("sp_deliv",{d:sp.deliv})}</span>`; }
-     else if(!haveNeed){ act=`<span class="badge" style="background:#c2453a;color:#fdf9ee">${sp.need.k==="w"?fmt("sp_need_w",{i:nm.i,n:nm.n}):fmt("sp_need_e",{n:nm.n})}</span>`; }
-     else { act=`<button class="small" style="background:#d9a441;color:#241a06" onclick="selectSpecial()">${state.contract!==null?t("sp_all"):t("sp_view")}</button>`; }
-     const openLbl=sp.open.map(o=>CITIES[o].n).join(" · ");
-     spHTML=`<div class="card contract ${state.specialSel?"sel":""} sp-card" onclick="${haveAll&&state.contract===null?'selectSpecial()':''}">
-      <span class="rarity r-special">${t("sp_badge")}</span>
-      <span class="badge">${CITIES[i].i} → ${CITIES[sp.to].n}</span>
-      ${sp.deliv?`<span class="badge" style="background:#7a4a8a;color:#fdf9ee">${fmt("sp_deliv_b",{d:sp.deliv})}</span>`:""}
-      <h3 style="margin:8px 0 4px">${t("cg_"+sp.cargo)} <span class="muted">×${sp.amount}</span></h3>
-      <div class="muted" style="font-size:13px">🔑 ${fmt("sp_newline",{n:openLbl})} · ${sp.need.k==="w"?fmt("sp_need_w",{i:nm.i,n:nm.n}):fmt("sp_need_e",{n:nm.n})}</div>
-      <div class="reward" style="font-weight:800;font-size:19px;margin-top:6px">€${sp.reward} <span style="font-size:12px;color:#8a7f6b">${t("city_new")}</span></div>
-      ${act}
-     </div>`;
-  }
-const rows=state.contracts.map((c,idx)=>{
-   const oc=overCap(c);
-   const lack=c.need&&!hasW(c.need);
-   const locked=oc||lack;
-   const tH=travelH(c.dist), late=c.deadline!=null&&tH>=c.deadline+0.05;
-   const clk=locked?"":`select(${idx})`;
-   const needW=c.need?WAGONS.find(w=>w.id===c.need):null;
-   const _rp={"common":1,"uncommon":1.3,"rare":1.7,"epic":2.5,"legendary":4}[c.rarity]||1;
-   const _fail=Math.max(0,Math.round(c.reward*0.1*_rp));
-   return `<div class="card contract ${state.contract===idx?"sel":""} ${oc?"over-cap":""} ${lack?"locked":""}" onclick="${clk}">
-    <span class="rarity r-${c.rarity}">${t("ra_"+c.rarity)}</span><span class="badge">${CITIES[i].i}${CITIES[i].n} → ${CITIES[c.to].n}</span>
-    ${c.need?`<span class="badge" style="background:#7a4a8a;color:#fdf9ee">${fmt("requires",{i:needW.ic,n:t("wc_"+c.need)})}</span>`:""}
-    <h3 style="margin:8px 0 4px">${t("cg_"+c.cargo)} <span class="muted">×${c.amount}</span></h3>
-    <div class="muted" style="font-size:13px">📏 ${c.dist} ${c.dist===1?t("hop"):t("hops")} · 📦 ${c.amount}/${cap}t ${c.deadline?`· ⏰ ${fmt("deadline_by",{h:c.deadline,t:tH})}`:`· ${t("no_rush")}`}</div>
-<div class="muted" style="font-size:13px">⭐ +${repGainFor(c)} ${t("rep_unit")} · 🏙️ +${cxGainFor(c)} ${t("xp_unit")}</div>
-     <div class="muted" style="font-size:11px;margin-top:4px">${fmt("risk_loss",{r:t("ra_"+c.rarity),late:c.deadline?"30%":"0%",cargo:_fail})}</div>
-     <div class="reward" style="font-weight:800;font-size:19px;margin-top:6px">€${c.reward} ${c.deadline?`<span style="font-size:12px;color:#8a7f6b">${late?t("will_late"):t("ontrack")}</span>`:""}</div>
-    ${oc?`<div class="muted" style="margin-top:4px">${fmt("over_cap_note",{a:c.amount,b:cap})}</div>`:lack?`<div class="muted" style="margin-top:4px">${fmt("need_note",{n:t("wc_"+c.need)})}</div>`:c.deadline?`<span class="badge" style="margin-top:4px">${c.amount>cap-5||tH>=c.deadline? t("risk_high"):t("risk_med")}</span>`:""}
-   </div>`;}).join("");
-  panel.innerHTML=`<h2>${t("contracts_h")}${CITIES[i].i} ${CITIES[i].n} <span class="muted" style="font-size:13px">${fmt("town_lv",{n:["Ⅰ","Ⅱ","Ⅲ"][cl],e:"🏚️🏠🏙️"[cl]})}</span></h2>
-   <div class="stats">
-    <div class="stat">⭐ ${t("stat_rep")} <b>${state.rep}</b> <span class="muted">${t("rp_"+repTier())}</span></div>
-    <div class="stat">📦 ${t("stat_cap")} <b>${cap}t</b></div>
-    <div class="stat">🏙️ ${t("town_lv",{n:cl+1,e:""})} <b>${ta("lvl_name")[cl]}</b></div>
-    <button class="small" style="margin:0 0 0 auto;background:#d9a441;color:#241a06;font-size:14px" onclick="reroll()" ${(state.contract!==null||state.specialSel)?"disabled":""}>${fmt("reroll",{c:rerollCost()})}</button>
-   </div>
-   ${cl<2?`<div class="hint">${fmt("town_hint",{a:cl+1,b:cl+2,x:CITYX[cl]})}</div>`:""}
-    <button class="flowbtn ${state.contract!==null?"gold":""}" style="margin:0 0 12px" onclick="showTab(2)" ${(state.contract===null&&!state.specialSel)?'disabled':''}>${(state.contract===null&&!state.specialSel)?t("need_select"):t("review_route")}</button>
-    ${spHTML}
-    <div class="grid">${rows||`<p class="muted">${t("no_contracts")}</p>`}</div>`;
-}
-function select(idx){
- const c=state.contracts[idx];
- if(!c)return;
- if(c.need&&!hasW(c.need)){alert(fmt("sel_need",{i:WAGONS.find(w=>w.id===c.need).ic,n:t("wc_"+c.need)}));return;}
- if(overCap(c)){alert(fmt("sel_cap",{a:c.amount,b:capNow()}));return;}
- state.contract=idx; state.specialSel=false; save(); contractTab();
-}
-function selectSpecial(){
-  const sp=state.special; if(!sp) return;
-  if(state.contract!==null){alert(t("sp_all"));return;}
-  const nm=specialNeedName(sp);
-  if(LV()<sp.lv){alert(fmt("sp_lv",{l:sp.lv}));return;}
-  if(state.stats.deliv<sp.deliv){alert(fmt("sp_deliv",{d:sp.deliv}));return;}
-  if(sp.need.k==="w"&&!hasW(sp.need.id)){alert(fmt("sp_need_w",{i:nm.i,n:nm.n}));return;}
-  if(sp.need.k==="e"&&!ownsE(sp.need.idx)){alert(fmt("sp_need_e",{n:nm.n}));return;}
-  state.specialSel=true; state.contract=null; save(); contractTab();
-}
-function cancelSpecial(){ state.specialSel=false; state.special=null; save(); contractTab(); }
-function cargoBonus(c){
- const cg=CARGOES[c.cargo]; let m=1;
- eq().forEach(w=>{
-  if(w.b=== "bulk"&&cg.bulk)m+=0.25;
-  if(w.b==="prem"&&cg.prem)m+=0.30;
-  if(w.b==="perp"&&cg.perp)m+=0.30;
-  if(w.b==="risky"&&cg.risky)m+=0.25;
- });
- if(cg.prem&&state.perkCourier)m+=0.10;
- return m;
 }
 
 /* ---------- events ---------- */
@@ -1181,7 +1470,10 @@ return {t:t("ev_stench_n"),d:t("ev_stench_d"),
    if(evs.length<cnt&&n>templates.length*2)break;}
  return evs.slice(0,cnt);
 }
+
+/* ---------- journey ---------- */
 function go(){
+ if(!tutDone()&&inTutorial()&&tutStep()==="go"){nextTutorialStep();} else if(!tutDone()&&inTutorial())return;
  const sp=state.specialSel&&state.special;
  if(!sp){ if(state.contract===null)return; }
  const c=sp?sp:(state.contracts[state.contract]);
@@ -1195,11 +1487,15 @@ function go(){
   state.money-=opCost();
   const mult=sp?1:(state.pickRisk==="rush"?1.25:state.pickRisk==="danger"?1.75:1);
    const cc=sp?{to:c.to,dist:c.dist,deadline:null,cargo:c.cargo,amount:c.amount,reward:c.reward,open:c.open,need:c.need.k==="w"?c.need.id:null}:c;
- state.active={contract:cc,mult,evs:buildEvents(cc.dist,cc.cargo),idx:0,deadlineH:cc.deadline,travelH:travelH(cc.dist),late:false,special:!!sp};
+ const evList=inTutorial()&&tutStep()==="event"?
+  [{t:t("ev_mech_n"),d:t("ev_mech_d"),o:[{l:t("ev_mech_a"),g:-100},{l:t("ev_mech_b"),g:40,f:-240,odds:0.5}]}]
+  :buildEvents(cc.dist,cc.cargo);
+ state.active={contract:cc,mult,evs:evList,idx:0,deadlineH:cc.deadline,travelH:travelH(cc.dist),late:false,special:!!sp};
  state.trip={gain:0,rep:0,failed:false,handled:0};
  state.outcome=null; state.departed=true; save(); update(); showTab(2);
 }
 function pick(i){
+ if(!tutDone()&&inTutorial()&&tutStep()==="event"){ if(i!==0)return; nextTutorialStep(); }
  const j=state.active, e=j.evs[j.idx], o=e.o[i];
  const r={out:"calm",g:0,it:0};
  if(o.odds==null){ r.g=o.g; r.out=o.g>0?"bonus":o.g<0?"paid":"calm"; }
@@ -1252,6 +1548,240 @@ function arrive(){
 }
 function clearResult(){ clearResultTimer(); state.result=null; save(); update(); showTab(2); }
 
+function cargoBonus(c){
+ const cg=CARGOES[c.cargo]; let m=1;
+ eq().forEach(w=>{
+  if(w.b=== "bulk"&&cg.bulk)m+=0.25;
+  if(w.b==="prem"&&cg.prem)m+=0.30;
+  if(w.b==="perp"&&cg.perp)m+=0.30;
+  if(w.b==="risky"&&cg.risky)m+=0.25;
+ });
+ if(cg.prem&&state.perkCourier)m+=0.10;
+ return m;
+}
+
+/* Rail Run — UI rendering: tab panels, journey animation, result screen */
+
+/* ---------- header HUD (money · level/xp · next unlock) ---------- */
+function hudNextUnlock(){
+  const lv=LV(), m=money(), best=bestEngineIdx();
+  const nextE=best<ENGINES.length-1?ENGINES[best+1]:null;
+  const un=WAGONS.filter(w=>w.price>0&&!ownedCount(w.id)).sort((a,b)=>unlockCost(a)-unlockCost(b))[0];
+  let cand=[];
+  if(nextE){
+    const need=lv<nextE.lv?{k:"lv",have:lv,need:nextE.lv,label:t("eg_"+nextE.id)}
+                        :{k:"€",have:m,need:nextE.price,label:t("eg_"+nextE.id)};
+    cand.push({label:t("eg_"+nextE.id),kind:need.k,have:need.have,need:need.need});
+  }
+  if(un){
+    const need=lv<un.lv?{have:lv,need:un.lv}:{have:m,need:unlockCost(un)};
+    cand.push({label:un.ic+" "+t("wc_"+un.id),kind:lv<un.lv?"lv":"€",have:need.have,need:need.need});
+  }
+  cand.sort((a,b)=>a.need-a.need);
+  const g=cand[0];
+  if(!g) return `<span class="hud-done">${t("hud_done")}</span>`;
+  const ready=g.kind==="€"?m>=g.need:lv>=g.need;
+  const note=g.kind==="€"?(ready?t("goal_ready"):fmt("eur_to_go",{x:g.need-g.have}))
+                       :fmt("lv_goal",{a:g.have,b:g.need});
+  return `${fmt("hud_next",{n:g.label})} <span class="hud-note ${ready?"ok":""}">${note}</span>`;
+}
+function hud(){
+  const lv=LV(), lvI=lvNow();
+  const pct=lvNow()>=XP.length-1?100:Math.round((state.tx-XP[lvI])/(XP[lvI+1]-XP[lvI])*100);
+  return `<span class="hud-seg hud-lv">${fmt("hud_lv",{l:lv})} <span class="hud-xp">${state.tx} XP</span> <span class="hud-bar"><span style="width:${pct}%"></span></span></span><span class="hud-sep">·</span><span class="hud-seg">${hudNextUnlock()}</span>`;
+}
+
+let showShop=false;
+function toggleShop(){ showShop=!showShop; trainTab(); }
+
+function trainTab(){
+  const s=speed(),es=effSpeed(),c=capNow(),w=weight(),oc=opCost(),max=slots(),lv=LV();
+  const drag=overPull();
+  const panel=document.getElementById("panel");
+const slotHTML=state.equip.map((id,idx)=>{const wg=WAGONS.find(x=>x.id===id);
+    return `<div class="wagon-slot"><span>${wg.ic} ${t("wc_"+id)}</span><span class="muted">⚡${wg.sp>=0?"+":""}${wg.sp} · ${wg.cap}t ·€${wg.cost}</span>
+     ${state.equip.length>1?`<button class="remove" onclick="unequip(${idx})">${t("remove")}</button>`:""}</div>`;}).join("");
+  const ownedIds=Object.keys(state.owned);
+  const parkHTML=ownedIds.filter(id=>ownedCount(id)>state.equip.filter(e=>e===id).length).map(id=>{const wg=WAGONS.find(x=>x.id===id);
+    const available=ownedCount(id)-state.equip.filter(e=>e===id).length;
+    return `<div class="wagon-slot"><span>${wg.ic} ${t("wc_"+id)} ×${available}</span><span class="muted">⚡${wg.sp>=0?"+":""}${wg.sp} · ${wg.cap}t ·€${wg.cost}/run</span>
+     <button class="remove" style="background:#2f7d43" onclick="equipOwned('${id}')">${t("hitch")}</button></div>`;}).join("");
+  const nextE=ENGINES.findIndex((e,i)=>!ownsE(i));
+  const engHTML=ENGINES.map((e,i)=>{
+   const owned=ownsE(i), cur=owned&&i===state.engineIdx;
+   let act=cur?`<span class="badge" style="background:#d9a441;color:#241a06">${t("in_use")}</span>`
+    :owned?`<button class="small" onclick="setEngine(${i})">${t("use")}</button>`
+    :i===nextE?(lv>=e.lv&&state.money>=e.price?`<button class="small" id="${i===0&&inTutorial()?`tut-buy-engine`:""}" onclick="buyEngine(${i})">${fmt("buy_btn",{p:e.price})}</button>`
+    :`<div class="muted" style="font-size:12px">${lv<e.lv?fmt("lv_needed",{l:e.lv}):`€${e.price}`}</div>`):'';
+   return `<div class="eng ${cur?"sel":owned?"own":""}">
+    <b>${t("eg_"+e.id)}</b> <span class="badge">⚡ ${e.sp}</span><span class="badge">${fmt("pull_badge",{p:e.pull})}</span>
+    ${act}</div>`;}).join("");
+  const showBox=(inTutorial()&&!tutDone()&&tutStep()==="buy_wagon");
+  let avHTML=WAGONS.filter(w=>w.price>0||(showBox&&w.id==="box")).map(w=>{
+    const cost=unlockCost(w), firstCopy=ownedCount(w.id)===0;
+    const afford=state.money>=cost&&lv>=w.lv;
+    return `<div class="card"><span class="rarity r-${rClass(w.spec)}">${t("sp_"+w.id)}</span><b>${w.ic} ${t("wc_"+w.id)}</b>
+     <p class="muted" style="font-size:14px;margin:4px 0">⚡${w.sp>=0?"+":""}${w.sp} · ${w.cap}t · ${w.w}t · €${w.cost}/run</p>
+     ${afford?`<button class="action" id="${w.id==="box"&&inTutorial()?`tut-buy-box`:""}" onclick="buy('${w.id}')">${firstCopy?fmt("buy_wag_unlock",{p:cost}):fmt("buy_wag",{p:cost})}</button>`
+     :`<div class="muted" style="font-size:12px;margin-top:10px">${lv<w.lv?fmt("lock_lv",{l:w.lv}):firstCopy?fmt("buy_wag_unlock",{p:cost}):fmt("buy_wag",{p:cost})}</div>`}</div>`;}).join("");
+  const unW=WAGONS.filter(w=>w.price>0&&!ownedCount(w.id)).sort((a,b)=>unlockCost(a)-unlockCost(b))[0];
+  const featE=ENGINES.findIndex((e,i)=>!ownsE(i));
+  let feats=[];
+  if(featE>=0&&featE<ENGINES.length){
+    const e=ENGINES[featE], afford=lv>=e.lv&&state.money>=e.price;
+    feats.push(`<div class="eng ${afford?"own":""}"><b>${t("eg_"+e.id)}</b> <span class="badge">⚡ ${e.sp}</span><span class="badge">${fmt("pull_badge",{p:e.pull})}</span>
+      ${afford?`<button class="small" id="${featE===0&&inTutorial()?`tut-buy-engine`:""}" onclick="buyEngine(${featE})">${fmt("buy_btn",{p:e.price})}</button>`
+        :`<div class="muted" style="font-size:12px">${lv<e.lv?fmt("lv_needed",{l:e.lv}):`€${e.price}`}</div>`}</div>`);
+  }
+  if(unW){
+    const cost=unlockCost(unW), firstCopy=ownedCount(unW.id)===0, afford=state.money>=cost&&lv>=unW.lv;
+    feats.push(`<div class="card"><span class="rarity r-${rClass(unW.spec)}">${t("sp_"+unW.id)}</span><b>${unW.ic} ${t("wc_"+unW.id)}</b>
+      <p class="muted" style="font-size:14px;margin:4px 0">⚡${unW.sp>=0?"+":""}${unW.sp} · ${unW.cap}t · €${unW.cost}/run</p>
+      ${afford?`<button class="action" id="${unW.id==="box"&&inTutorial()?`tut-buy-box`:""}" onclick="buy('${unW.id}')">${firstCopy?fmt("buy_wag_unlock",{p:cost}):fmt("buy_wag",{p:cost})}</button>`
+        :`<div class="muted" style="font-size:12px;margin-top:10px">${lv<unW.lv?fmt("lock_lv",{l:unW.lv}):fmt("buy_wag_unlock",{p:cost})}</div>`}</div>`);
+  }
+  const featPanel=feats.length?`<h3 style="margin:14px 0 6px">${t("h_next_unlock")}</h3><div class="grid2">${feats.join("")}</div>`:"";
+  panel.innerHTML=`<h2>${t("tab_train")} <span class="muted" style="font-size:13px">Lv ${lv}</span></h2>
+  <div style="display:flex;gap:10px;margin-bottom:12px">
+   <button class="flowbtn gold" onclick="showTab(1)">${t("tab1_cta")}</button>
+  </div>
+  <div class="stats">
+   <div class="stat">⚡ ${t("stat_speed")} <b>${s}</b>${drag?` <span style="color:#c2453a">→ ${es}</span>`:""}</div>
+   <div class="stat">📦 ${t("stat_cap")} <b>${c}t</b></div>
+   <div class="stat">💰 ${t("stat_runcost")} <b>€${oc}</b><br><span class="muted" style="font-size:11px">${fmt("runcost_meta",{r:eng().run})}</span></div>
+  </div>
+  ${pixHTML("pix")}
+  ${featPanel}
+  <h3 style="margin:16px 0 6px">${t("h_consist")} (${state.equip.length}/${max})</h3>
+  <div style="width:100%">${slotHTML}</div>
+  <button class="flowbtn ${showShop?"gold":""}" style="margin:10px 0" onclick="toggleShop()">${showShop?t("hide_carts"):t("show_carts")}</button>
+  ${parkHTML?`<details class="collapsible" ${showShop?"open":""}><summary>${t("h_depot")} <span class="muted" style="font-size:12px">${t("depot_sub")}</span></summary><div style="width:100%">${parkHTML}</div></details>`:""}
+  <details class="collapsible" ${(showShop||showBox)?"open":""}><summary>${t("h_avail")}</summary><div class="grid">${avHTML}</div></details>
+  <details class="collapsible" style="margin:12px 0"><summary>${t("h_upgrades")}</summary><div class="grid">${goals().map(goalHTML).join("")}</div></details>
+  <h3 style="margin:14px 0 6px">${t("h_engine")}</h3>
+  <div class="grid2">${engHTML}</div>
+
+  <div class="xpbar" style="margin-top:14px"><div class="fill" style="width:${lvNow()>=XP.length-1?100:Math.round((state.tx-XP[lvNow()])/(XP[lvNow()+1]-XP[lvNow()])*100)}%"></div></div>
+  <p class="muted" style="font-size:12px">${fmt("train_level",{l:lv,x:state.tx,next:lvNow()<XP.length-1?fmt("next_lv",{l:lv+1,x:XP[lvNow()+1]}):""})}</p>`;
+  pixCanvas("pix",4);
+}
+function buy(i){
+  let tutBuy=false;
+  if(!tutDone()&&inTutorial()){ if(tutStep()==="buy_wagon"&&i==="box")tutBuy=true; else return; }
+  const w=WAGONS.find(x=>x.id===i);
+  if(!w) return;
+  const cost=unlockCost(w);
+  if(state.money<cost){alert(fmt("buy_no_money",{p:cost}));return;}
+  if(LV()<w.lv){alert(fmt("buy_lv",{l:w.lv}));return;}
+  state.money-=cost; state.owned[w.id]=(state.owned[w.id]||0)+1;
+  if(state.equip.length<slots()) state.equip.push(w.id);
+  log(fmt("log_bought",{n:t("wc_"+w.id)})); save(); update();
+  if(tutBuy){ nextTutorialStep(); save(); state.contracts=makeContracts(); showTab(1); } else trainTab();
+}
+function equipOwned(id){
+  if(ownedCount(id)<=0){alert(fmt("need_note",{n:t("wc_"+id)})); return;}
+  if(state.equip.length>=slots()){alert(fmt("max_slots",{n:slots()})); trainTab(); return;}
+  state.owned[id]=(state.owned[id]||1)-1;
+  state.equip.push(id); log(fmt("log_hitched",{n:t("wc_"+id)})); save(); update(); trainTab();
+}
+function unequip(idx){ if(state.equip.length<=1)return; const wg=WAGONS.find(x=>x.id===state.equip[idx]); state.equip.splice(idx,1); state.owned[wg.id]=(state.owned[wg.id]||0)+1; log(fmt("log_stored",{n:t("wc_"+wg.id)})); save(); update(); trainTab(); }
+function buyEngine(i){
+  let tutBuy=false;
+  if(!tutDone()&&inTutorial()){ if(tutStep()==="buy_engine"&&i===0)tutBuy=true; else return; }
+  const e=ENGINES[i]; if(ownsE(i)||i!==ENGINES.findIndex((x,k)=>!ownsE(k))) return;
+  if(LV()<e.lv){alert(fmt("buy_lv",{l:e.lv}));return;}
+  if(state.money<e.price){alert(fmt("buy_no_money",{p:e.price}));return;}
+  state.money-=e.price; state.ownedEngines.push(i); state.ownedEngines.sort((a,b)=>a-b);
+  state.engineIdx=i; log(fmt("log_mounted",{n:t("eg_"+e.id)})); save(); update();
+  if(tutBuy){ nextTutorialStep(); save(); showTab(0); } else trainTab();
+}
+function setEngine(i){
+  if(!ownsE(i))return;
+  if(state.engineIdx===i)return;
+  if(weight()>ENGINES[i].pull){alert(fmt("setEngine_pull",{e:t("eg_"+ENGINES[i].id),p:ENGINES[i].pull,w:weight()})); return;}
+  state.engineIdx=i; log(fmt("log_mounted",{n:t("eg_"+ENGINES[i].id).toLowerCase()})); save(); update(); trainTab();
+}
+
+/* ---------- contract tab ---------- */
+function contractTab(){
+ if(!state.contracts.length) state.contracts=makeContracts();
+ refreshSpecial();
+ const i=state.city, cl=cityLevel(i);
+ const cap=capNow();
+ const panel=document.getElementById("panel");
+let spHTML="";
+   const sp=state.special;
+   if(sp){ const lockedLv=LV()<sp.lv;
+      const lockedDeliv=state.stats.deliv<sp.deliv;
+      const haveNeed=sp.need.k==="w"?hasW(sp.need.id):ownsE(sp.need.idx);
+      const haveAll=haveNeed&&!lockedLv&&!lockedDeliv;
+      const nm=specialNeedName(sp);
+      if(haveAll||state.specialSel){
+      const act=`<button class="small" style="background:#d9a441;color:#241a06" onclick="selectSpecial()">${state.contract!==null?t("sp_all"):state.specialSel?t("sp_sel"):t("sp_view")}</button>`;
+      const openLbl=sp.open.map(o=>CITIES[o].n).join(" · ");
+      spHTML=`<div class="card contract ${state.specialSel?"sel":""} sp-card" onclick="selectSpecial()">
+       <span class="rarity r-special">${t("sp_badge")}</span>
+       <span class="badge">${CITIES[i].i} → ${CITIES[sp.to].n}</span>
+       ${sp.deliv?`<span class="badge" style="background:#7a4a8a;color:#fdf9ee">${fmt("sp_deliv_b",{d:sp.deliv})}</span>`:""}
+       <h3 style="margin:8px 0 4px">${t("cg_"+sp.cargo)} <span class="muted">×${sp.amount}</span></h3>
+       <div class="muted" style="font-size:13px">🔑 ${fmt("sp_newline",{n:openLbl})} · ${sp.need.k==="w"?fmt("sp_need_w",{i:nm.i,n:nm.n}):fmt("sp_need_e",{n:nm.n})}</div>
+       <div class="reward" style="font-weight:800;font-size:19px;margin-top:6px">€${sp.reward} <span style="font-size:12px;color:#8a7f6b">${t("city_new")}</span></div>
+       ${act}
+      </div>`;
+      } else {
+      const reason=lockedLv?fmt("sp_lv",{l:sp.lv}):lockedDeliv?fmt("sp_deliv",{d:sp.deliv}):fmt(sp.need.k==="w"?"sp_need_w":"sp_need_e", sp.need.k==="w"?{i:nm.i,n:nm.n}:{n:nm.n});
+      spHTML=`<div class="card sp-card locked" style="display:flex;align-items:center;gap:8px"><span class="rarity r-special">${t("sp_badge")}</span><span class="badge">${CITIES[i].i} → ${CITIES[sp.to].n}</span><span class="badge">€${sp.reward}</span><b style="margin-left:auto">${reason}</b></div>`;
+      }
+   }
+const rows=state.contracts.map((c,idx)=>{
+   const oc=overCap(c);
+   const lack=c.need&&!hasW(c.need);
+   const locked=oc||lack;
+   const tH=travelH(c.dist), late=c.deadline!=null&&tH>=c.deadline+0.05;
+   const clk=locked?"":`select(${idx})`;
+   const needW=c.need?WAGONS.find(w=>w.id===c.need):null;
+   const btnId=idx===0&&inTutorial()?` id="tut-contract-0"`:"";
+    return `<div class="card contract ${state.contract===idx?"sel":""} ${oc?"over-cap":""} ${lack?"locked":""}">
+    <span class="rarity r-${c.rarity}">${t("ra_"+c.rarity)}</span><span class="badge">${CITIES[i].i}${CITIES[i].n} → ${CITIES[c.to].n}</span>
+    ${c.need?`<span class="badge" style="background:#7a4a8a;color:#fdf9ee">${fmt("requires",{i:needW.ic,n:t("wc_"+c.need)})}</span>`:""}
+    <h3 style="margin:8px 0 4px">📦 ${t("cg_"+c.cargo)} <span class="muted">×${c.amount}</span></h3>
+    ${c.deadline?`<div class="muted" style="font-size:14px">⏰ ${fmt("deadline_by",{h:c.deadline,t:tH})}</div>`:""}
+    <div class="reward" style="font-weight:800;font-size:24px;margin:6px 0 2px">€${c.reward} ${c.deadline?`<span style="font-size:12px;color:#8a7f6b">${late?t("will_late"):t("ontrack")}</span>`:""}</div>
+    ${oc?`<div class="muted" style="margin-top:2px">${fmt("over_cap_note",{a:c.amount,b:cap})}</div>`:lack?`<div class="muted" style="margin-top:2px">${fmt("need_note",{n:t("wc_"+c.need)})}</div>`:""}
+    <button class="action"${btnId} onclick="${clk}" ${locked?'disabled':''}>${t("take_job")}</button>
+   </div>`;}).join("");
+  panel.innerHTML=`<h2>${t("contracts_h")}${CITIES[i].i} ${CITIES[i].n}</h2>
+   <div class="stats">
+    <div class="stat">⭐ ${t("stat_rep")} <b>${state.rep}</b> <span class="muted">${t("rp_"+repTier())}</span></div>
+    <div class="stat">📦 ${t("stat_cap")} <b>${cap}t</b></div>
+    <button class="small" style="margin:0 0 0 auto;background:#d9a441;color:#241a06;font-size:14px" onclick="reroll()" ${(state.contract!==null||state.specialSel)?"disabled":""}>${fmt("reroll",{c:rerollCost()})}</button>
+   </div>
+    <button class="flowbtn ${state.contract!==null?"gold":""}" style="margin:0 0 12px" onclick="showTab(2)" ${(state.contract===null&&!state.specialSel)?'disabled':''}>${(state.contract===null&&!state.specialSel)?t("need_select"):t("review_route")}</button>
+    ${spHTML}
+    <div class="grid">${rows||`<p class="muted">${t("no_contracts")}</p>`}</div>`;
+}
+function select(idx){
+ const c=state.contracts[idx];
+ if(!c)return;
+ let tutPick=false;
+ if(!tutDone()&&inTutorial()){ if(tutStep()==="pick_contract"&&idx===0)tutPick=true; else return; }
+ if(c.need&&!hasW(c.need)){alert(fmt("sel_need",{i:WAGONS.find(w=>w.id===c.need).ic,n:t("wc_"+c.need)}));return;}
+ if(overCap(c)){alert(fmt("sel_cap",{a:c.amount,b:capNow()}));return;}
+ state.contract=idx; state.specialSel=false; save();
+ if(tutPick){ nextTutorialStep(); save(); showTab(2); } else contractTab();
+}
+function selectSpecial(){
+  const sp=state.special; if(!sp) return;
+  if(state.contract!==null){alert(t("sp_all"));return;}
+  const nm=specialNeedName(sp);
+  if(LV()<sp.lv){alert(fmt("sp_lv",{l:sp.lv}));return;}
+  if(state.stats.deliv<sp.deliv){alert(fmt("sp_deliv",{d:sp.deliv}));return;}
+  if(sp.need.k==="w"&&!hasW(sp.need.id)){alert(fmt("sp_need_w",{i:nm.i,n:nm.n}));return;}
+  if(sp.need.k==="e"&&!ownsE(sp.need.idx)){alert(fmt("sp_need_e",{n:nm.n}));return;}
+  state.specialSel=true; state.contract=null; save(); contractTab();
+}
+function cancelSpecial(){ state.specialSel=false; state.special=null; save(); contractTab(); }
+
 /* ---------- map tab ---------- */
 const markers=["🌧️","⚠️","⚡","🚧","🌪️","🦹"];
 function routeHTML(from,to){
@@ -1278,9 +1808,11 @@ function routeHTML(from,to){
 }
 function riskRow(){
   const opts=[["normal",...ta("risk0")],["rush",...ta("risk1")],["danger",...ta("risk2")]];
-  return `<div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0">${opts.map(o=>`<div class="risk ${state.pickRisk===o[0]?"sel":""}" onclick="risk('${o[0]}')"><b>${o[1]}</b><span class="muted" style="font-size:11px">${o[2]}</span></div>`).join("")}</div>`;
+  return `<div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0">${opts.map(o=>`<div class="risk ${state.pickRisk===o[0]?"sel":""}" ${o[0]==="normal"&&inTutorial()?`id="tut-risk-normal"`:""} onclick="risk('${o[0]}')"><b>${o[1]}</b><span class="muted" style="font-size:11px">${o[2]}</span></div>`).join("")}</div>`;
 }
-function risk(r){ state.pickRisk=r; save(); showTab(2); }
+function risk(r){
+ if(!tutDone()&&inTutorial()){ if(tutStep()==="pick_risk"&&r==="normal")nextTutorialStep(); else return; }
+ state.pickRisk=r; save(); showTab(2); }
 function riskOutlook(c){
   const mult=state.pickRisk==="rush"?1.25:state.pickRisk==="danger"?1.75:1;
   const base=Math.round(c.reward*mult*cargoBonus(c));
@@ -1294,6 +1826,7 @@ function mapTab(){
  if(!state.active){ renderDepart(); return; }
  renderJourney();
 }
+
 /* ---------- journey animation ---------- */
 let jiv=null;
 function kancel(){ if(jiv!=null&&typeof cancelAnimationFrame==="function")cancelAnimationFrame(jiv); jiv=null; }
@@ -1303,33 +1836,48 @@ function drawScene(p,phase){
  const cv=pixA("jcan"); if(!cv)return;
  const jj=state.active; if(!jj)return;
  const scale=2, tr=trainRows(), dist=jj.contract.dist, n=jj.evs.length;
- const TW=trackW(dist), tranY=2;
+ const TW=trackW(dist), tTop=26, trainH=tr.H;
  const pad=12, range=TW-pad*2-tr.W*scale;
  const xT=Math.round(pad+p*range);
- const H=12+3+2;
+ const hillsY=tTop+trainH+1, railY=hillsY+11, H=railY+4;
  cv.width=TW*scale; cv.height=H*scale;
  const x=cv.getContext("2d"); if(!x||typeof x.fillRect!=="function")return;
- x.fillStyle="#141a22"; x.fillRect(0,0,TW*scale,cv.height);
- x.fillStyle="#1b2331"; x.fillRect(0,0,TW*scale,(tranY-1)*scale);
+ x.fillStyle="#0e1428"; x.fillRect(0,0,TW*scale,cv.height);
+ x.fillStyle="#131a30"; x.fillRect(0,0,TW*scale,13*scale);
+ x.fillStyle="#192038"; x.fillRect(0,13*scale,TW*scale,(hillsY-13)*scale);
+ x.fillStyle="#e5eaf6"; for(let i=0;i<48;i++){ if(i%3===0)continue; const sx=(i*97+37)%TW, sy=(i*83+(i*17)%5)%11; x.fillRect(sx*scale,sy*scale,scale,scale); }
+ const drift=Math.floor(phase*12)%TW;
+ for(let j=0;j<3;j++){
+  const cy=5+j*4, base=((j*173+drift*3)%TW);
+  x.fillStyle="rgba(128,141,163,0.28)";
+  for(let c2=0;c2<3;c2++) x.fillRect(((base+c2*3)%TW)*scale,(cy+(c2%2))*scale,(c2===1?5:3)*scale,scale);
+ }
+ for(let wx=0;wx<TW;wx++){
+  const bump=(((wx+Math.floor(phase*14))%9)<2?2:0);
+  x.fillStyle="#232c48"; x.fillRect(wx*scale,hillsY*scale,scale,(5+bump)*scale);
+ }
+ x.fillStyle="#1b2338"; x.fillRect(0,(hillsY+6)*scale,TW*scale,3*scale);
  for(let k=0;k<=n;k++){
   const mx=Math.round((k+1)/(n+1)*TW);
   const isPending=!state.outcome&&k===jj.idx;
   const isDone=state.outcome?k<=jj.idx:k<jj.idx;
+  x.fillStyle="#465166"; x.fillRect(mx*scale,(railY-3)*scale,Math.max(1,Math.round(scale/2)),4*scale);
   x.fillStyle=isDone?"#43a047":isPending?(Math.floor(phase)%2?"#f5d742":"#8a6d1a"):"#3a4352";
-  x.fillRect(mx*scale,(tranY+10)*scale,Math.max(1,Math.round(scale/2)),3*scale);
+  x.fillRect(mx*scale-1,(railY-4)*scale,3*scale,2*scale);
  }
  if(state.outcome){ // burst at the last resolved marker
-  const o=state.outcome, mx=Math.round((jj.idx+1)/(n+1)*TW), my=(tranY+8)*scale;
+  const o=state.outcome, mx=Math.round((jj.idx+1)/(n+1)*TW), my=railY*scale;
   x.fillStyle=o.out==="loss"?"#c62828":o.out==="bonus"?"#67d17e":"#b0bec5";
   x.fillRect(mx*scale-2*scale,my,5*scale,2*scale); x.fillRect(mx*scale,my-2*scale,2*scale,5*scale);
  }
  const bob=Math.floor(phase)%2;
- for(let y=0;y<tr.H;y++)for(let c=0;c<tr.W;c++){ if(!tr.g[y][c])continue; x.fillStyle=tr.g[y][c]; x.fillRect((c*scale+xT),(y+tranY+bob)*scale,scale,scale); }
+ for(let y=0;y<trainH;y++)for(let c=0;c<tr.W;c++){ if(!tr.g[y][c])continue; x.fillStyle=tr.g[y][c]; x.fillRect((c*scale+xT),(y+tTop+bob)*scale,scale,scale); }
  const cabX=xT+(tr.W-18+3)*scale;
- for(let i=0;i<3;i++){ const s=Math.floor(phase*1.3+i)%3; const px=cabX+i*2*scale; const py=(tranY-1-s)*scale; const sz=Math.max(scale,4-s); x.fillStyle=i===0?"#c6ccd4":"#8f98a3"; x.fillRect(px,py,sz,sz); }
- x.fillStyle="#0e1217"; x.fillRect(0,(12+tranY)*scale,TW*scale,scale);
- x.fillStyle="#232a33"; x.fillRect(0,(13+tranY)*scale,TW*scale,scale);
- x.fillStyle="#39414c"; for(let i=0;i<TW;i++){ if(i%2)x.fillRect(i*scale,(13+tranY)*scale,scale,Math.floor(scale*0.7)); }
+ for(let i=0;i<8;i++){ const s=Math.floor(phase*2.2+i*1.4)%11; const px=cabX+i*2*scale+Math.floor(Math.sin(i+phase*6)*2)*scale; const py=(tTop-1-s)*scale; const sz=Math.max(scale,6-s); x.fillStyle=i===0?"#c6ccd4":"rgba(143,152,163,0.9)"; x.fillRect(px,py,sz,sz); }
+ x.fillStyle="#0e1217"; x.fillRect(0,railY*scale,TW*scale,scale);
+ x.fillStyle="#232a33"; x.fillRect(0,(railY+1)*scale,TW*scale,scale);
+ x.fillStyle="#39414c"; for(let i=0;i<TW;i++){ if(i%2)x.fillRect(i*scale,(railY+1)*scale,scale,Math.floor(scale*0.7)); }
+ x.fillStyle="#141a24"; x.fillRect(0,(railY+2)*scale,TW*scale,(H-(railY+2))*scale);
 }
 function animateScene(){
  const jj=state.active; if(!jj)return;
@@ -1337,7 +1885,7 @@ function animateScene(){
  const n=jj.evs.length;
  const legStart=jj.idx===0?0:(jj.idx)/(n+1);
  const legEnd=(jj.idx+1)/(n+1);
- const dur=Math.max(1.5,Math.min(3.6,1.4+jj.contract.dist*0.7));
+ const dur=Math.max(2.4,Math.min(5.4,2.4+jj.contract.dist*0.9));
  const t0=(typeof performance!=="undefined"&&performance.now)?performance.now():Date.now();
  function tick(){
   if(!state.active){ kancel(); return; }
@@ -1367,8 +1915,9 @@ let card;
     const ctr=jj.contract;
     const hasDeadline=ctr.deadline!=null;
     const riskLate=ctr.deadline!=null&&travelH(ctr.dist)>=ctr.deadline-0.5;
-    card=`<div class="event"><h3>${e.t}</h3><p class="muted">${e.d}</p><div class="choices">${e.o.map((o,i)=>`<button class="action" onclick="pick(${i})">${o.l}${hasDeadline&&o.f&&o.f>0?` <span class="badge" style="background:#f6e2dc;color:#b6452e;font-size:10px;padding:1px 6px">${t("risk_late")}</span>`:""}</button>`).join("")}</div></div>`;
+    card=`<div class="event"><h3>${e.t}</h3><p class="muted">${e.d}</p><div class="choices">${e.o.map((o,i)=>`<button class="action" id="${i===0&&inTutorial()?`tut-event-0`:""}" onclick="pick(${i})">${o.l}${hasDeadline&&o.f&&o.f>0?` <span class="badge" style="background:#f6e2dc;color:#b6452e;font-size:10px;padding:1px 6px">${t("risk_late")}</span>`:""}</button>`).join("")}</div></div>`;
   }
+  const panel=document.getElementById("panel");
   panel.innerHTML=`<h2>${fmt("on_the_line",{c:CITIES[jj.contract.to].i+CITIES[jj.contract.to].n})}</h2>
    ${state.departed?`<div class="departing">💨 ${fmt("departing",{c:CITIES[jj.contract.to].i+CITIES[jj.contract.to].n})}</div>`:""}
    <div class="jscene">
@@ -1385,6 +1934,7 @@ let card;
 function renderDepart(){
   const special=state.specialSel&&state.special;
   const c=special?special:(state.contracts[state.contract]);
+  const panel=document.getElementById("panel");
   if(!c){ panel.innerHTML=`<h2>${t("tab_map")}</h2><p class="muted">${t("pick_first")}</p><button class="action" onclick="showTab(1)">${t("to_contracts")}</button>`; return; }
   if(special&&overPull()){
    panel.innerHTML=`<h2>${t("route_blocked")}</h2>
@@ -1424,7 +1974,7 @@ function renderDepart(){
      <span class="badge" style="background:#f6e2dc;color:#b6452e;border:1px solid #b6452e">${fmt("exp_fail",{v:"−€"+Math.abs(o.worst)})}</span>
     </div>
 <div style="display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 14px">
-     <button class="action" style="margin:0;flex:1;min-width:160px" onclick="go()">${special?fmt("go_btn",{c:opCost()}):fmt("go_btn",{c:opCost()})}</button>
+      <button class="action" id="${state.contract!==null&&inTutorial()?`tut-go`:""}" style="margin:0;flex:1;min-width:160px" onclick="go()">${special?fmt("go_btn",{c:opCost()}):fmt("go_btn",{c:opCost()})}</button>
      <button class="small" style="flex:1;min-width:120px;width:auto;margin:0;background:#b6452e;color:#fff" onclick="clearRoute()">${t("clear_route")}</button>
     </div>
    <div class="stats">
@@ -1476,20 +2026,18 @@ function renderResult(){
   const r=state.result;
   const details=[
    {l:t("d_cargo"),v:r.cargo},{l:t("d_dist"),v:r.dist+" "+(r.dist===1?t("hop"):t("hops"))},
-   {l:t("d_base"),v:"€"+r.base},{l:t("d_mult"),v:"×"+r.routeMult},
-   {l:t("d_wbonus"),v:"×"+r.bonus.toFixed(2)},
-   {l:t("d_events"),v:(r.gain>=0?"+":"")+"€"+r.gain+" ("+r.handled+" "+(r.handled===1?t("hop"):t("hops"))+")"},
    {l:t("d_rep"),v:(r.repChange>=0?"+":"")+r.repChange},{l:t("d_net"),v:"€"+r.net}
   ].map(d=>`<div class="detail"><div class="label">${d.l}</div><div class="value">${d.v}</div></div>`).join("");
+const panel=document.getElementById("panel");
 panel.innerHTML=`<h2>${t("arrived")}${r.to}</h2>
    ${pixHTML("pix")}
    <div class="result-screen ${r.good?"good":"bad"} result-in">
+     ${resultXpHTML(r)}
     <div class="icon">${r.good?"🚂✅":"🚂❌"}</div>
     <h2>${r.good?r.late?t("late_title"):t("good_title"):t("bad_title")}</h2>
     <div class="details">${details}</div>
      ${r.late?`<p class="muted">${t("late_note")}</p>`:""}
      ${r.news.length?`<div style="margin:10px 0">${r.news.map(n=>`<span class="badge" style="background:#e2f0e5;color:#2f7d43;border:1px solid #2f7d43;margin:2px">${n}</span>`).join(" ")}</div>`:""}
-     ${resultXpHTML(r)}
      <button class="action gold" onclick="continueFromResult()">${t("result_continue")}</button>
     </div>
     ${historyHTML()}`;
@@ -1501,6 +2049,7 @@ panel.innerHTML=`<h2>${t("arrived")}${r.to}</h2>
 function progressTab(){
   const st=state.stats, lv=LV(), lvI=lvNow();
   const totalOwned=Object.values(state.owned).reduce((s,n)=>s+n,0);
+  const panel=document.getElementById("panel");
   const achHTML=ACH.map(a=>`<div class="achrow ${state.ach.includes(a.id)?"done":""}"><div><b>${t("ach_"+a.id)}</b> <span class="muted" style="font-size:12px">— ${t("achd_"+a.id)}</span></div><div class="val">${state.ach.includes(a.id)?"✓ +€"+a.rw:"−"}</div></div>`).join("");
   const chHTML=CH.map((c,i)=>{ const done=state.chapter>i; return `<div class="achrow ${done?"done":""}"><div><b>${t("ch_"+i)}</b>${i===state.chapter?`<span class="badge" style="margin-left:8px">${t("next")}</span>`:""}</div><div class="val">${done?"✓":""}</div></div>`;}).join("");
   const cityHTML=CITIES.map((ct,i)=>`<div class="card" style="padding:10px"><div><b>${ct.i} ${ct.n}</b> · Lv ${cityLevel(i)+1} ${state.discovered[i]?"":"🔒"}</div>
@@ -1533,7 +2082,132 @@ function progressTab(){
 }
 function resetGame(){ kancel(); localStorage.removeItem("railrun_v3"); state=fresh(); save(); showTab(0); }
 
-/* ---------- boot ---------- */
+/* ---------- tutorial overlay ---------- */
+function skipTutorial(){ nextTutorialStep(); while(!tutDone()) nextTutorialStep(); save(); langBtn(); showTab(cur); }
+ function tutDisplayTip(step){
+  const map={
+   pick_lang:{t:t("lang_title"),d:t("lang_sub"),open:true,pickLang:true},
+   welcome:{t:t("tut_welcome_title"),d:t("tut_welcome"),btn:t("tut_welcome_next"),open:true},
+   buy_engine:{t:t("tut_engine_title"),d:t("tut_engine"),spot:"tut-buy-engine",act:{fn:"tutBuyEngine()",lbl:t("tut_engine_act")}},
+   buy_wagon:{t:t("tut_buy_title"),d:t("tut_buy"),spot:"tut-buy-box",act:{fn:"tutBuyBox()",lbl:t("tut_buy_act")}},
+   pick_contract:{t:t("tut_contract_title"),d:t("tut_contract"),spot:"tut-contract-0",act:{fn:"tutPickContract()",lbl:t("tut_contract_act")}},
+   pick_risk:{t:t("tut_risk_title"),d:t("tut_risk"),spot:"tut-risk-normal",act:{fn:"tutRiskNormal()",lbl:t("tut_risk_act")}},
+   go:{t:t("tut_go_title"),d:t("tut_go"),spot:"tut-go",act:{fn:"tutGo()",lbl:t("tut_go_act")}},
+   event:{t:t("tut_event_title"),d:t("tut_event"),spot:"tut-event-0",act:{fn:"tutEventSafe()",lbl:t("tut_event_act")}},
+   done:{t:t("tut_arrive_title"),d:t("tut_arrive"),btn:t("tut_arrive_next"),open:true}
+  };
+  return map[step];
+ }
+let tutTargetRef=null, tutSpotRef=null, tutTipRef=null, tutArrowRef=null, tutMaxW=340;
+function placeTutorTip(){
+ const tgt=tutTargetRef, tip=tutTipRef, spot=tutSpotRef, arrow=tutArrowRef;
+ if(!tgt||!tip||!spot)return;
+ const r=tgt.getBoundingClientRect();
+ const vw=window.innerWidth||0, vh=window.innerHeight||0, pad=12;
+ const maxW=Math.min(tutMaxW,vw?vw-pad*2:tutMaxW);
+ tip.style.maxWidth=maxW+"px";
+ const tw=tip.offsetWidth||maxW, th=tip.offsetHeight||0;
+ const below=!vh||r.bottom+th+pad<=vh;
+ let top=below?r.bottom+pad:Math.max(pad,r.top-th-pad);
+ if(!below&&vh&&top+th>vh-pad) top=Math.max(pad,vh-th-pad);
+ let left=pad;
+ if(vw){
+  left=Math.max(pad,Math.min(r.right+pad,vw-tw-pad));
+  if(left+tw>vw-pad) left=Math.max(0,vw-tw-pad);
+ }
+ tip.style.left=left+"px"; tip.style.top=top+"px";
+ const room=(below?vh-(r.bottom+pad):r.top-top)-pad;
+ tip.style.maxHeight=Math.max(70,room)+"px"; tip.style.overflowY="auto";
+ spot.style.left=(r.left-4)+"px"; spot.style.top=(r.top-4)+"px";
+ spot.style.width=(r.width+8)+"px"; spot.style.height=(r.height+8)+"px";
+ if(arrow){
+  arrow.style.left=(r.left+r.width/2-12)+"px";
+  arrow.style.top=(below?(r.bottom-6):(r.top-28))+"px";
+  arrow.textContent=below?"⬇":"⬆";
+ }
+}
+function renderTutorial(){
+ const o=document.getElementById("tut-overlay"); if(o&&typeof o.remove==="function")o.remove();
+ if(!inTutorial())return;
+ const info=tutDisplayTip(tutStep());
+ const headless=typeof document.body.appendChild!=="function"||!info;
+ if(headless)return;
+ const overlay=document.createElement("div");
+ overlay.id="tut-overlay"; overlay.className="tut-overlay"; overlay.classList.add("active");
+ document.body.appendChild(overlay);
+ overlay.innerHTML=`<div class="tut-dim"></div><button class="tut-skip" onclick="skipTutorial()">${t("tut_skip")}</button>`;
+ const pad=12;
+ tutMaxW=info.pickLang?460:340;
+ tutTargetRef=info.spot?document.getElementById(info.spot):null;
+ if(tutTargetRef){
+  const vh=window.innerHeight||0, rb=tutTargetRef.getBoundingClientRect();
+  if(vh&&(rb.top<0||rb.bottom>vh)&&typeof window.scrollTo==="function"){
+   const y=rb.top+(window.pageYOffset||0)+rb.height/2-vh/2;
+   window.scrollTo(0,Math.max(0,y));
+  }
+  const r=tutTargetRef.getBoundingClientRect();
+  tutSpotRef=document.createElement("div");
+  tutSpotRef.className="tut-spot";
+  tutSpotRef.style.left=(r.left-4)+"px"; tutSpotRef.style.top=(r.top-4)+"px";
+  tutSpotRef.style.width=(r.width+8)+"px"; tutSpotRef.style.height=(r.height+8)+"px";
+  overlay.appendChild(tutSpotRef);
+ }
+ let tipHtml=`<h3>${info.t}</h3><p>${info.d}</p>`;
+ if(info.pickLang){
+  const btns=LANG_ORDER.map(l=>`<button class="tut-btn lang" onclick="pickLang('${l}')">${LANG_FLAGS[l]} ${NATIVE_LANG[l]}</button>`).join("");
+  tipHtml+=`<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:8px">${btns}</div>`;
+ } else if(info.act) tipHtml+=`<button class="tut-btn" onclick="${info.act.fn}">${info.act.lbl}</button>`;
+ else if(info.btn) tipHtml+=`<button class="tut-btn" onclick="tutNext()">${info.btn}</button>`;
+ const tip=document.createElement("div");
+ tip.className="tut-tip"; tip.innerHTML=tipHtml;
+ overlay.appendChild(tip);
+ tutTipRef=tip;
+ if(tutTargetRef){
+  tutArrowRef=document.createElement("div"); tutArrowRef.className="tut-arrow";
+  overlay.appendChild(tutArrowRef);
+  placeTutorTip();
+  if(typeof requestAnimationFrame==="function"){
+   requestAnimationFrame(()=>{ if(tutTargetRef) placeTutorTip(); });
+   requestAnimationFrame(()=>requestAnimationFrame(()=>{ if(tutTargetRef) placeTutorTip(); }));
+  }
+  if(typeof setTimeout==="function") setTimeout(()=>{ if(tutTargetRef) placeTutorTip(); },450);
+ } else {
+  tutArrowRef=null;
+  const vw=window.innerWidth||0;
+  if(vw) tip.style.maxWidth=Math.min(tutMaxW,vw-pad*2)+"px";
+  tip.style.left="50%"; tip.style.top=(window.innerHeight?120:0)+"px";
+  tip.style.transform="translateX(-50%)"; tip.style.textAlign="center";
+ }
+ if(typeof window.addEventListener==="function"&&!window.__tutBound){
+  window.__tutBound=true;
+  window.addEventListener("resize",placeTutorTip);
+  if(typeof document.addEventListener==="function"){
+   document.addEventListener("scroll",()=>{ if(tutTargetRef) placeTutorTip(); },true);
+  }
+ }
+}
+function pickLang(code){
+ setLang(code);
+ if(tutStep()==="pick_lang"){ nextTutorialStep(); }
+ save(); showTab(cur);
+}
+function tutNext(){
+ if(tutStep()==="welcome"||tutStep()==="done"){ nextTutorialStep(); save(); showTab(cur); }
+ else if(tutStep()==="buy_wagon"){ clearTutorialOverlay(); }
+}
+function tutBuyEngine(){ buyEngine(0); }
+function tutBuyBox(){ buy("box"); }
+function tutPickContract(){ select(0); }
+function tutRiskNormal(){ risk("normal"); }
+function tutGo(){ go(); }
+function tutEventSafe(){ if(state.active&&state.active.evs&&state.active.evs[0])pick(0); }
+function clearTutorialOverlay(){ const o=document.getElementById("tut-overlay"); if(o&&typeof o.remove==="function")o.remove(); }
+
+
+
+
+
+/* boot */
 state = Object.assign(fresh(),state);
 if(!state.contracts.length) state.contracts=makeContracts();
 save(); update(); langBtn(); showTab(cur);

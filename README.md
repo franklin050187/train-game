@@ -44,17 +44,24 @@ bigger cargo, better rewards, and legendary contracts.
 ## Layout
 
 ```
-public/poc.html        the entire game (HTML + CSS + JS, i18n EN/FR)
-serve-poc.cjs          tiny zero-dependency static server
-.github/workflows/     GitHub Pages deploy (copies poc.html -> index.html)
-decisions.tsv          decision log kept while building
+public/
+  poc.html              thin shell: HTML structure + script tags + boot sequence
+  css/style.css         all CSS (responsive, animations, components)
+  js/
+    i18n.js             EN/FR dictionaries + t()/fmt()/toggleLang() helpers
+    data.js             cities, cargoes, wagons, engines, line definitions
+    pixelart.js         sprite data + train rendering (pixCanvas/pixHTML)
+    game.js             state management, train math, contracts, events, journey logic
+    ui.js               tab rendering (train/contract/map/progress), animations, result screen
+serve-poc.cjs           tiny zero-dependency static server
+.github/workflows/      GitHub Pages deploy (copies poc.html -> index.html)
+decisions.tsv           decision log kept while building
 ```
 
-`public/poc.html` is self-contained: no external assets, no fonts, no imports. Verify a change with:
+No external assets, no fonts, no imports. Verify a change with:
 
 ```bash
-node -e 'const s=require("fs").readFileSync("public/poc.html","utf8");
-new Function(s.match(/<script>([\s\S]*)<\/script>/)[1]); console.log("syntax OK");'
+for f in public/js/*.js; do node -e "new Function(require('fs').readFileSync('$f','utf8')); console.log('$f OK');"; done
 ```
 
 ## Smoke Test
